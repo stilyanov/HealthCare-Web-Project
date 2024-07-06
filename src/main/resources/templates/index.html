@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -23,59 +23,59 @@
 <!-- Page Header-->
 <header th:replace="fragments/commons::header"></header>
 
-<!-- Main Content-->
 
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
     <div class="row row-cols-2 g-5 justify-content-center">
-        <div class="col">
-            <!-- Post preview-->
-            <div class="post-preview">
-                <img src="https://img.freepik.com/free-photo/doctor-with-white-robe-stethoscope_144627-43879.jpg"
-                     alt="doctor"/>
-                <a href="post.html">
-                    <h2 class="post-title">Dr. Emily Johnson</h2>
-                    <h4 class="post-subtitle"><b>Specialty</b>: Cardiology</h4>
-                    <h4 class="post-subtitle"><b>Experience</b>: 12 years</h4>
-                    <p class="post-subtitle"><b>Bio</b>: Dr. Emily Johnson is a highly skilled cardiologist specializing
-                        in diagnosing and treating heart conditions. She is well-known for her compassionate care and
-                        her commitment to patient health. Dr. Johnson has extensive experience in managing complex
-                        cardiovascular diseases and is proficient in advanced diagnostic techniques.</p>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Admin</a>
-                    on September 24, 2023
-                </p>
-            </div>
+        <div class="col-md-5">
+            <form class="col-form-label col-md-10">
+                <div class="form-group p-sm-0">
+                    <div class="mx-auto"><b>Find Doctor</b></div>
+                    <img src="https://media.istockphoto.com/id/1189350851/vector/find-doctor-icon.jpg?s=612x612&w=0&k=20&c=V6Vlnwip9hK-CBVuxX7hqEj3WZWq4zt4iGNy43d7ffY="
+                        class="img-fluid" alt="Find Doctor">
+                    <label for="exampleFormControlSelect1"></label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Choose specialty</option>
+                        <option></option>
+                    </select>
+                </div>
+                <div class="form-group p-sm-0">
+                    <label for="exampleFormControlSelect2"></label>
+                    <select class="form-control" id="exampleFormControlSelect2">
+                        <option>Choose a town</option>
+                        <option></option>
+                    </select>
+                </div>
+                <div class="form-group p-sm-0">
+                    <label for="exampleFormControlInput1"></label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                           placeholder="Find doctor by name">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-5">
+            <ul class="list-group">
+                <div class="mx-auto mb-4">
+                    <img src="https://www.marketmirror.info/assets/images/choose_city.jpg"
+                         class="img-fluid" alt="Choose City">
+                    <b>Choose City</b>
+                </div>
+                <li class="list-group-item">Varna</li>
+                <li class="list-group-item">Sofia</li>
+                <li class="list-group-item">Plovdiv</li>
+                <li class="list-group-item">Veliko Turnovo</li>
+                <li class="list-group-item">Burgas</li>
+                <li class="list-group-item">Kurdzali</li>
+                <li class="list-group-item">Ruse</li>
+                <li class="list-group-item">Pavlikeni</li>
+                <li class="list-group-item">Pleven</li>
+                <li class="list-group-item">Stara Zagora</li>
+                <li class="list-group-item">Dobrich</li>
+            </ul>
         </div>
 
-        <div class="col">
-            <!-- Post preview-->
-            <div class="post-preview">
-                <img class="img-fluid" src="https://d3jkudlc7u70kh.cloudfront.net/random-facts-about-doctors.jpg"
-                     alt="doctor2"/>
-                <a href="post.html">
-                    <h2 class="post-title">Dr. Michael Smith</h2>
-                    <h4 class="post-subtitle"><b>Specialty</b>: Orthopedics</h4>
-                    <h4 class="post-subtitle"><b>Experience</b>: 15 years</h4>
-                    <p class="post-subtitle"><b>Bio</b>: Dr. Michael Smith is an expert orthopedic surgeon with a focus
-                        on sports injuries and joint replacements. He is dedicated to helping patients recover mobility
-                        and live pain-free lives. Dr. Smith is renowned for his surgical precision and his innovative
-                        approach to minimally invasive procedures.</p>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Admin</a>
-                    on September 24, 2023
-                </p>
-            </div>
-        </div>
         <!-- Divider-->
         <hr class="my-4"/>
-        <!-- Pager-->
-        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Show All
-            Doctors →</a></div>
 
     </div>
 </div>

@@ -1,6 +1,7 @@
 package bg.softuni.healthcare.model.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -13,9 +14,11 @@ public class AppointmentEntity extends BaseEntity {
     private LocalDateTime dateTime;
 
     @ManyToOne
+    @JoinColumn(name = "doctor_id")
     private DoctorEntity doctor;
 
     @ManyToOne
+    @JoinColumn(name = "patient_id")
     private PatientEntity patient;
 
     private String reason;
