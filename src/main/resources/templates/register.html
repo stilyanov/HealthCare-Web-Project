@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Healthcare Management System</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-          rel="stylesheet" type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet"/>
-</head>
+
+<head th:replace="fragments/commons::head"></head>
 
 <body>
 <!-- Navigation-->
@@ -25,7 +10,7 @@
 <header th:replace="fragments/commons::header"></header>
 
 <!--Register Form-->
-<section class="vh-100 gradient-custom">
+<section class="vh-100% gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -43,12 +28,12 @@
                             </div>
 
                             <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="firstName" id="firstName" class="form-control form-control-lg" />
+                                <input type="text" id="firstName" class="form-control form-control-lg" />
                                 <label class="form-label" for="firstName">First Name</label>
                             </div>
 
                             <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="lastName" id="lastName" class="form-control form-control-lg" />
+                                <input type="text" id="lastName" class="form-control form-control-lg" />
                                 <label class="form-label" for="lastName">Last Name</label>
                             </div>
 
@@ -58,7 +43,7 @@
                             </div>
 
                             <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="confirmPassword" id="confirmPassword" class="form-control form-control-lg" />
+                                <input type="password" id="confirmPassword" class="form-control form-control-lg" />
                                 <label class="form-label" for="confirmPassword">Confirm Password</label>
                             </div>
 
