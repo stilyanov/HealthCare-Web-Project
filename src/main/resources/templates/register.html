@@ -22,37 +22,71 @@
                             <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
                             <p class="text-white-50 mb-5">Please enter your information!</p>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="email" id="email" class="form-control form-control-lg" />
-                                <label class="form-label" for="email">Email</label>
-                            </div>
+                            <form th:action="@{/users/register}"
+                                  th:method="post"
+                                  th:object="${registerDTO}"
+                            >
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" id="firstName" class="form-control form-control-lg" />
-                                <label class="form-label" for="firstName">First Name</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="firstName">First Name</label>
+                                    <input type="text" id="firstName" class="form-control form-control-lg"
+                                           th:field="*{firstName}"
+                                           th:errorclass="'is-invalid alert-danger'"
+                                    />
+                                    <small class="invalid-feedback text-danger"
+                                           th:each="error : ${#fields.errors('firstName')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" id="lastName" class="form-control form-control-lg" />
-                                <label class="form-label" for="lastName">Last Name</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" class="form-control form-control-lg"
+                                           th:field="*{lastName}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-danger"
+                                           th:each="error : ${#fields.errors('lastName')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="password" id="password" class="form-control form-control-lg" />
-                                <label class="form-label" for="password">Password</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" th:for="email">Email</label>
+                                    <input type="email" id="email" class="form-control form-control-lg"
+                                           th:field="*{email}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-danger"
+                                           th:each="error : ${#fields.errors('email')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="password" id="confirmPassword" class="form-control form-control-lg" />
-                                <label class="form-label" for="confirmPassword">Confirm Password</label>
-                            </div>
 
-                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
-                        </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input type="password" id="password" class="form-control form-control-lg"
+                                           th:field="*{password}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-danger"
+                                           th:each="error : ${#fields.errors('password')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                        <div>
-                            <p class="mb-0">Don't have an account? <a th:href="@{/users/register}" class="text-white-50 fw-bold">Sign Up</a>
-                            </p>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="confirmPassword">Confirm Password</label>
+                                    <input type="password" id="confirmPassword" class="form-control form-control-lg"
+                                           th:field="*{confirmPassword}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-danger"
+                                           th:each="error : ${#fields.errors('confirmPassword')}"
+                                           th:text="${error}"></small>
+                                </div>
+
+                                <button data-mdb-button-init data-mdb-ripple-init
+                                        class="btn btn-outline-light btn-lg px-5" type="submit">Register
+                                </button>
+                            </form>
                         </div>
 
                     </div>
@@ -68,6 +102,6 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<script src="/js/scripts.js"></script>
 </body>
 </html>

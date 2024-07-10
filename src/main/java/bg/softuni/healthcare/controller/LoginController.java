@@ -1,6 +1,6 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.service.UserService;
+import bg.softuni.healthcare.service.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/users")
 public class LoginController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
-    public LoginController(UserService userService) {
+    public LoginController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
