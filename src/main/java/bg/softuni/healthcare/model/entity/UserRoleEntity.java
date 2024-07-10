@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roles")
-public class UserRoleEntity extends BaseEntity{
+public class UserRoleEntity extends BaseEntity {
 
     @NotNull
     @Column(name = "role", nullable = false, unique = true)

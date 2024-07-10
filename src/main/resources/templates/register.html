@@ -33,7 +33,7 @@
                                            th:field="*{firstName}"
                                            th:errorclass="'is-invalid alert-danger'"
                                     />
-                                    <small class="invalid-feedback text-danger"
+                                    <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('firstName')}"
                                            th:text="${error}"></small>
                                 </div>
@@ -44,7 +44,7 @@
                                            th:field="*{lastName}"
                                            th:errorclass="'is-invalid alert-info'"
                                     />
-                                    <small class="invalid-feedback text-danger"
+                                    <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('lastName')}"
                                            th:text="${error}"></small>
                                 </div>
@@ -55,7 +55,7 @@
                                            th:field="*{email}"
                                            th:errorclass="'is-invalid alert-info'"
                                     />
-                                    <small class="invalid-feedback text-danger"
+                                    <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('email')}"
                                            th:text="${error}"></small>
                                 </div>
@@ -67,7 +67,7 @@
                                            th:field="*{password}"
                                            th:errorclass="'is-invalid alert-info'"
                                     />
-                                    <small class="invalid-feedback text-danger"
+                                    <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('password')}"
                                            th:text="${error}"></small>
                                 </div>
@@ -78,9 +78,12 @@
                                            th:field="*{confirmPassword}"
                                            th:errorclass="'is-invalid alert-info'"
                                     />
-                                    <small class="invalid-feedback text-danger"
+                                    <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('confirmPassword')}"
                                            th:text="${error}"></small>
+                                    <div th:if="${passwordDiff}" class="is-invalid invalid-feedback text-warning">
+                                        <small th:text="${passwordDiff}"></small>
+                                    </div>
                                 </div>
 
                                 <button data-mdb-button-init data-mdb-ripple-init

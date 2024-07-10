@@ -37,12 +37,15 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
-            return "register";
+            return "redirect:/users/register";
         }
 
         if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
+            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
             redirectAttributes.addFlashAttribute("passwordDiff", "Passwords do not match");
-            return "register";
+            // TODO IF PASSWORD DOES NOT MATCH DOES NOT APPEAR ON THE FRONT END
+            return "redirect:/users/register";
         }
 
         this.userService.registerUser(registerDTO);

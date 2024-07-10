@@ -3,7 +3,9 @@ package bg.softuni.healthcare.model.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -24,10 +26,10 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<UserRoleEntity> roles;
+    private Set<UserRoleEntity> roles;
 
     public UserEntity() {
-        this.roles = new ArrayList<>();
+        this.roles = new HashSet<>();
     }
 
     public String getEmail() {
@@ -62,11 +64,11 @@ public class UserEntity extends BaseEntity {
         this.lastName = lastName;
     }
 
-    public List<UserRoleEntity> getRoles() {
+    public Set<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<UserRoleEntity> roles) {
+    public void setRoles(Set<UserRoleEntity> roles) {
         this.roles = roles;
     }
 }
