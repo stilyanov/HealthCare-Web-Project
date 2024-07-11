@@ -32,8 +32,9 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid UserRegisterDTO registerDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-
+    public String registerUser(@Valid UserRegisterDTO registerDTO,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
@@ -43,7 +44,7 @@ public class RegistrationController {
         if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
-            redirectAttributes.addFlashAttribute("passwordDiff", "Passwords do not match");
+            redirectAttributes.addFlashAttribute("passwordDiff", "Passwords do not match!");
             // TODO: IF PASSWORD DOES NOT MATCH, DOES NOT APPEAR ON THE FRONT END
             return "redirect:/users/register";
         }
@@ -52,7 +53,7 @@ public class RegistrationController {
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
             redirectAttributes.addFlashAttribute("emailExists", "Email already exists");
-
+            //TODO: EMAIL
             return "redirect:/users/register";
         }
 

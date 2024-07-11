@@ -15,12 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/users")
 public class LoginController {
 
-    private final UserServiceImpl userService;
-
-    public LoginController(UserServiceImpl userService) {
-        this.userService = userService;
-    }
-
     @ModelAttribute("loginDTO")
     public UserLoginDTO loginDTO() {
         return new UserLoginDTO();
@@ -31,16 +25,11 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String loginUser(@Valid UserLoginDTO loginDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginDTO", bindingResult);
-            return "redirect:/users/login";
-        }
-
-        return "redirect:/";
+    @PostMapping("/login-error")
+    public String loginUser(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("wrongCredentials", true);
+        return "redirect:/users/login";
+        //TODO! ADD FLASH ATTRIBUTE FOR WRONG CREDENTIALS
     }
 
 }

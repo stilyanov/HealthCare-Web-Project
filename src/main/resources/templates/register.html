@@ -84,9 +84,9 @@
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('confirmPassword')}"
                                            th:text="${error}"></small>
-                                    <small th:if="${passwordDiff}" class="is-invalid invalid-feedback text-warning">
-                                        <small th:text="${passwordDiff}"></small>
-                                    </small>
+                                    <small class="invalid-feedback text-warning"
+                                           th:if="${passwordDiff}"
+                                           th:text="${passwordDiff}">Passwords do not match</small>
                                 </div>
 
                                 <button data-mdb-button-init data-mdb-ripple-init
