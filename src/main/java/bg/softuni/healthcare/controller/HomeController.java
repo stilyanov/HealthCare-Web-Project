@@ -12,12 +12,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-        if (userDetails instanceof HealthcareUserDetails healthcareUserDetails) {
-            model.addAttribute("fullName", healthcareUserDetails.getFullName());
-        } else {
-            model.addAttribute("fullName", "Anonymous");
-        }
-
         return "index";
     }
 

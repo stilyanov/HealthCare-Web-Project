@@ -12,7 +12,7 @@ public class UserLoginDTO {
     private String email;
 
     @NotNull(message = "Password cannot be empty!")
-    @Size(min = 5, max = 20, message = "Password length must be between 3 and 20 characters")
+    @Size(min = 8, max = 20, message = "Password length must be between 8 and 20 characters")
     private String password;
 
     public UserLoginDTO() {
