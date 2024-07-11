@@ -44,7 +44,15 @@ public class RegistrationController {
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
             redirectAttributes.addFlashAttribute("passwordDiff", "Passwords do not match");
-            // TODO IF PASSWORD DOES NOT MATCH DOES NOT APPEAR ON THE FRONT END
+            // TODO: IF PASSWORD DOES NOT MATCH, DOES NOT APPEAR ON THE FRONT END
+            return "redirect:/users/register";
+        }
+
+        if (userService.checkEmail(registerDTO.getEmail())) {
+            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
+            redirectAttributes.addFlashAttribute("emailExists", "Email already exists");
+
             return "redirect:/users/register";
         }
 

@@ -11,10 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,6 +32,8 @@ public class UserServiceImpl implements UserService {
     public void registerUser(UserRegisterDTO registerDTO) {
         boolean isFirstUser = this.userRepository.count() == 0;
 
+        UserRoleEntity byRole = userRoleRepository.findByRole(UserRoleEnum.ADMIN);
+
         Set<UserRoleEntity> roles = new HashSet<>();
         if (isFirstUser) {
             roles.add(userRoleRepository.findByRole(UserRoleEnum.ADMIN));
@@ -43,9 +42,14 @@ public class UserServiceImpl implements UserService {
         }
 
         UserEntity user = this.modelMapper.map(registerDTO, UserEntity.class);
+
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         user.setRoles(roles);
 
         this.userRepository.save(user);
+    }
+
+    public boolean checkEmail(String email) {
+        return this.userRepository.findByEmail(email).isPresent();
     }
 }

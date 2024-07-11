@@ -31,7 +31,7 @@
                                     <label class="form-label" for="firstName">First Name</label>
                                     <input type="text" id="firstName" class="form-control form-control-lg"
                                            th:field="*{firstName}"
-                                           th:errorclass="'is-invalid alert-danger'"
+                                           th:errorclass="'is-invalid alert-info'"
                                     />
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('firstName')}"
@@ -55,6 +55,9 @@
                                            th:field="*{email}"
                                            th:errorclass="'is-invalid alert-info'"
                                     />
+                                    <small th:if="${emailExists}" class="is-invalid invalid-feedback text-warning"
+                                         th:text="${emailExists}"
+                                    ></small>
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('email')}"
                                            th:text="${error}"></small>
@@ -81,9 +84,9 @@
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('confirmPassword')}"
                                            th:text="${error}"></small>
-                                    <div th:if="${passwordDiff}" class="is-invalid invalid-feedback text-warning">
+                                    <small th:if="${passwordDiff}" class="is-invalid invalid-feedback text-warning">
                                         <small th:text="${passwordDiff}"></small>
-                                    </div>
+                                    </small>
                                 </div>
 
                                 <button data-mdb-button-init data-mdb-ripple-init

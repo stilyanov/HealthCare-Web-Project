@@ -1,9 +1,6 @@
 package bg.softuni.healthcare.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -11,13 +8,14 @@ import java.time.LocalDateTime;
 @Table(name = "appointments")
 public class AppointmentEntity extends BaseEntity {
 
-    private LocalDateTime dateTime;
+    @Column(name = "time", nullable = false)
+    private LocalDateTime time;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "doctor_id")
     private DoctorEntity doctor;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "patient_id")
     private PatientEntity patient;
 
@@ -26,12 +24,12 @@ public class AppointmentEntity extends BaseEntity {
     public AppointmentEntity() {
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getTime() {
+        return time;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setTime(LocalDateTime dateTime) {
+        this.time = dateTime;
     }
 
     public DoctorEntity getDoctor() {

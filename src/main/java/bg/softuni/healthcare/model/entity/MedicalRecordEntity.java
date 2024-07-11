@@ -1,9 +1,6 @@
 package bg.softuni.healthcare.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -11,11 +8,13 @@ import java.time.LocalDate;
 @Table(name = "medical_records")
 public class MedicalRecordEntity extends BaseEntity {
 
+    @Column(nullable = false)
     private String description;
 
+    @Column(nullable = false)
     private String diagnosis;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "patient_id")
     private PatientEntity patient;
 
