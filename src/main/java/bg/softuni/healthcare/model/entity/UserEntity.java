@@ -26,10 +26,10 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<UserRoleEntity> roles;
+    private List<UserRoleEntity> roles;
 
     public UserEntity() {
-        this.roles = new HashSet<>();
+        this.roles = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -64,11 +64,11 @@ public class UserEntity extends BaseEntity {
         this.lastName = lastName;
     }
 
-    public Set<UserRoleEntity> getRoles() {
+    public List<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<UserRoleEntity> roles) {
+    public void setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
     }
 }

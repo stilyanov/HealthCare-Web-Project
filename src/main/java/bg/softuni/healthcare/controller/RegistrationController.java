@@ -57,7 +57,7 @@ public class RegistrationController {
         }
 
         this.userService.registerUser(registerDTO);
-        return "redirect:/";
+        return "redirect:/users/login";
     }
 
 }

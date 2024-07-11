@@ -144,6 +144,23 @@ h3, .h3 {
     font-size: calc(1.3rem + 0.6vw);
 }
 
+.logout-form {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.logout-button {
+    background: none;
+    font-size: 3rem;
+    border: none;
+    cursor: pointer;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+}
+
 @media (min-width: 1200px) {
     h3, .h3 {
         font-size: 1.75rem;

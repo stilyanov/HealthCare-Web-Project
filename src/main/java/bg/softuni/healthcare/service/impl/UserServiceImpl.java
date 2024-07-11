@@ -32,18 +32,15 @@ public class UserServiceImpl implements UserService {
     public void registerUser(UserRegisterDTO registerDTO) {
         boolean isFirstUser = this.userRepository.count() == 0;
 
-        UserRoleEntity byRole = userRoleRepository.findByRole(UserRoleEnum.ADMIN);
+        UserEntity user = this.modelMapper.map(registerDTO, UserEntity.class);
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
 
-        Set<UserRoleEntity> roles = new HashSet<>();
+        List<UserRoleEntity> roles = new ArrayList<>();
         if (isFirstUser) {
             roles.add(userRoleRepository.findByRole(UserRoleEnum.ADMIN));
         } else {
             roles.add(userRoleRepository.findByRole(UserRoleEnum.PATIENT));
         }
-
-        UserEntity user = this.modelMapper.map(registerDTO, UserEntity.class);
-
-        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         user.setRoles(roles);
 
         this.userRepository.save(user);
