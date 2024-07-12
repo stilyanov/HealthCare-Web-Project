@@ -8,4 +8,6 @@ public interface UserService {
     void registerUser(UserRegisterDTO registerDTO);
 
     UserEntity findById(Long id);
+
+    boolean checkEmail(String email);
 }
