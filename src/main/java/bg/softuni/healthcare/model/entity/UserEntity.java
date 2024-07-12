@@ -12,6 +12,9 @@ import java.util.Set;
 public class UserEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -28,8 +31,28 @@ public class UserEntity extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<UserRoleEntity> roles;
 
+    @OneToMany(mappedBy = "postedBy")
+    private Set<DoctorEntity> doctors;
+
     public UserEntity() {
         this.roles = new ArrayList<>();
+        this.doctors = new HashSet<>();
+    }
+
+    public Set<DoctorEntity> getDoctors() {
+        return doctors;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setDoctors(Set<DoctorEntity> doctors) {
+        this.doctors = doctors;
     }
 
     public String getEmail() {

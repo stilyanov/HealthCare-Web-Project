@@ -1,10 +1,8 @@
 package bg.softuni.healthcare.model.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +11,9 @@ import java.util.List;
 @Table(name = "departments")
 public class DepartmentEntity extends BaseEntity {
 
-    @Column(nullable = false)
-    private String name;
+    @Column(nullable = false, unique = true)
+    @Enumerated(value = EnumType.STRING)
+    private DepartmentEnum name;
 
     @OneToMany(mappedBy = "department")
     private List<DoctorEntity> doctors;
@@ -23,11 +22,11 @@ public class DepartmentEntity extends BaseEntity {
         this.doctors = new ArrayList<>();
     }
 
-    public String getName() {
+    public DepartmentEnum getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(DepartmentEnum name) {
         this.name = name;
     }
 

@@ -22,31 +22,97 @@
                             <h2 class="fw-bold mb-2 text-uppercase">Add Doctor</h2>
                             <p class="text-white-50 mb-5">Please enter all fields!</p>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" id="firstName" class="form-control form-control-lg" />
-                                <label class="form-label" for="firstName">First Name</label>
-                            </div>
+                            <form th:action="@{/doctors/add}"
+                                  th:method="post"
+                                  th:object="${addDoctor}">
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" id="lastName" class="form-control form-control-lg" />
-                                <label class="form-label" for="lastName">Last Name</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" th:for="firstName">First Name</label>
+                                    <input type="text" id="firstName" class="form-control form-control-lg"
+                                           th:field="*{firstName}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('firstName')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="number" id="experience" class="form-control form-control-lg" />
-                                <label class="form-label" for="experience">Experience</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" th:for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" class="form-control form-control-lg"
+                                           th:field="*{lastName}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('lastName')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <select class="form-control">
-                                        <option type="text" id="department" class="form-control form-control-lg">Department</option>
-                                        <option>
-                                            Some Departments
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" th:for="experience">Experience</label>
+                                    <input type="number" id="experience" class="form-control form-control-lg"
+                                           th:field="*{experience}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('experience')}"
+                                           th:text="${error}"></small>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" th:for="department">Department</label>
+                                    <select class="form-control"
+                                            th:field="*{department}"
+                                            th:errorclass="'is-invalid alert-info'"
+                                    >
+                                        <option th:each="dep: ${departments}"
+                                                th:value="${dep}"
+                                                th:text="${dep.getDisplayName()}"
+                                        >
                                         </option>
                                     </select>
-                            </div>
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('department')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Add</button>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label th:for="bio" class="form-label">Biography</label>
+
+                                    <textarea type="text"
+                                              class="form-control form-control-lg"
+                                              id="bio"
+                                              name="image"
+                                              th:field="*{bio}"
+                                              th:errorclass="'is-invalid alert-info'"
+                                    ></textarea>
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('bio')}"
+                                           th:text="${error}"
+                                    ></small>
+                                </div>
+
+
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label th:for="image" class="form-label">Image URL</label>
+
+                                    <textarea type="text"
+                                              class="form-control form-control-lg"
+                                              id="image"
+                                              name="image"
+                                              th:field="*{imageUrl}"
+                                              th:errorclass="'is-invalid alert-info'"
+                                    ></textarea>
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('imageUrl')}"
+                                           th:text="${error}"
+                                    ></small>
+                                </div>
+
+                                <button data-mdb-button-init data-mdb-ripple-init
+                                        class="btn btn-outline-light btn-lg px-5" type="submit">Add
+                                </button>
+                            </form>
                         </div>
 
                     </div>

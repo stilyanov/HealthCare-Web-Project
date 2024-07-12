@@ -1,6 +1,6 @@
 package bg.softuni.healthcare.service.impl;
 
-import bg.softuni.healthcare.model.dto.UserRegisterDTO;
+import bg.softuni.healthcare.model.dto.user.UserRegisterDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.model.entity.UserRoleEntity;
 import bg.softuni.healthcare.model.entity.enums.UserRoleEnum;
@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService {
         user.setRoles(roles);
 
         this.userRepository.save(user);
+    }
+
+    @Override
+    public UserEntity findById(Long id) {
+        return this.userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
     public boolean checkEmail(String email) {

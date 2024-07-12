@@ -9,23 +9,58 @@ import java.util.List;
 @Table(name = "doctors")
 public class DoctorEntity extends BaseEntity {
 
-    @Column(name = "first_name", nullable = false,unique = true)
+    @Column(name = "first_name", nullable = false, unique = true)
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String bio;
+
     @Column(nullable = false)
     private Integer experience;
+
+    @Column(name = "image_url", nullable = false)
+    private String imageUrl;
 
     @OneToMany(mappedBy = "doctor")
     private List<AppointmentEntity> appointments;
 
     @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
     private DepartmentEntity department;
+
+    @ManyToOne
+    @JoinColumn(name = "posted_by")
+    private UserEntity postedBy;
 
     public DoctorEntity() {
         this.appointments = new ArrayList<>();
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public UserEntity getPostedBy() {
+        return postedBy;
+    }
+
+    public void setPostedBy(UserEntity postedBy) {
+        this.postedBy = postedBy;
     }
 
     public String getFirstName() {

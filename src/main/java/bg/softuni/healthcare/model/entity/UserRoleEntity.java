@@ -8,7 +8,6 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "roles")
 public class UserRoleEntity extends BaseEntity {
 
-    @NotNull
     @Column(name = "role", nullable = false, unique = true)
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;

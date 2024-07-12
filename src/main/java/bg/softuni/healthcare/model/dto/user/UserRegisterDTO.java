@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto;
+package bg.softuni.healthcare.model.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -6,6 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class UserRegisterDTO {
+
+    @NotNull(message = "Username cannot be empty!")
+    @Size(min = 3, max = 20, message = "Username length must be between 3 and 20 characters!")
+    private String username;
 
     @NotNull(message = "First Name cannot be empty!")
     @Size(min = 3, max = 20, message = "First Name length must be between 3 and 20 characters!")
@@ -26,6 +30,14 @@ public class UserRegisterDTO {
     @NotNull(message = "Confirm password cannot be empty!")
     @Size(min = 8, max = 20, message = "Confirm password length must be between 8 and 20 characters")
     private String confirmPassword;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getFirstName() {
         return firstName;

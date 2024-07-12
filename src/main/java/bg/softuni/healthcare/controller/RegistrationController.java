@@ -1,6 +1,6 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.UserRegisterDTO;
+import bg.softuni.healthcare.model.dto.user.UserRegisterDTO;
 import bg.softuni.healthcare.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
