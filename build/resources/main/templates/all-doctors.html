@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <th:block th:replace="~{fragments/head.html}"></th:block>
 
@@ -10,31 +10,30 @@
 <th:block th:replace="~{fragments/header.html}"></th:block>
 
 <!-- Main Content-->
-<div class="container px-4 px-lg-5">
-    <div class="row row-cols-2 g-5 justify-content-center">
-        <div class="col">
-            <!-- Post preview-->
-            <div class="post-preview"
-                 th:object="${allDoctors}"
-                 th:each="doctor : ${allDoctors}"
-            >
+</br>
+<div class="container px-4 px-lg-5" th:style="'background: url(/images/all-doctors.jpg)'">
+    <div class="row g-5 justify-content-center">
+        <div class="col-md-6" th:object="${allDoctors}"
+             th:each="doctor : ${allDoctors}">
+            <!-- Doctor preview -->
                 <img class="mr-2 " th:src="${doctor.getImageUrl()}" th:alt="${doctor.getFullName()}" width="35px" height="200px">
                 <a href="appointment.html">
                     <h2 class="post-title">Dr. <th:block th:text="${doctor.getFullName()}"></th:block></h2>
-                    <h4 class="post-subtitle"><b>Specialty</b>: <th:block th:text="${doctor.getDepartment()}"></th:block></h4>
+                    <h4 class="post-subtitle"><b>Specialty</b>: <th:block th:text="${doctor.getDepartment().displayName}"></th:block></h4>
                     <h4 class="post-subtitle"><b>Experience</b>: <th:block th:text="${doctor.getExperience()}"></th:block> years</h4>
                     <p class="post-subtitle"><b>Bio</b>: <th:block th:text="${doctor.getBio()}"></th:block></p>
                 </a>
                 <p class="post-meta">
-                    Posted by
+                    Added by
                     <th:block th:text="${doctor.getAddedBy()}"></th:block>
                     on <th:block th:text="${#temporals.format(doctor.getCreatedOn(), 'dd-MM-yyyy')}"></th:block>
                 </p>
-            </div>
+
         </div>
 
         <!-- Divider-->
-        <hr class="my-4"/>
+<!--        <hr class="my-4"/>-->
+        </br>
         <!-- Pager-->
 <!--        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Show All-->
 <!--            Doctors →</a></div>-->
