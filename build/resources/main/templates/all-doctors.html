@@ -17,7 +17,7 @@
              th:each="doctor : ${allDoctors}">
             <!-- Doctor preview -->
                 <img class="mr-2 " th:src="${doctor.getImageUrl()}" th:alt="${doctor.getFullName()}" width="35px" height="200px">
-                <a href="appointment.html">
+                <a th:href="@{/doctors/info/{doctorId} (doctorId = ${doctor.getId()})}">
                     <h2 class="post-title">Dr. <th:block th:text="${doctor.getFullName()}"></th:block></h2>
                     <h4 class="post-subtitle"><b>Specialty</b>: <th:block th:text="${doctor.getDepartment().displayName}"></th:block></h4>
                     <h4 class="post-subtitle"><b>Experience</b>: <th:block th:text="${doctor.getExperience()}"></th:block> years</h4>
@@ -26,7 +26,7 @@
                 <p class="post-meta">
                     Added by
                     <th:block th:text="${doctor.getAddedBy()}"></th:block>
-                    on <th:block th:text="${#temporals.format(doctor.getCreatedOn(), 'dd-MM-yyyy')}"></th:block>
+                    on <th:block th:text="${#temporals.format(doctor.getCreatedOn(), 'dd.MM.yyyy')}"></th:block>
                 </p>
 
         </div>

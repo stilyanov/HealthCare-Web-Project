@@ -13,6 +13,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class AllDoctorsDTO {
 
+    private Long id;
+
     private String imageUrl;
 
     private String firstName;

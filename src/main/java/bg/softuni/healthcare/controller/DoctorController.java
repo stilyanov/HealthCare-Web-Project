@@ -8,10 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -42,6 +39,13 @@ public class DoctorController {
         model.addAttribute("allDoctors", allDoctors);
 
         return "all-doctors";
+    }
+
+    @GetMapping("/info/{doctorId}")
+    public String getDoctorInfo(@PathVariable Long doctorId, Model model) {
+        AllDoctorsDTO doctorInfo = this.doctorService.getDoctorInfo(doctorId);
+        model.addAttribute("doctorInfo", doctorInfo);
+        return "doctor-info";
     }
 
     @GetMapping("/add")

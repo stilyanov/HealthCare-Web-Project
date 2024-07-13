@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<th:block th:replace="~{fragments/head.html}"></th:block>
+
+<body>
+<!-- Navigation-->
+<th:block th:replace="~{fragments/nav.html}"></th:block>
+<!-- Page Header-->
+<th:block th:replace="~{fragments/header.html}"></th:block>
+
+<!-- Main Content-->
+</br>
+<div class="container px-4 px-lg-5" th:style="'background: url(/images/all-doctors.jpg)'">
+    <div class="row g-5 justify-content-center">
+        <div class="col-md-6" th:object="${doctorInfo}"
+             th:each="doctor : ${doctorInfo}">
+            <!-- Doctor preview -->
+            <img class="mr-2 " th:src="${doctor.getImageUrl()}" th:alt="${doctor.getFullName()}" width="35px" height="200px">
+
+                <h2 class="post-title">Dr. <th:block th:text="${doctor.getFullName()}"></th:block></h2>
+                <h4 class="post-subtitle"><b>Specialty</b>: <th:block th:text="${doctor.getDepartment().displayName}"></th:block></h4>
+                <h4 class="post-subtitle"><b>Experience</b>: <th:block th:text="${doctor.getExperience()}"></th:block> years</h4>
+                <p class="post-subtitle"><b>Bio</b>: <th:block th:text="${doctor.getBio()}"></th:block></p>
+
+            <p class="post-meta">
+                Added by
+                <th:block th:text="${doctor.getAddedBy()}"></th:block>
+                on <th:block th:text="${#temporals.format(doctor.getCreatedOn(), 'dd.MM.yyyy')}"></th:block>
+            </p>
+
+        </div>
+
+        <!-- Divider-->
+        <!--        <hr class="my-4"/>-->
+        </br>
+        <!-- Pager-->
+                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" th:href="@{doctors/all}">Show All
+                    Doctors →</a></div>
+
+    </div>
+</div>
+
+<!-- Footer-->
+<th:block th:replace="~{fragments/footer.html}"></th:block>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+</body>
+</html>
