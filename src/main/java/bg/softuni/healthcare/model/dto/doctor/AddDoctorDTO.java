@@ -2,7 +2,13 @@ package bg.softuni.healthcare.model.dto.doctor;
 
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class AddDoctorDTO {
 
     @NotNull(message = "First Name cannot be empty!")
@@ -14,7 +20,7 @@ public class AddDoctorDTO {
     private String lastName;
 
     @NotNull(message = "Bio cannot be empty!")
-    @Size(min = 10, max = 200, message = "Bio length must be between 10 and 200 characters!")
+    @Size(min = 50, max = 400, message = "Bio length must be between 50 and 400 characters!")
     private String bio;
 
     @NotNull(message = "Experience cannot be empty!")
@@ -32,63 +38,4 @@ public class AddDoctorDTO {
     private String imageUrl;
 
     private Long addedBy;
-
-    public AddDoctorDTO() {
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Integer getExperience() {
-        return experience;
-    }
-
-    public void setExperience(Integer experience) {
-        this.experience = experience;
-    }
-
-    public DepartmentEnum getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(DepartmentEnum department) {
-        this.department = department;
-    }
-
-    public Long getAddedBy() {
-        return addedBy;
-    }
-
-    public void setAddedBy(Long addedBy) {
-        this.addedBy = addedBy;
-    }
 }

@@ -3,12 +3,16 @@ package bg.softuni.healthcare.model.entity;
 
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "departments")
+@Getter
+@Setter
 public class DepartmentEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
@@ -20,21 +24,5 @@ public class DepartmentEntity extends BaseEntity {
 
     public DepartmentEntity() {
         this.doctors = new ArrayList<>();
-    }
-
-    public DepartmentEnum getName() {
-        return name;
-    }
-
-    public void setName(DepartmentEnum name) {
-        this.name = name;
-    }
-
-    public List<DoctorEntity> getDoctors() {
-        return doctors;
-    }
-
-    public void setDoctors(List<DoctorEntity> doctors) {
-        this.doctors = doctors;
     }
 }

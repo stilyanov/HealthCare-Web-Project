@@ -1,12 +1,16 @@
 package bg.softuni.healthcare.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "doctors")
+@Getter
+@Setter
 public class DoctorEntity extends BaseEntity {
 
     @Column(name = "first_name", nullable = false, unique = true)
@@ -37,69 +41,5 @@ public class DoctorEntity extends BaseEntity {
 
     public DoctorEntity() {
         this.appointments = new ArrayList<>();
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public UserEntity getPostedBy() {
-        return postedBy;
-    }
-
-    public void setPostedBy(UserEntity postedBy) {
-        this.postedBy = postedBy;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public DepartmentEntity getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(DepartmentEntity department) {
-        this.department = department;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Integer getExperience() {
-        return experience;
-    }
-
-    public void setExperience(Integer experience) {
-        this.experience = experience;
-    }
-
-    public List<AppointmentEntity> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(List<AppointmentEntity> appointments) {
-        this.appointments = appointments;
     }
 }

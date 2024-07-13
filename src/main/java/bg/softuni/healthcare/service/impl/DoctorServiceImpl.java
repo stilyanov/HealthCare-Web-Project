@@ -45,7 +45,7 @@ public class DoctorServiceImpl implements DoctorService {
 
         }
 
-        UserEntity user = this.userRepository.findByEmail(currentUser)
+        UserEntity user = this.userRepository.findByUsername(currentUser)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         DoctorEntity doctor = this.modelMapper.map(addDoctorDTO, DoctorEntity.class);

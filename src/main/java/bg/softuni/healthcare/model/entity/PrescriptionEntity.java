@@ -1,11 +1,17 @@
 package bg.softuni.healthcare.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "prescriptions")
+@Getter
+@Setter
+@NoArgsConstructor
 public class PrescriptionEntity extends BaseEntity {
 
     @Column(nullable = false)
@@ -17,31 +23,4 @@ public class PrescriptionEntity extends BaseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "patient_id")
     private PatientEntity patient;
-
-    public PrescriptionEntity() {
-    }
-
-    public String getMedication() {
-        return medication;
-    }
-
-    public void setMedication(String medicine) {
-        this.medication = medicine;
-    }
-
-    public String getDosage() {
-        return dosage;
-    }
-
-    public void setDosage(String dosage) {
-        this.dosage = dosage;
-    }
-
-    public PatientEntity getPatient() {
-        return patient;
-    }
-
-    public void setPatient(PatientEntity patient) {
-        this.patient = patient;
-    }
 }
