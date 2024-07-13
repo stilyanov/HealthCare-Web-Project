@@ -1,10 +1,12 @@
 package bg.softuni.healthcare.model.entity.User;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
+@Getter
 public class HealthcareUserDetails extends User {
 
     private final String firstName;
@@ -15,14 +17,6 @@ public class HealthcareUserDetails extends User {
         super(username, password, authorities);
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public String getFullName() {

@@ -1,6 +1,7 @@
 package bg.softuni.healthcare.service.impl;
 
 import bg.softuni.healthcare.model.dto.doctor.AddDoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.AllDoctorsDTO;
 import bg.softuni.healthcare.model.entity.DepartmentEntity;
 import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.model.entity.UserEntity;
@@ -15,6 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,7 +48,7 @@ public class DoctorServiceImpl implements DoctorService {
 
         }
 
-        UserEntity user = this.userRepository.findByUsername(currentUser)
+        UserEntity user = this.userRepository.findByEmail(currentUser)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         DoctorEntity doctor = this.modelMapper.map(addDoctorDTO, DoctorEntity.class);
@@ -56,5 +59,18 @@ public class DoctorServiceImpl implements DoctorService {
         doctor.setPostedBy(user);
 
         this.doctorRepository.save(doctor);
+    }
+
+    @Override
+    public List<AllDoctorsDTO> getAllDoctors() {
+        return this.doctorRepository.findAll()
+                .stream()
+                .map(doctor -> {
+                    AllDoctorsDTO allDoctorsDTO = this.modelMapper.map(doctor, AllDoctorsDTO.class);
+                    allDoctorsDTO.setDepartment(doctor.getDepartment().getName());
+                    allDoctorsDTO.setAddedBy(doctor.getPostedBy().getUsername());
+                    allDoctorsDTO.setCreatedOn(LocalDate.now());
+                    return allDoctorsDTO;
+                }).toList();
     }
 }

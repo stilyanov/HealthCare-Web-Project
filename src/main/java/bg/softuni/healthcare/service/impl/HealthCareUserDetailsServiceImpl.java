@@ -24,11 +24,11 @@ public class HealthCareUserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return this.userRepository
-                .findByUsername(username)
+                .findByEmail(email)
                 .map(HealthCareUserDetailsServiceImpl::map)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
     }
 
     private static UserDetails map(UserEntity user) {

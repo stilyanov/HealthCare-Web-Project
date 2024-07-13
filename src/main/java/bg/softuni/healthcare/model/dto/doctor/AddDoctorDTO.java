@@ -19,6 +19,10 @@ public class AddDoctorDTO {
     @Size(min = 3, max = 20, message = "Last Name length must be between 3 and 20 characters!")
     private String lastName;
 
+    @NotNull(message = "City cannot be empty!")
+    @Size(min = 3, max = 20, message = "City length must be between 3 and 20 characters!")
+    private String city;
+
     @NotNull(message = "Bio cannot be empty!")
     @Size(min = 50, max = 400, message = "Bio length must be between 50 and 400 characters!")
     private String bio;
@@ -33,7 +37,7 @@ public class AddDoctorDTO {
     private DepartmentEnum department;
 
     @NotBlank(message = "Please enter valid image URL!")
-    @Size(max = 150)
+    @Size(max = 200, message = "Image URL length must be less than 200 characters!")
     @Pattern(regexp = "https://.*", message = "Please enter valid image URL!")
     private String imageUrl;
 

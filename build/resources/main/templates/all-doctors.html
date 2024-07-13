@@ -14,190 +14,30 @@
     <div class="row row-cols-2 g-5 justify-content-center">
         <div class="col">
             <!-- Post preview-->
-            <div class="post-preview">
-                <img th:src="@{/images/emily-johnson.avif}"
-                     alt="emily-johnson"/>
+            <div class="post-preview"
+                 th:object="${allDoctors}"
+                 th:each="doctor : ${allDoctors}"
+            >
+                <img class="mr-2 " th:src="${doctor.getImageUrl()}" th:alt="${doctor.getFullName()}" width="35px" height="200px">
                 <a href="appointment.html">
-                    <h2 class="post-title">Dr. Emily Johnson</h2>
-                    <h4 class="post-subtitle"><b>Specialty</b>: Cardiology</h4>
-                    <h4 class="post-subtitle"><b>Experience</b>: 12 years</h4>
-                    <p class="post-subtitle"><b>Bio</b>: Dr. Emily Johnson is a highly skilled cardiologist specializing
-                        in diagnosing and treating heart conditions. She is well-known for her compassionate care and
-                        her commitment to patient health. Dr. Johnson has extensive experience in managing complex
-                        cardiovascular diseases and is proficient in advanced diagnostic techniques.</p>
+                    <h2 class="post-title">Dr. <th:block th:text="${doctor.getFullName()}"></th:block></h2>
+                    <h4 class="post-subtitle"><b>Specialty</b>: <th:block th:text="${doctor.getDepartment()}"></th:block></h4>
+                    <h4 class="post-subtitle"><b>Experience</b>: <th:block th:text="${doctor.getExperience()}"></th:block> years</h4>
+                    <p class="post-subtitle"><b>Bio</b>: <th:block th:text="${doctor.getBio()}"></th:block></p>
                 </a>
                 <p class="post-meta">
                     Posted by
-                    <a href="#!">Admin</a>
-                    on September 24, 2023
+                    <th:block th:text="${doctor.getAddedBy()}"></th:block>
+                    on <th:block th:text="${#temporals.format(doctor.getCreatedOn(), 'dd-MM-yyyy')}"></th:block>
                 </p>
             </div>
         </div>
 
-        <div class="col">
-            <!-- Post preview-->
-            <div class="post-preview">
-                <img th:src="@{/images/michael-smith.jpg}"
-                     alt="michael-smith"/>
-                <a href="appointment.html">
-                    <h2 class="post-title">Dr. Michael Smith</h2>
-                    <h4 class="post-subtitle"><b>Specialty</b>: Orthopedics</h4>
-                    <h4 class="post-subtitle"><b>Experience</b>: 15 years</h4>
-                    <p class="post-subtitle"><b>Bio</b>: Dr. Michael Smith is an expert orthopedic surgeon with a focus
-                        on sports injuries and joint replacements. He is dedicated to helping patients recover mobility
-                        and live pain-free lives. Dr. Smith is renowned for his surgical precision and his innovative
-                        approach to minimally invasive procedures.</p>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Admin</a>
-                    on September 24, 2023
-                </p>
-            </div>
-        </div>
-
-        <div class="post-preview">
-            <a href="appointment.html">
-                <h2 class="post-title">Dr. Sarah Lee</h2>
-                <h4 class="post-subtitle"><b>Specialty</b>: Pediatrics</h4>
-                <h4 class="post-subtitle"><b>Experience</b>: 8 years</h4>
-                <a class="post-subtitle"><b>Bio</b>: Dr. Sarah Lee is a caring pediatrician known for her gentle
-                    approach with children and her ability to communicate effectively with parents. She specializes
-                    in preventive care, growth and development monitoring, and the management of chronic conditions
-                    in children. Dr. Lee is passionate about ensuring the well-being of her young patients.</a>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <a href="#!">Admin</a>
-                on September 24, 2023
-            </p>
-        </div>
-
-        <div class="post-preview">
-            <a href="appointment.html">
-                <h2 class="post-title">Dr. David Patel</h2>
-                <h4 class="post-subtitle"><b>Specialty</b>: Dermatology</h4>
-                <h4 class="post-subtitle"><b>Experience</b>: 10 years</h4>
-                <a class="post-subtitle"><b>Bio</b>: Dr. David Patel is a dermatologist who excels in treating a
-                    wide range of skin conditions, including acne, eczema, and psoriasis. He is also skilled in
-                    cosmetic dermatology, offering treatments such as Botox and laser therapy. Dr. Patel is known
-                    for his personalized care and his dedication to enhancing the health and appearance of his
-                    patients' skin.</a>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <a href="#!">Admin</a>
-                on September 24, 2023
-            </p>
-        </div>
-
-        <div class="post-preview">
-            <a href="appointment.html">
-                <h2 class="post-title">Dr. Anna Rodriguez</h2>
-                <h4 class="post-subtitle"><b>Specialty</b>: Neurology</h4>
-                <h4 class="post-subtitle"><b>Experience</b>: 14 years</h4>
-                <a class="post-subtitle"><b>Bio</b>: Dr. Anna Rodriguez is a neurologist with a deep understanding
-                    of the brain and nervous system. She specializes in treating conditions such as epilepsy,
-                    multiple sclerosis, and Parkinson's disease. Dr. Rodriguez is committed to providing
-                    comprehensive care and support to patients and their families, ensuring the best possible
-                    outcomes.</a>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <a href="#!">Admin</a>
-                on September 24, 2023
-            </p>
-        </div>
-
-        <div class="post-preview">
-            <a href="appointment.html">
-                <h2 class="post-title">Dr. John Kim</h2>
-                <h4 class="post-subtitle"><b>Specialty</b>: General Surgery</h4>
-                <h4 class="post-subtitle"><b>Experience</b>: 11 years</h4>
-                <a class="post-subtitle"><b>Bio</b>: Dr. John Kim is a general surgeon known for his expertise in
-                    performing a wide range of surgical procedures. He is dedicated to ensuring patient safety and
-                    achieving excellent surgical outcomes. Dr. Kim is particularly skilled in laparoscopic and
-                    robotic surgeries, which offer less invasive options for patients.</a>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <a href="#!">Admin</a>
-                on September 24, 2023
-            </p>
-        </div>
-
-        <div class="post-preview">
-            <a href="appointment.html">
-                <h2 class="post-title">Dr. Lisa Wang</h2>
-                <h4 class="post-subtitle"><b>Specialty</b>: Endocrinology</h4>
-                <h4 class="post-subtitle"><b>Experience</b>: 9 years</h4>
-                <a class="post-subtitle"><b>Bio</b>: Dr. Lisa Wang is an endocrinologist specializing in hormonal
-                    disorders, including diabetes, thyroid diseases, and metabolic disorders. She is passionate
-                    about educating patients on managing their conditions and improving their quality of life. Dr.
-                    Wang is recognized for her thorough and empathetic approach to patient care.</a>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <a href="#!">Admin</a>
-                on September 24, 2023
-            </p>
-        </div>
-
-        <div class="post-preview">
-            <a href="appointment.html">
-                <h2 class="post-title">Dr. Robert Garcia</h2>
-                <h4 class="post-subtitle"><b>Specialty</b>: Oncology</h4>
-                <h4 class="post-subtitle"><b>Experience</b>: 13 years</h4>
-                <a class="post-subtitle"><b>Bio</b>: Dr. Robert Garcia is an oncologist dedicated to the diagnosis
-                    and treatment of cancer. He has a wealth of experience in chemotherapy, radiation therapy, and
-                    immunotherapy. Dr. Garcia is known for his compassionate patient care and his commitment to
-                    staying at the forefront of cancer research and treatment.</a>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <a href="#!">Admin</a>
-                on September 24, 2023
-            </p>
-        </div>
-
-        <div class="post-preview">
-            <a href="appointment.html">
-                <h2 class="post-title">Dr. Maria Lopez</h2>
-                <h4 class="post-subtitle"><b>Specialty</b>: Obstetrics and Gynecology</h4>
-                <h4 class="post-subtitle"><b>Experience</b>: 16 years</h4>
-                <a class="post-subtitle"><b>Bio</b>: Dr. Maria Lopez is an obstetrician and gynecologist who
-                    provides comprehensive care for women at all stages of life. She specializes in prenatal care,
-                    childbirth, and reproductive health. Dr. Lopez is highly regarded for her supportive approach
-                    and her dedication to women's health and wellness.</a>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <a href="#!">Admin</a>
-                on September 24, 2023
-            </p>
-        </div>
-
-        <div class="post-preview">
-            <a href="appointment.html">
-                <h2 class="post-title">Dr. William Brown</h2>
-                <h4 class="post-subtitle"><b>Specialty</b>: Psychiatry</h4>
-                <h4 class="post-subtitle"><b>Experience</b>: 7 years</h4>
-                <a class="post-subtitle"><b>Bio</b>: Dr. William Brown is a psychiatrist who focuses on the
-                    diagnosis and treatment of mental health disorders such as depression, anxiety, and bipolar
-                    disorder. He is committed to providing a safe and supportive environment for his patients and is
-                    skilled in both medication management and psychotherapy.</a>
-            </a>
-            <p class="post-meta">
-                Posted by
-                <a href="#!">Admin</a>
-                on September 24, 2023
-            </p>
-        </div>
         <!-- Divider-->
         <hr class="my-4"/>
         <!-- Pager-->
-        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Show All
-            Doctors →</a></div>
+<!--        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Show All-->
+<!--            Doctors →</a></div>-->
 
     </div>
 </div>

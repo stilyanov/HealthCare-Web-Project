@@ -10,7 +10,8 @@ public enum DepartmentEnum {
     GYNECOLOGY("Gynecology"),
     ONCOLOGY("Oncology"),
     PSYCHIATRY("Psychiatry"),
-    RADIOLOGY("Radiology");
+    RADIOLOGY("Radiology"),
+    ENDOCRINOLOGY("Endocrinology");
 
     private final String displayName;
 
