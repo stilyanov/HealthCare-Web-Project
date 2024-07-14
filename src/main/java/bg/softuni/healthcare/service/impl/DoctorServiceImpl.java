@@ -2,6 +2,7 @@ package bg.softuni.healthcare.service.impl;
 
 import bg.softuni.healthcare.model.dto.doctor.AddDoctorDTO;
 import bg.softuni.healthcare.model.dto.doctor.AllDoctorsDTO;
+import bg.softuni.healthcare.model.dto.doctor.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.DepartmentEntity;
 import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.model.entity.UserEntity;
@@ -16,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,21 +68,18 @@ public class DoctorServiceImpl implements DoctorService {
                 .map(doctor -> {
                     AllDoctorsDTO allDoctorsDTO = this.modelMapper.map(doctor, AllDoctorsDTO.class);
                     allDoctorsDTO.setDepartment(doctor.getDepartment().getName());
-                    allDoctorsDTO.setAddedBy(doctor.getPostedBy().getUsername());
-                    allDoctorsDTO.setCreatedOn(LocalDate.now());
                     return allDoctorsDTO;
                 }).toList();
     }
 
     @Override
-    public AllDoctorsDTO getDoctorInfo(Long doctorId) {
+    public InfoDoctorDTO getDoctorInfo(Long doctorId) {
         return this.doctorRepository.findById(doctorId)
                 .map(doctor -> {
-                    AllDoctorsDTO allDoctorsDTO = this.modelMapper.map(doctor, AllDoctorsDTO.class);
-                    allDoctorsDTO.setDepartment(doctor.getDepartment().getName());
-                    allDoctorsDTO.setAddedBy(doctor.getPostedBy().getUsername());
-                    allDoctorsDTO.setCreatedOn(LocalDate.now());
-                    return allDoctorsDTO;
+                    InfoDoctorDTO infoDoctorDTO = this.modelMapper.map(doctor, InfoDoctorDTO.class);
+                    infoDoctorDTO.setDepartment(doctor.getDepartment().getName());
+                    infoDoctorDTO.setAddedBy(doctor.getPostedBy().getUsername());
+                    return infoDoctorDTO;
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
     }

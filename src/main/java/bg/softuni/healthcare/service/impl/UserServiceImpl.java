@@ -1,5 +1,6 @@
 package bg.softuni.healthcare.service.impl;
 
+import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
 import bg.softuni.healthcare.model.dto.user.UserRegisterDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.model.entity.UserRoleEntity;
@@ -53,5 +54,31 @@ public class UserServiceImpl implements UserService {
 
     public boolean checkEmail(String email) {
         return this.userRepository.findByEmail(email).isPresent();
+    }
+
+    @Override
+    public UserProfileDTO getUserProfile(String email) {
+        return this.userRepository.findByEmail(email)
+                .map(user -> {
+                    UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
+                    userProfileDTO.setRoles(user.getRoles());
+                    return userProfileDTO;
+                })
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
+
+    @Override
+    public UserProfileDTO getUserProfileById(Long id) {
+        return this.userRepository.findById(id)
+                .map(user -> {
+                    UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
+                    List<UserRoleEntity> roles = user.getRoles()
+                            .stream()
+//                            .map(role -> new UserRoleEntity(role.getRole()))
+                            .toList();
+//                    userProfileDTO.setRoles(roles);
+                    return userProfileDTO;
+                })
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 }

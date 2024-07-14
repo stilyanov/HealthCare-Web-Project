@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
-public class AllDoctorsDTO {
-
+public class InfoDoctorDTO {
     private Long id;
 
     private String imageUrl;
@@ -18,9 +17,15 @@ public class AllDoctorsDTO {
 
     private String lastName;
 
+    private String bio;
+
+    private String city;
+
     private DepartmentEnum department;
 
     private Integer experience;
+
+    private String addedBy;
 
     public String getFullName() {
         StringBuilder sb = new StringBuilder();

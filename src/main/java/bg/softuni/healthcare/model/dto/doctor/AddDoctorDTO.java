@@ -24,7 +24,7 @@ public class AddDoctorDTO {
     private String city;
 
     @NotNull(message = "Bio cannot be empty!")
-    @Size(min = 50, max = 400, message = "Bio length must be between 50 and 400 characters!")
+    @Size(min = 50, max = 1000, message = "Bio length must be between 50 and 400 characters!")
     private String bio;
 
     @NotNull(message = "Experience cannot be empty!")

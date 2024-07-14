@@ -2,6 +2,7 @@ package bg.softuni.healthcare.controller;
 
 import bg.softuni.healthcare.model.dto.doctor.AddDoctorDTO;
 import bg.softuni.healthcare.model.dto.doctor.AllDoctorsDTO;
+import bg.softuni.healthcare.model.dto.doctor.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.service.impl.DoctorServiceImpl;
 import jakarta.validation.Valid;
@@ -43,7 +44,7 @@ public class DoctorController {
 
     @GetMapping("/info/{doctorId}")
     public String getDoctorInfo(@PathVariable Long doctorId, Model model) {
-        AllDoctorsDTO doctorInfo = this.doctorService.getDoctorInfo(doctorId);
+        InfoDoctorDTO doctorInfo = this.doctorService.getDoctorInfo(doctorId);
         model.addAttribute("doctorInfo", doctorInfo);
         return "doctor-info";
     }
