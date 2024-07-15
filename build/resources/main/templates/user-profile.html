@@ -23,13 +23,15 @@
             </div>
 
             <div class="text-center mt-3">
-                <span class="bg-secondary p-1 px-4 rounded text-white" th:text="${userProfile.getRoles()}">Role</span>
-                <h5 class="mt-2 mb-0" th:text="${userProfile.getFullName()}"></h5>
-                <span>UI/UX Designer</span>
-                <h5 class="mt-2 mb-0" th:text="${userProfile.getUsername()}"></h5>
-                <h5 class="mt-2 mb-0" th:text="${userProfile.getFirstName()}"></h5>
-                <h5 class="mt-2 mb-0" th:text="${userProfile.getLastName()}"></h5>
-                <h5 class="mt-2 mb-0" th:text="${userProfile.getEmail()}"></h5>
+                <span class="bg-secondary p-1 px-4 rounded text-white"
+                      th:each="role : ${userProfile.getRoles()}"
+                      th:text="${#strings.listJoin(role, ', ')}"
+                >Role</span>
+                <h5 class="mt-2 mb-0">Username:</h5> <span th:text="${userProfile.getUsername()}"></span>
+                <h5 class="mt-2 mb-0">Full name:</h5> <span th:text="${userProfile.getFullName()}"></span>
+                <h5 class="mt-2 mb-0">First name:</h5> <span th:text="${userProfile.getFirstName()}"></span>
+                <h5 class="mt-2 mb-0">Last name:</h5> <span th:text="${userProfile.getLastName()}"></span>
+                <h5 class="mt-2 mb-0">Email:</h5> <span th:text="${userProfile.getEmail()}"></span>
             </div>
         </div>
     </div>

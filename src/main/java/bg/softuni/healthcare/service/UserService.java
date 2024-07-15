@@ -3,6 +3,9 @@ package bg.softuni.healthcare.service;
 import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
 import bg.softuni.healthcare.model.dto.user.UserRegisterDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -15,4 +18,6 @@ public interface UserService {
     UserProfileDTO getUserProfile(String email);
 
     UserProfileDTO getUserProfileById(Long id);
+
+    List<UserProfileDTO> getAllUsers(UserEntity user);
 }

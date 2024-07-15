@@ -1,6 +1,5 @@
 package bg.softuni.healthcare.model.dto.user;
 
-import bg.softuni.healthcare.model.entity.UserRoleEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +20,7 @@ public class UserProfileDTO {
 
     private String email;
 
-    private List<UserRoleEntity> roles;
+    private List<String> roles;
 
     public UserProfileDTO() {
         this.roles = new ArrayList<>();

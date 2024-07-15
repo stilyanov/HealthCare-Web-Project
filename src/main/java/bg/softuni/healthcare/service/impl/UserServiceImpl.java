@@ -9,6 +9,8 @@ import bg.softuni.healthcare.repository.UserRepository;
 import bg.softuni.healthcare.repository.UserRoleRepository;
 import bg.softuni.healthcare.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final UserRoleRepository userRoleRepository;
+
 
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
@@ -61,7 +64,10 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findByEmail(email)
                 .map(user -> {
                     UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
-                    userProfileDTO.setRoles(user.getRoles());
+                    List<String> roles = user.getRoles()
+                            .stream()
+                            .map(roleEntity -> roleEntity.getRole().name())
+                            .toList();
                     return userProfileDTO;
                 })
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
@@ -72,13 +78,29 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findById(id)
                 .map(user -> {
                     UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
-                    List<UserRoleEntity> roles = user.getRoles()
+                    List<String> roles = user.getRoles()
                             .stream()
-//                            .map(role -> new UserRoleEntity(role.getRole()))
+                            .map(roleEntity -> roleEntity.getRole().name())
                             .toList();
-//                    userProfileDTO.setRoles(roles);
+                    //TODO: Show roles in the profile
                     return userProfileDTO;
                 })
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
+
+    @Override
+    public List<UserProfileDTO> getAllUsers(UserEntity user) {
+        return this.userRepository.findAll()
+                .stream()
+                .map(u -> {
+                    UserProfileDTO userProfileDTO = this.modelMapper.map(u, UserProfileDTO.class);
+                    List<GrantedAuthority> roles = u.getRoles()
+                            .stream()
+                            .map(UserRoleEntity::getRole)
+                            .map(HealthCareUserDetailsServiceImpl::map)
+                            .toList();
+                    return userProfileDTO;
+                })
+                .toList();
     }
 }
