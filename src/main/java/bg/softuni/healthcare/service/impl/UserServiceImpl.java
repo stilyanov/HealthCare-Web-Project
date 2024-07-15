@@ -62,29 +62,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserProfileDTO getUserProfile(String email) {
         return this.userRepository.findByEmail(email)
-                .map(user -> {
-                    UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
-                    List<String> roles = user.getRoles()
-                            .stream()
-                            .map(roleEntity -> roleEntity.getRole().name())
-                            .toList();
-                    return userProfileDTO;
-                })
+                .map(this::mapToUserProfileDTO)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
     @Override
     public UserProfileDTO getUserProfileById(Long id) {
         return this.userRepository.findById(id)
-                .map(user -> {
-                    UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
-                    List<String> roles = user.getRoles()
-                            .stream()
-                            .map(roleEntity -> roleEntity.getRole().name())
-                            .toList();
-                    //TODO: Show roles in the profile
-                    return userProfileDTO;
-                })
+                .map(this::mapToUserProfileDTO)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
@@ -92,15 +77,19 @@ public class UserServiceImpl implements UserService {
     public List<UserProfileDTO> getAllUsers(UserEntity user) {
         return this.userRepository.findAll()
                 .stream()
-                .map(u -> {
-                    UserProfileDTO userProfileDTO = this.modelMapper.map(u, UserProfileDTO.class);
-                    List<GrantedAuthority> roles = u.getRoles()
-                            .stream()
-                            .map(UserRoleEntity::getRole)
-                            .map(HealthCareUserDetailsServiceImpl::map)
-                            .toList();
-                    return userProfileDTO;
-                })
+                .map(this::mapToUserProfileDTO)
                 .toList();
+
     }
+
+    private UserProfileDTO mapToUserProfileDTO(UserEntity user) {
+        UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
+        List<String> roles = user.getRoles()
+                .stream()
+                .map(roleEntity -> roleEntity.getRole().name())
+                .toList();
+        userProfileDTO.setRoles(roles);
+        return userProfileDTO;
+    }
+
 }
