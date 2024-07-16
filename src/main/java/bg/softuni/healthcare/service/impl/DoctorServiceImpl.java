@@ -11,6 +11,7 @@ import bg.softuni.healthcare.repository.DepartmentRepository;
 import bg.softuni.healthcare.repository.DoctorRepository;
 import bg.softuni.healthcare.repository.UserRepository;
 import bg.softuni.healthcare.service.DoctorService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,19 +22,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
 
     private final DoctorRepository doctorRepository;
     private final DepartmentRepository departmentRepository;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
-
-    public DoctorServiceImpl(DoctorRepository doctorRepository, DepartmentRepository departmentRepository, UserRepository userRepository, ModelMapper modelMapper) {
-        this.doctorRepository = doctorRepository;
-        this.departmentRepository = departmentRepository;
-        this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
-    }
 
     @Override
     public void addDoctor(AddDoctorDTO addDoctorDTO) {

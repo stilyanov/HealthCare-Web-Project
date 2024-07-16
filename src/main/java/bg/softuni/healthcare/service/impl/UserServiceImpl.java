@@ -8,32 +8,23 @@ import bg.softuni.healthcare.model.entity.enums.UserRoleEnum;
 import bg.softuni.healthcare.repository.UserRepository;
 import bg.softuni.healthcare.repository.UserRoleRepository;
 import bg.softuni.healthcare.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final UserRoleRepository userRoleRepository;
-
-
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository) {
-        this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
-        this.passwordEncoder = passwordEncoder;
-        this.userRoleRepository = userRoleRepository;
-    }
 
 
     public void registerUser(UserRegisterDTO registerDTO) {

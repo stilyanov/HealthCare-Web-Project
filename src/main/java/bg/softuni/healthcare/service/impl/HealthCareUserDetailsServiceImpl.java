@@ -5,8 +5,7 @@ import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.model.entity.UserRoleEntity;
 import bg.softuni.healthcare.model.entity.enums.UserRoleEnum;
 import bg.softuni.healthcare.repository.UserRepository;
-import bg.softuni.healthcare.service.HealthCareUserDetailsService;
-import org.modelmapper.ModelMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,13 +14,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class HealthCareUserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
-
-    public HealthCareUserDetailsServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

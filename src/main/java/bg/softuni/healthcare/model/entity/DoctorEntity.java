@@ -39,7 +39,6 @@ public class DoctorEntity extends BaseEntity {
     private DepartmentEntity department;
 
     @ManyToOne
-    @JoinColumn(name = "posted_by")
     private UserEntity user;
 
     public DoctorEntity() {

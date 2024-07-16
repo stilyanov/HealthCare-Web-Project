@@ -6,6 +6,7 @@ import bg.softuni.healthcare.model.dto.doctor.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.service.impl.DoctorServiceImpl;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,13 +17,10 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/doctors")
+@RequiredArgsConstructor
 public class DoctorController {
 
     private final DoctorServiceImpl doctorService;
-
-    public DoctorController(DoctorServiceImpl doctorService) {
-        this.doctorService = doctorService;
-    }
 
     @ModelAttribute("addDoctor")
     public AddDoctorDTO addDoctorDTO() {

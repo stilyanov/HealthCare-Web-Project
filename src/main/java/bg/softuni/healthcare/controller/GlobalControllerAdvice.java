@@ -3,6 +3,7 @@ package bg.softuni.healthcare.controller;
 import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
 import bg.softuni.healthcare.model.entity.User.HealthcareUserDetails;
 import bg.softuni.healthcare.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
@@ -10,13 +11,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @ControllerAdvice
+@RequiredArgsConstructor
 public class GlobalControllerAdvice {
 
     private final UserService userService;
-
-    public GlobalControllerAdvice(UserService userService) {
-        this.userService = userService;
-    }
 
     @ModelAttribute
     public void globalAttributes(@AuthenticationPrincipal UserDetails userDetails, Model model) {
