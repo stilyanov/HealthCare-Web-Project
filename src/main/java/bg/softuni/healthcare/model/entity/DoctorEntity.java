@@ -40,7 +40,7 @@ public class DoctorEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "posted_by")
-    private UserEntity postedBy;
+    private UserEntity user;
 
     public DoctorEntity() {
         this.appointments = new ArrayList<>();

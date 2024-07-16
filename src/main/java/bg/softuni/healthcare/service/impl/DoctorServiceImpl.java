@@ -56,7 +56,7 @@ public class DoctorServiceImpl implements DoctorService {
         Optional<DepartmentEntity> department = this.departmentRepository.findByName(DepartmentEnum.valueOf(addDoctorDTO.getDepartment().name()));
 
         doctor.setDepartment(department.get());
-        doctor.setPostedBy(user);
+        doctor.setUser(user);
 
         this.doctorRepository.save(doctor);
     }
@@ -78,7 +78,7 @@ public class DoctorServiceImpl implements DoctorService {
                 .map(doctor -> {
                     InfoDoctorDTO infoDoctorDTO = this.modelMapper.map(doctor, InfoDoctorDTO.class);
                     infoDoctorDTO.setDepartment(doctor.getDepartment().getName());
-                    infoDoctorDTO.setAddedBy(doctor.getPostedBy().getUsername());
+                    infoDoctorDTO.setAddedBy(doctor.getUser().getUsername());
                     return infoDoctorDTO;
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));

@@ -35,7 +35,7 @@ public class UserEntity extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<UserRoleEntity> roles;
 
-    @OneToMany(mappedBy = "postedBy")
+    @OneToMany(mappedBy = "user")
     private Set<DoctorEntity> doctors;
 
     public UserEntity() {
