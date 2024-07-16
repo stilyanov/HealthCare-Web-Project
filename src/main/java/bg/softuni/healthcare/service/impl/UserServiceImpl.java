@@ -9,7 +9,10 @@ import bg.softuni.healthcare.repository.UserRepository;
 import bg.softuni.healthcare.repository.UserRoleRepository;
 import bg.softuni.healthcare.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -80,6 +83,18 @@ public class UserServiceImpl implements UserService {
                 .map(this::mapToUserProfileDTO)
                 .toList();
 
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAdmin = authentication.getAuthorities()
+                .stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+        if (!isAdmin) {
+            throw new IllegalArgumentException("You do not have permission to delete users");
+        }
+        this.userRepository.deleteById(id);
     }
 
     private UserProfileDTO mapToUserProfileDTO(UserEntity user) {

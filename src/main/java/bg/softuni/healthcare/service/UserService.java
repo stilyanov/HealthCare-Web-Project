@@ -20,4 +20,6 @@ public interface UserService {
     UserProfileDTO getUserProfileById(Long id);
 
     List<UserProfileDTO> getAllUsers(UserEntity user);
+
+    void deleteUser(Long id);
 }

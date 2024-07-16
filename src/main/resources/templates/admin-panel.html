@@ -12,6 +12,9 @@
 
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
+    <div th:if="${success}" class="alert alert-success row row-cols-sm-1 justify-content-center" role="alert">
+        <p th:text="${success}"></p>
+    </div>
     <div class="row row-cols-2 g-5 justify-content-center">
         <h2 class="text-center">Current Users</h2>
         <table class="table">
@@ -25,7 +28,7 @@
                 <th scope="col">Roles</th>
             </tr>
             </thead>
-            <tbody  th:each="user : ${allUsers}"
+            <tbody th:each="user : ${allUsers}"
             >
             <tr>
                 <th scope="row" th:text="${user.getId()}">1</th>
@@ -34,7 +37,9 @@
                 <td th:text="${user.getUsername()}"></td>
                 <td th:text="${user.getEmail()}"></td>
                 <td th:each="role : ${user.getRoles()}" th:text="${role}"></td>
-                <td></td>
+                <td>
+                    <a th:href="@{/users/delete/{id} (id=${user.getId()})}" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
             </tbody>
         </table>

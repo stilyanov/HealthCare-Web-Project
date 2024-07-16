@@ -1,6 +1,6 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.user.UserLoginDTO;
+import bg.softuni.healthcare.model.dto.user.UserDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,8 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class LoginController {
 
     @ModelAttribute("loginDTO")
-    public UserLoginDTO loginDTO() {
-        return new UserLoginDTO();
+    public UserDTO loginDTO() {
+        return new UserDTO();
     }
 
     @GetMapping("/login")
