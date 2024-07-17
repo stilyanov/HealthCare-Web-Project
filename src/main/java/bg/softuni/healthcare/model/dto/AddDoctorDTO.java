@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto.doctor;
+package bg.softuni.healthcare.model.dto;
 
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import jakarta.validation.constraints.*;

@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto.user;
+package bg.softuni.healthcare.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

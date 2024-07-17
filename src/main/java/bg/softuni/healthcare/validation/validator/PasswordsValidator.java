@@ -1,6 +1,6 @@
 package bg.softuni.healthcare.validation.validator;
 
-import bg.softuni.healthcare.model.dto.user.UserRegisterDTO;
+import bg.softuni.healthcare.model.dto.UserRegisterDTO;
 import bg.softuni.healthcare.validation.annotation.ValidatePasswords;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

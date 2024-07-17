@@ -1,8 +1,8 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.doctor.AddDoctorDTO;
-import bg.softuni.healthcare.model.dto.doctor.AllDoctorsDTO;
-import bg.softuni.healthcare.model.dto.doctor.InfoDoctorDTO;
+import bg.softuni.healthcare.model.dto.AddDoctorDTO;
+import bg.softuni.healthcare.model.dto.AllDoctorsDTO;
+import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.service.impl.DoctorServiceImpl;
 import jakarta.validation.Valid;

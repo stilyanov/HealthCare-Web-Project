@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto.user;
+package bg.softuni.healthcare.model.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

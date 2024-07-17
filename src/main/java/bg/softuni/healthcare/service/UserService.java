@@ -1,9 +1,8 @@
 package bg.softuni.healthcare.service;
 
-import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
-import bg.softuni.healthcare.model.dto.user.UserRegisterDTO;
+import bg.softuni.healthcare.model.dto.UserProfileDTO;
+import bg.softuni.healthcare.model.dto.UserRegisterDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 

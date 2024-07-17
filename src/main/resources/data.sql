@@ -1,20 +1,20 @@
-INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `password`, `username`)
-VALUES
-    (1, 'admin@email.com', 'admin', 'admin', 'f292ad79a41b8c2240891d1adad3afdad1671fa55f463b1c20ad992d822fe031f1fd3b7f34419ac4b7f49f978279725e', 'admin'),
-    (2, 'greta@email.com', 'Greta', 'Marinova', 'eba54a5352e9fb178a2a464af2f60355da8e0c53e8ecf69500d133f61570b1004cdaa493d5191f4b4438c15f60caf1e5', 'greta'),
-    (7, 'toni@email.com', 'Antoaneta', 'Antoaneta', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76', 'toni'),
-    (8, 'mustaka64@email.com', 'Yordan', 'Yordan', 'dd86672766be3db18aaa14ae352753bd62c72851bb52d78a6a1a84c580f476a4be7bb22399f23cfef63d65b65e5bcd1a', 'mustaka64'),
-    (12, 'stilyanov@email.com', 'Vladimir', 'Stilyanov', 'b8d0031f95a548ff863145a5a33204f4372bd33a6ea78e8981b793c0db52ec0d6fe92f9df9c4dc9686d64fcd58de5b9e', 'stilyanov');
+# INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `password`, `username`)
+# VALUES
+#     (1, 'admin@email.com', 'admin', 'admin', 'f292ad79a41b8c2240891d1adad3afdad1671fa55f463b1c20ad992d822fe031f1fd3b7f34419ac4b7f49f978279725e', 'admin'),
+#     (2, 'greta@email.com', 'Greta', 'Marinova', 'eba54a5352e9fb178a2a464af2f60355da8e0c53e8ecf69500d133f61570b1004cdaa493d5191f4b4438c15f60caf1e5', 'greta'),
+#     (7, 'toni@email.com', 'Antoaneta', 'Antoaneta', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76', 'toni'),
+#     (8, 'mustaka64@email.com', 'Yordan', 'Yordan', 'dd86672766be3db18aaa14ae352753bd62c72851bb52d78a6a1a84c580f476a4be7bb22399f23cfef63d65b65e5bcd1a', 'mustaka64'),
+#     (12, 'stilyanov@email.com', 'Vladimir', 'Stilyanov', 'b8d0031f95a548ff863145a5a33204f4372bd33a6ea78e8981b793c0db52ec0d6fe92f9df9c4dc9686d64fcd58de5b9e', 'stilyanov');
 
-INSERT INTO `users_roles` (`user_id`, `role_id`)
-VALUES
-    (1, 1),
-    (2, 3),
-    (7, 3),
-    (8, 3),
-    (12, 3);
+# INSERT INTO `users_roles` (`user_id`, `role_id`)
+# VALUES
+#     (1, 1),
+#     (2, 3),
+#     (7, 3),
+#     (8, 3),
+#     (12, 3);
 
-INSERT INTO `doctors` (`id`, `bio`, `experience`, `first_name`, `image_url`, `last_name`, `department_id`, `posted_by`, `city`)
+INSERT INTO `doctors` (`id`, `bio`, `experience`, `first_name`, `image_url`, `last_name`, `department_id`, `user_id`, `city`)
 VALUES
     (3, 'Dr. Emily Johnson is a highly skilled cardiologist specializing in diagnosing and treating heart conditions. She is well-known for her compassionate care and her commitment to patient health. Dr. Johnson has extensive experience in managing complex cardiovascular diseases and is proficient in advanced diagnostic techniques.', 12, 'Emily', 'https://img.freepik.com/free-photo/doctor-with-white-robe-stethoscope_144627-43879.jpg', 'Johnson', 1, 1, 'Varna'),
     (4, 'Dr. Michael Smith is an expert orthopedic surgeon with a focus on sports injuries and joint replacements. He is dedicated to helping patients recover mobility and live pain-free lives. Dr. Smith is renowned for his surgical precision and his innovative approach to minimally invasive procedures.', 15, 'Michael', 'https://www.shutterstock.com/image-photo/covid19-coronavirus-outbreak-healthcare-workers-260nw-1779353891.jpg', 'Smith', 4, 1, 'Veliko Turnovo'),

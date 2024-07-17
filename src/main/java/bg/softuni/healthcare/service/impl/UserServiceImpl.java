@@ -1,7 +1,7 @@
 package bg.softuni.healthcare.service.impl;
 
-import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
-import bg.softuni.healthcare.model.dto.user.UserRegisterDTO;
+import bg.softuni.healthcare.model.dto.UserProfileDTO;
+import bg.softuni.healthcare.model.dto.UserRegisterDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.model.entity.UserRoleEntity;
 import bg.softuni.healthcare.model.entity.enums.UserRoleEnum;

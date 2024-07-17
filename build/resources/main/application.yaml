@@ -15,6 +15,6 @@ spring:
         show_sql: true
     hibernate:
       ddl-auto: update
-    sql:
-      init:
-        mode: never
+  sql:
+    init:
+      mode: never

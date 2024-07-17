@@ -1,6 +1,6 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
+import bg.softuni.healthcare.model.dto.UserProfileDTO;
 import bg.softuni.healthcare.model.entity.User.HealthcareUserDetails;
 import bg.softuni.healthcare.service.UserService;
 import lombok.RequiredArgsConstructor;

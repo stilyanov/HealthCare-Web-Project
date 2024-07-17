@@ -26,10 +26,7 @@
                                   th:method="post"
                                   th:object="${loginDTO}">
 
-                                <small th:if="${#fields.hasGlobalErrors()}"
-                                       th:each="error : ${#fields.globalErrors()}"
-                                       th:text="${error}"
-                                ></small>
+                                <small th:if="${loginError}" class="invalid-feedback text-warning">Invalid email or password</small>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
                                     <label class="form-label" th:for="email">Email</label>

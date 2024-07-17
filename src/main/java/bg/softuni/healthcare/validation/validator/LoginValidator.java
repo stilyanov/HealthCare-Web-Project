@@ -1,11 +1,10 @@
 package bg.softuni.healthcare.validation.validator;
 
-import bg.softuni.healthcare.model.dto.user.UserLoginDTO;
+import bg.softuni.healthcare.model.dto.UserLoginDTO;
 import bg.softuni.healthcare.service.UserService;
 import bg.softuni.healthcare.validation.annotation.ValidateLogin;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import lombok.AllArgsConstructor;
 import org.hibernate.validator.constraintvalidation.HibernateConstraintValidatorContext;
 import org.springframework.stereotype.Component;
 
