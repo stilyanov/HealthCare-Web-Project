@@ -21,5 +21,5 @@ public class MedicalRecordEntity extends BaseEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "patient_id")
-    private PatientEntity patient;
+    private UserEntity patient;
 }

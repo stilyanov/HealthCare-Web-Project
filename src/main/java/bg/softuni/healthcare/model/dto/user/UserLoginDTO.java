@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDTO {
+public class UserLoginDTO {
 
     @Email
     @NotNull(message = "Email cannot be empty!")

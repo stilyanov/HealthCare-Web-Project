@@ -23,7 +23,7 @@ public class AppointmentEntity extends BaseEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "patient_id")
-    private PatientEntity patient;
+    private UserEntity patient;
 
     private String reason;
 

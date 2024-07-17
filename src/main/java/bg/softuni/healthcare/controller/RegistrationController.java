@@ -5,6 +5,7 @@ import bg.softuni.healthcare.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +26,11 @@ public class RegistrationController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        if (!model.containsAttribute("registerDTO")) {
+            model.addAttribute("registerDTO", new UserRegisterDTO());
+        }
+
         return "register";
     }
 
@@ -36,22 +41,6 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
-            return "redirect:/users/register";
-        }
-
-        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
-            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
-            redirectAttributes.addFlashAttribute("passwordDiff", "Passwords do not match!");
-            // TODO: IF PASSWORD DOES NOT MATCH, DOES NOT APPEAR ON THE FRONT END
-            return "redirect:/users/register";
-        }
-
-        if (userService.checkEmail(registerDTO.getEmail())) {
-            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
-            redirectAttributes.addFlashAttribute("emailExists", "Email already exists");
-            //TODO: EMAIL
             return "redirect:/users/register";
         }
 

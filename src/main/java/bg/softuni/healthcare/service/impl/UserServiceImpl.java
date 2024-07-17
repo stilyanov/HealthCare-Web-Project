@@ -45,12 +45,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean validateCredentials(String email, String password) {
+        Optional<UserEntity> userEntity = this.userRepository.findByEmail(email);
+        return userEntity.isPresent() && passwordEncoder.matches(password, userEntity.get().getPassword());
+    }
+
+    @Override
     public UserEntity findById(Long id) {
         return this.userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
-    public boolean checkEmail(String email) {
-        return this.userRepository.findByEmail(email).isPresent();
+    @Override
+    public boolean isEmailUnique(String email) {
+        return !this.userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean isUsernameUnique(String username) {
+        return this.userRepository.findByUsername(username).isEmpty();
     }
 
     @Override

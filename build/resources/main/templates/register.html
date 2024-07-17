@@ -33,9 +33,11 @@
                                            th:field="*{username}"
                                            th:errorclass="'is-invalid alert-info'"
                                     />
-                                    <small class="invalid-feedback text-warning"
-                                           th:each="error : ${#fields.errors('username')}"
-                                           th:text="${error}"></small>
+<!--                                    <small class="invalid-feedback text-warning"-->
+<!--                                           th:each="error : ${#fields.errors('username')}"-->
+<!--                                           th:text="${error}"></small>-->
+                                    <small th:errors="*{username}" class="invalid-feedback text-warning"
+                                    ></small>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
@@ -66,12 +68,8 @@
                                            th:field="*{email}"
                                            th:errorclass="'is-invalid alert-info'"
                                     />
-                                    <small th:if="${emailExists}" class="is-invalid invalid-feedback text-warning"
-                                         th:text="${emailExists}"
+                                    <small th:errors="*{email}" class="invalid-feedback text-warning"
                                     ></small>
-                                    <small class="invalid-feedback text-warning"
-                                           th:each="error : ${#fields.errors('email')}"
-                                           th:text="${error}"></small>
                                 </div>
 
 
@@ -95,9 +93,6 @@
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('confirmPassword')}"
                                            th:text="${error}"></small>
-                                    <small class="invalid-feedback text-warning"
-                                           th:if="${passwordDiff}"
-                                           th:text="${passwordDiff}">Passwords do not match</small>
                                 </div>
 
                                 <button data-mdb-button-init data-mdb-ripple-init
