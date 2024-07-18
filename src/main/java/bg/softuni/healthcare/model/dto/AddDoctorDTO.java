@@ -36,7 +36,7 @@ public class AddDoctorDTO {
     @NotNull(message = "Department cannot be empty!")
     private DepartmentEnum department;
 
-    @NotBlank(message = "Please enter valid image URL!")
+    @NotBlank(message = "Image URL cannot be empty!")
     @Size(max = 200, message = "Image URL length must be less than 200 characters!")
     @Pattern(regexp = "https://.*", message = "Please enter valid image URL!")
     private String imageUrl;

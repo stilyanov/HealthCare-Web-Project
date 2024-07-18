@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <th:block th:replace="~{fragments/head.html}"></th:block>
 
@@ -24,7 +25,7 @@
                 <h4 class="post-subtitle"><b>Town</b>: <th:block th:text="${doctor.getTown()}"></th:block></h4>
                 <p class="post-subtitle"><b>Bio</b>: <th:block th:text="${doctor.getBio()}"></th:block></p>
 
-            <p class="post-meta">
+            <p class="post-meta" sec:authorize="hasRole('ADMIN')">
                 Added by
                 <th:block th:text="${doctor.getAddedBy()}"></th:block>
             </p>
