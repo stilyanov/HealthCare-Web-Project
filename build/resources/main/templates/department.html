@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{fragments/head.html}"></th:block>
+
+<body>
+<!-- Navigation-->
+<th:block th:replace="~{fragments/nav.html}"></th:block>
+<!-- Page Header-->
+<th:block th:replace="~{fragments/header.html}"></th:block>
+
+
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row row-cols-2 g-5 justify-content-center">
+
+        <div class="col-md-4" th:object="${doctors}"
+             th:each="doctor : ${doctors}">
+            <!-- Doctor preview -->
+            <img class="mr-2 m-4" th:src="${doctor.getImageUrl()}" th:alt="${doctor.getFullName()}" width="120px" height="180px">
+            <a th:href="@{/doctors/info/{doctorId} (doctorId = ${doctor.getId()})}">
+                <h2 class="post-title">Dr. <th:block th:text="${doctor.getFullName()}"></th:block></h2>
+                <h4 class="post-subtitle"><b>Department</b>: <th:block th:text="${doctor.getDepartment().displayName}"></th:block></h4>
+                <h4 class="post-subtitle"><b>Experience</b>: <th:block th:text="${doctor.getExperience()}"></th:block> years</h4>
+            </a>
+
+        </div>
+
+        <!-- Divider-->
+        <hr class="my-4"/>
+
+    </div>
+</div>
+
+<!-- Footer-->
+<th:block th:replace="~{fragments/footer.html}"></th:block>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+</body>
+</html>

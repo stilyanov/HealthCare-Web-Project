@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <th:block th:replace="~{fragments/head.html}"></th:block>
 
@@ -14,29 +14,37 @@
 <div class="container px-4 px-lg-5">
     <div class="row row-cols-2 g-5 justify-content-center">
         <div class="col-md-5">
-            <form class="col-form-label col-md-10">
+            <form class="col-form-label col-md-10" th:action="@{/appointments/find}">
                 <div class="form-group p-sm-0">
                     <div class="mx-auto"><b>Find Doctor</b></div>
                     <img th:src="@{/images/find-doctor.jpg}"
                          class="img-fluid" alt="Find Doctor">
-                    <label for="exampleFormControlSelect1"></label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Choose specialty</option>
-                        <option></option>
+                    </br>
+                    <select name="department" class="form-control" id="department">
+                        <option value="">Select Department</option>
+                        <option th:each="department : ${departments}"
+                                th:value="${department}"
+                                th:text="${department.getDisplayName()}">
+                        </option>
                     </select>
                 </div>
+                </br>
                 <div class="form-group p-sm-0">
-                    <label for="exampleFormControlSelect2"></label>
-                    <select class="form-control" id="exampleFormControlSelect2">
+                    <select class="form-control" id="town">
                         <option>Choose a town</option>
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group p-sm-0">
-                    <label for="exampleFormControlInput1"></label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                    <label for="doctorName"></label>
+                    <input type="text" class="form-control" id="doctorName"
                            placeholder="Find doctor by name">
                 </div>
+
+                </br>
+
+                <button type="submit" class="btn btn-primary">Find Doctor</button>
+
             </form>
         </div>
         <div class="col-md-5">
