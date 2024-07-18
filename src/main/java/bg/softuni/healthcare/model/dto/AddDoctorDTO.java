@@ -19,9 +19,9 @@ public class AddDoctorDTO {
     @Size(min = 3, max = 20, message = "Last Name length must be between 3 and 20 characters!")
     private String lastName;
 
-    @NotNull(message = "City cannot be empty!")
-    @Size(min = 3, max = 20, message = "City length must be between 3 and 20 characters!")
-    private String city;
+    @NotNull(message = "Town cannot be empty!")
+    @Size(min = 3, max = 20, message = "Town length must be between 3 and 20 characters!")
+    private String town;
 
     @NotNull(message = "Bio cannot be empty!")
     @Size(min = 50, max = 1000, message = "Bio length must be between 50 and 400 characters!")

@@ -1,7 +1,7 @@
 package bg.softuni.healthcare.service.impl;
 
 import bg.softuni.healthcare.model.dto.AddDoctorDTO;
-import bg.softuni.healthcare.model.dto.AllDoctorsDTO;
+import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.DepartmentEntity;
 import bg.softuni.healthcare.model.entity.DoctorEntity;
@@ -57,11 +57,11 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<AllDoctorsDTO> getAllDoctors() {
+    public List<DoctorDTO> getAllDoctors() {
         return this.doctorRepository.findAll()
                 .stream()
                 .map(doctor -> {
-                    AllDoctorsDTO allDoctorsDTO = this.modelMapper.map(doctor, AllDoctorsDTO.class);
+                    DoctorDTO allDoctorsDTO = this.modelMapper.map(doctor, DoctorDTO.class);
                     allDoctorsDTO.setDepartment(doctor.getDepartment().getName());
                     return allDoctorsDTO;
                 }).toList();
@@ -77,5 +77,10 @@ public class DoctorServiceImpl implements DoctorService {
                     return infoDoctorDTO;
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
+    }
+
+    @Override
+    public List<String> getAllTowns() {
+        return this.doctorRepository.findAllTowns();
     }
 }

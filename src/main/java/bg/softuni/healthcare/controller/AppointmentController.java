@@ -31,15 +31,17 @@ public class AppointmentController {
                                   @RequestParam(required = false) String name,
                                   Model model) {
         model.addAttribute("departments", DepartmentEnum.values());
+        model.addAttribute("towns", doctorService.getAllTowns());
 
         if (department != null && !department.isEmpty()) {
             model.addAttribute("doctors", departmentService.findByDepartment(DepartmentEnum.valueOf(department)));
             return "department";
         } else if (town != null && !town.isEmpty()) {
-//            model.addAttribute("appointments", doctorService.findByTown(town));
+            model.addAttribute("doctors", departmentService.findByTown(town));
+            return "town";
         } else if (name != null && !name.isEmpty()) {
 //            model.addAttribute("appointments", doctorService.findByName(name));
         }
-        return "find-appointment";
+        return "find-doctor";
     }
 }

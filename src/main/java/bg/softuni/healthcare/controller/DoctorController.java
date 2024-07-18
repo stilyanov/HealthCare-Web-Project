@@ -1,7 +1,7 @@
 package bg.softuni.healthcare.controller;
 
 import bg.softuni.healthcare.model.dto.AddDoctorDTO;
-import bg.softuni.healthcare.model.dto.AllDoctorsDTO;
+import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.service.impl.DoctorServiceImpl;
@@ -34,7 +34,7 @@ public class DoctorController {
 
     @GetMapping("/all")
     public String getDoctors(Model model) {
-        List<AllDoctorsDTO> allDoctors = this.doctorService.getAllDoctors();
+        List<DoctorDTO> allDoctors = this.doctorService.getAllDoctors();
         model.addAttribute("allDoctors", allDoctors);
 
         return "all-doctors";

@@ -29,7 +29,7 @@ public class DoctorEntity extends BaseEntity {
     private String imageUrl;
 
     @Column(nullable = false)
-    private String city;
+    private String town;
 
     @OneToMany(mappedBy = "doctor")
     private List<AppointmentEntity> appointments;

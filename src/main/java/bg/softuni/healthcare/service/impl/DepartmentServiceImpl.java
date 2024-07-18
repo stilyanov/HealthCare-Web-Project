@@ -1,10 +1,11 @@
 package bg.softuni.healthcare.service.impl;
 
-import bg.softuni.healthcare.model.dto.AllDoctorsDTO;
-import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
+import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.entity.DepartmentEntity;
+import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.repository.DepartmentRepository;
+import bg.softuni.healthcare.repository.DoctorRepository;
 import bg.softuni.healthcare.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -17,6 +18,7 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentRepository departmentRepository;
+    private final DoctorRepository doctorRepository;
     private final ModelMapper modelMapper;
 
     @Override
@@ -25,16 +27,26 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<AllDoctorsDTO> findByDepartment(DepartmentEnum name) {
+    public List<DoctorDTO> findByDepartment(DepartmentEnum name) {
        return departmentRepository.findByName(name)
                .orElseThrow(() -> new IllegalArgumentException("Department not found"))
                .getDoctors()
                 .stream()
-                .map(doctor -> {
-                    AllDoctorsDTO allDoctorsDTO = modelMapper.map(doctor, AllDoctorsDTO.class);
-                    allDoctorsDTO.setDepartment(name);
-                    return allDoctorsDTO;
-                })
+                .map(this::mapDoctors)
                 .toList();
+    }
+
+    @Override
+    public List<DoctorDTO> findByTown(String town) {
+        return this.doctorRepository.findByTown(town)
+                .stream()
+                .map(this::mapDoctors)
+                .toList();
+    }
+
+    private DoctorDTO mapDoctors(DoctorEntity doctor) {
+        DoctorDTO doctorDTO = modelMapper.map(doctor, DoctorDTO.class);
+        doctorDTO.setDepartment(doctor.getDepartment().getName());
+        return doctorDTO;
     }
 }

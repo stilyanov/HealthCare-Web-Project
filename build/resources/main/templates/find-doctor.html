@@ -20,8 +20,11 @@
                     <img th:src="@{/images/find-doctor.jpg}"
                          class="img-fluid" alt="Find Doctor">
                     </br>
-                    <select name="department" class="form-control" id="department">
-                        <option value="">Select Department</option>
+                    <select name="department" class="form-control" id="department"
+                            onchange="this.form.submit();
+                            document.getElementById('town').selectedIndex = 0;"
+                    >
+                        <option value="">Choose Department</option>
                         <option th:each="department : ${departments}"
                                 th:value="${department}"
                                 th:text="${department.getDisplayName()}">
@@ -30,9 +33,15 @@
                 </div>
                 </br>
                 <div class="form-group p-sm-0">
-                    <select class="form-control" id="town">
-                        <option>Choose a town</option>
-                        <option></option>
+                    <select name="town" class="form-control" id="town"
+                            onchange="this.form.submit();
+                            document.getElementById('department').selectedIndex = 0;"
+                    >
+                        <option value="">Choose a town</option>
+                        <option th:each="town : ${towns}"
+                                th:value="${town}"
+                                th:text="${town}"
+                        ></option>
                     </select>
                 </div>
                 <div class="form-group p-sm-0">
@@ -40,19 +49,14 @@
                     <input type="text" class="form-control" id="doctorName"
                            placeholder="Find doctor by name">
                 </div>
-
-                </br>
-
-                <button type="submit" class="btn btn-primary">Find Doctor</button>
-
             </form>
         </div>
         <div class="col-md-5">
             <ul class="list-group">
                 <div class="mx-auto mb-4">
                     <img th:src="@{/images/city.jpeg}"
-                         class="img-fluid" alt="Choose City">
-                    <b>Choose City</b>
+                         class="img-fluid" alt="Choose Town">
+                    <b>Choose Town</b>
                 </div>
                 <li class="list-group-item">Varna</li>
                 <li class="list-group-item">Sofia</li>

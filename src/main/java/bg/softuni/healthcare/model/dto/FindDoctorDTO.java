@@ -12,7 +12,7 @@ public class FindDoctorDTO {
 
     private DepartmentEnum department;
 
-    private String city;
+    private String town;
 
     private Long doctorId;
 

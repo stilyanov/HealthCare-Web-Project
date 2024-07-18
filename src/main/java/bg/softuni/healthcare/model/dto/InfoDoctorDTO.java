@@ -19,7 +19,7 @@ public class InfoDoctorDTO {
 
     private String bio;
 
-    private String city;
+    private String town;
 
     private DepartmentEnum department;
 
