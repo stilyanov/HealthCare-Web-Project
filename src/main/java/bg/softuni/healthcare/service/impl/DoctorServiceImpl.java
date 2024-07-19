@@ -83,4 +83,16 @@ public class DoctorServiceImpl implements DoctorService {
     public List<String> getAllTowns() {
         return this.doctorRepository.findAllTowns();
     }
+
+    @Override
+    public void deleteDoctor(Long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAdmin = authentication.getAuthorities()
+                .stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+        if (!isAdmin) {
+            throw new IllegalArgumentException("You do not have permission to delete users");
+        }
+        this.doctorRepository.deleteById(id);
+    }
 }

@@ -639,6 +639,16 @@ progress {
     content: "— ";
 }
 
+.image-url-input {
+    max-width: 100%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .img-fluid {
     max-width: 100%;
     height: auto;

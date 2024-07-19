@@ -4,6 +4,7 @@ import bg.softuni.healthcare.model.dto.AddDoctorDTO;
 import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
+import bg.softuni.healthcare.service.DepartmentService;
 import bg.softuni.healthcare.service.impl.DoctorServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 public class DoctorController {
 
     private final DoctorServiceImpl doctorService;
+    private final DepartmentService departmentService;
 
     @ModelAttribute("addDoctor")
     public AddDoctorDTO addDoctorDTO() {
@@ -66,6 +68,26 @@ public class DoctorController {
         this.doctorService.addDoctor(addDoctorDTO);
 
         return "redirect:/doctors/all";
+    }
+
+    @GetMapping("/find")
+    public String findAppointment(@RequestParam(required = false) String department,
+                                  @RequestParam(required = false) String town,
+                                  @RequestParam(required = false) String name,
+                                  Model model) {
+        model.addAttribute("departments", DepartmentEnum.values());
+        model.addAttribute("towns", doctorService.getAllTowns());
+
+        if (department != null && !department.isEmpty()) {
+            model.addAttribute("doctors", departmentService.findByDepartment(DepartmentEnum.valueOf(department)));
+            return "department";
+        } else if (town != null && !town.isEmpty()) {
+            model.addAttribute("doctors", departmentService.findByTown(town));
+            return "town";
+        } else if (name != null && !name.isEmpty()) {
+//            model.addAttribute("appointments", doctorService.findByName(name));
+        }
+        return "find-doctor";
     }
 
 }

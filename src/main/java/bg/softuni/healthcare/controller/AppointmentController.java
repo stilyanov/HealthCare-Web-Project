@@ -16,32 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @AllArgsConstructor
 public class AppointmentController {
 
-    private final AppointmentService appointmentService;
-    private final DepartmentService departmentService;
-    private final DoctorService doctorService;
-
     @GetMapping("/all")
     public String appointment() {
         return "appointment";
     }
 
-    @GetMapping("/find")
-    public String findAppointment(@RequestParam(required = false) String department,
-                                  @RequestParam(required = false) String town,
-                                  @RequestParam(required = false) String name,
-                                  Model model) {
-        model.addAttribute("departments", DepartmentEnum.values());
-        model.addAttribute("towns", doctorService.getAllTowns());
-
-        if (department != null && !department.isEmpty()) {
-            model.addAttribute("doctors", departmentService.findByDepartment(DepartmentEnum.valueOf(department)));
-            return "department";
-        } else if (town != null && !town.isEmpty()) {
-            model.addAttribute("doctors", departmentService.findByTown(town));
-            return "town";
-        } else if (name != null && !name.isEmpty()) {
-//            model.addAttribute("appointments", doctorService.findByName(name));
-        }
-        return "find-doctor";
-    }
 }

@@ -25,5 +25,4 @@ public interface UserService {
     List<UserProfileDTO> getAllUsers(UserEntity user);
 
     void deleteUser(Long id);
-
 }

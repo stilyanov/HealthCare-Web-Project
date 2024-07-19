@@ -38,40 +38,46 @@
                 <td th:text="${user.getEmail()}"></td>
                 <td th:each="role : ${user.getRoles()}" th:text="${role}"></td>
                 <td>
-                    <a th:href="@{/users/delete/{id} (id=${user.getId()})}" class="btn btn-danger">Delete</a>
+                    <form th:action="@{/admin/delete/user/{id}(id=${user.id})}" method="post">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
             </tbody>
         </table>
 
-        <h2 class="text-center">Current Appointments</h2>
+        <h2 class="text-center">Current Doctors</h2>
         <table class="table">
             <thead class="bg-dark text-white">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Image Url</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody th:each="doctor : ${allDoctors}"
+            >
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+                <th scope="row" th:text="${doctor.getId()}">1</th>
+                <td th:text="${doctor.getFirstName()}"></td>
+                <td th:text="${doctor.getLastName()}"></td>
+                <td th:text="${doctor.getDepartment().displayName}"></td>
+                <td><th:block th:text="${doctor.getExperience()}"></th:block> years</td>
+                <td>
+                    <input type="text" readonly="readonly" class="form-control-plaintext image-url-input" th:value="${doctor.getImageUrl()}" onclick="this.select();">
+                </td>
+                <td>
+                    <form th:action="@{/admin/delete/doctor/{id}(id=${doctor.id})}" method="post">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

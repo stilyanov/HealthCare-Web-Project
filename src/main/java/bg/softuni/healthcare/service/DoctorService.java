@@ -14,4 +14,6 @@ public interface DoctorService {
     InfoDoctorDTO getDoctorInfo(Long doctorId);
 
     List<String> getAllTowns();
+
+    void deleteDoctor(Long id);
 }
