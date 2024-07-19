@@ -22,7 +22,7 @@
                     <br>
                     <select name="department" class="form-control" id="department"
                             onchange="this.form.submit();
-                            document.getElementById('town').selectedIndex = 0;" 
+                            document.getElementById('town').selectedIndex = 0;"
                     >
                         <option value="">Choose Department</option>
                         <option th:each="department : ${departments}"

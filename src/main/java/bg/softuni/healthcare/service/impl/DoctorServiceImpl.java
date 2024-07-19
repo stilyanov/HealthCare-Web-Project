@@ -63,6 +63,7 @@ public class DoctorServiceImpl implements DoctorService {
                 .map(doctor -> {
                     DoctorDTO allDoctorsDTO = this.modelMapper.map(doctor, DoctorDTO.class);
                     allDoctorsDTO.setDepartment(doctor.getDepartment().getName());
+                    allDoctorsDTO.setAddedBy(doctor.getUser().getUsername());
                     return allDoctorsDTO;
                 }).toList();
     }

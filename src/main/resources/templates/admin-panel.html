@@ -57,7 +57,7 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Department</th>
                 <th scope="col">Experience</th>
-                <th scope="col">Image Url</th>
+                <th scope="col">Added By</th>
             </tr>
             </thead>
             <tbody th:each="doctor : ${allDoctors}"
@@ -68,9 +68,7 @@
                 <td th:text="${doctor.getLastName()}"></td>
                 <td th:text="${doctor.getDepartment().displayName}"></td>
                 <td><th:block th:text="${doctor.getExperience()}"></th:block> years</td>
-                <td>
-                    <input type="text" readonly="readonly" class="form-control-plaintext image-url-input" th:value="${doctor.getImageUrl()}" onclick="this.select();">
-                </td>
+                <td th:text="${doctor.getAddedBy()}"></td>
                 <td>
                     <form th:action="@{/admin/delete/doctor/{id}(id=${doctor.id})}" method="post">
                         <input type="hidden" name="_method" value="DELETE" />
