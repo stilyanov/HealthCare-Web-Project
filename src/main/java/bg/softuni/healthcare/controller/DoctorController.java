@@ -85,7 +85,11 @@ public class DoctorController {
             model.addAttribute("doctors", departmentService.findByTown(town));
             return "town";
         } else if (name != null && !name.isEmpty()) {
-//            model.addAttribute("appointments", doctorService.findByName(name));
+            model.addAttribute("doctors", doctorService.findByName(name));
+            model.addAttribute("searchName", name);
+            return "name-search";
+        } else {
+            model.addAttribute("doctors", List.of());
         }
         return "find-doctor";
     }

@@ -19,10 +19,10 @@
                     <div class="mx-auto"><b>Find Doctor</b></div>
                     <img th:src="@{/images/find-doctor.jpg}"
                          class="img-fluid" alt="Find Doctor">
-                    </br>
+                    <br>
                     <select name="department" class="form-control" id="department"
                             onchange="this.form.submit();
-                            document.getElementById('town').selectedIndex = 0;"
+                            document.getElementById('town').selectedIndex = 0;" 
                     >
                         <option value="">Choose Department</option>
                         <option th:each="department : ${departments}"
@@ -31,7 +31,7 @@
                         </option>
                     </select>
                 </div>
-                </br>
+                <br>
                 <div class="form-group p-sm-0">
                     <select name="town" class="form-control" id="town"
                             onchange="this.form.submit();
@@ -45,10 +45,14 @@
                     </select>
                 </div>
                 <div class="form-group p-sm-0">
-                    <label for="doctorName"></label>
-                    <input type="text" class="form-control" id="doctorName"
-                           placeholder="Find doctor by name">
+                    <label for="name"></label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Find doctor by name">
                 </div>
+                <br>
+                <form class="col-form-label col-md-10" th:action="@{/doctors/find}" method="get">
+                    <!-- Department, Town, and Name inputs remain unchanged -->
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
             </form>
         </div>
         <div class="col-md-5">
@@ -58,17 +62,9 @@
                          class="img-fluid" alt="Choose Town">
                     <b>Choose Town</b>
                 </div>
-                <li class="list-group-item">Varna</li>
-                <li class="list-group-item">Sofia</li>
-                <li class="list-group-item">Plovdiv</li>
-                <li class="list-group-item">Veliko Turnovo</li>
-                <li class="list-group-item">Burgas</li>
-                <li class="list-group-item">Kurdzali</li>
-                <li class="list-group-item">Ruse</li>
-                <li class="list-group-item">Pavlikeni</li>
-                <li class="list-group-item">Pleven</li>
-                <li class="list-group-item">Stara Zagora</li>
-                <li class="list-group-item">Dobrich</li>
+                <li class="list-group-item"
+                    th:each="town : ${towns}"
+                    th:text="${town}"></li>
             </ul>
         </div>
 

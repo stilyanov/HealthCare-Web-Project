@@ -16,4 +16,6 @@ public interface DoctorService {
     List<String> getAllTowns();
 
     void deleteDoctor(Long id);
+
+    List<DoctorDTO> findByName(String name);
 }

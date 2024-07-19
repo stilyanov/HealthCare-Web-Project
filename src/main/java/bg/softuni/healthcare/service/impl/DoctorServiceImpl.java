@@ -95,4 +95,15 @@ public class DoctorServiceImpl implements DoctorService {
         }
         this.doctorRepository.deleteById(id);
     }
+
+    @Override
+    public List<DoctorDTO> findByName(String name) {
+        return this.doctorRepository.findByNameContainingIgnoreCase(name)
+                .stream()
+                .map(doctor -> {
+                    DoctorDTO doctorDTO = this.modelMapper.map(doctor, DoctorDTO.class);
+                    doctorDTO.setDepartment(doctor.getDepartment().getName());
+                    return doctorDTO;
+                }).toList();
+    }
 }

@@ -12,23 +12,33 @@
 
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
-    <div class="row row-cols-2 g-5 justify-content-center">
-
-        <div class="col-md-4" th:object="${doctors}"
-             th:each="doctor : ${doctors}">
-            <!-- Doctor preview -->
-            <img class="mr-2 m-4" th:src="${doctor.getImageUrl()}" th:alt="${doctor.getFullName()}" width="120px" height="180px">
-            <a th:href="@{/doctors/info/{doctorId} (doctorId = ${doctor.getId()})}">
-                <h2 class="post-title">Dr. <th:block th:text="${doctor.getFullName()}"></th:block></h2>
-                <h4 class="post-subtitle"><b>Department</b>: <th:block th:text="${doctor.getDepartment().displayName}"></th:block></h4>
-                <h4 class="post-subtitle"><b>Experience</b>: <th:block th:text="${doctor.getExperience()}"></th:block> years</h4>
-            </a>
-
+    <div class="row justify-content-center">
+        <h3>
+            <th:block th:text="${doctors.size()}"></th:block>
+            <th:block th:text="${doctors.size() == 1 ? 'doctor' : 'doctors'}"></th:block>
+            found
+        </h3>
+        <div class="row">
+            <div th:each="doctor : ${doctors}" class="col-sm-6 col-md-4">
+                <!-- Doctor preview -->
+                <img class="mr-2 m-4" th:src="${doctor.getImageUrl()}" th:alt="${doctor.getFullName()}" width="120px"
+                     height="180px">
+                <a th:href="@{/doctors/info/{doctorId} (doctorId = ${doctor.getId()})}">
+                    <h2 class="post-title">Dr.
+                        <th:block th:text="${doctor.getFullName()}"></th:block>
+                    </h2>
+                    <h4 class="post-subtitle"><b>Department</b>:
+                        <th:block th:text="${doctor.getDepartment().displayName}"></th:block>
+                    </h4>
+                    <h4 class="post-subtitle"><b>Experience</b>:
+                        <th:block th:text="${doctor.getExperience()}"></th:block>
+                        years
+                    </h4>
+                </a>
+            </div>
         </div>
-
         <!-- Divider-->
         <hr class="my-4"/>
-
     </div>
 </div>
 
