@@ -80,10 +80,10 @@ public class DoctorController {
 
         if (department != null && !department.isEmpty()) {
             model.addAttribute("doctors", departmentService.findByDepartment(DepartmentEnum.valueOf(department)));
-            return "department";
+            return "department-search";
         } else if (town != null && !town.isEmpty()) {
             model.addAttribute("doctors", departmentService.findByTown(town));
-            return "town";
+            return "town-search";
         } else if (name != null && !name.isEmpty()) {
             model.addAttribute("doctors", doctorService.findByName(name));
             model.addAttribute("searchName", name);

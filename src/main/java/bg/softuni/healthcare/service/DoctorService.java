@@ -18,4 +18,6 @@ public interface DoctorService {
     void deleteDoctor(Long id);
 
     List<DoctorDTO> findByName(String name);
+
+    DoctorDTO getDoctorById(Long doctorId);
 }

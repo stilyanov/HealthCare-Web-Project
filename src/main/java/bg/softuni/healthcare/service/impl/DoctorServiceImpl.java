@@ -107,4 +107,15 @@ public class DoctorServiceImpl implements DoctorService {
                     return doctorDTO;
                 }).toList();
     }
+
+    @Override
+    public DoctorDTO getDoctorById(Long doctorId) {
+        return this.doctorRepository.findById(doctorId)
+                .map(doctor -> {
+                    DoctorDTO doctorDTO = this.modelMapper.map(doctor, DoctorDTO.class);
+                    doctorDTO.setDepartment(doctor.getDepartment().getName());
+                    return doctorDTO;
+                })
+                .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
+    }
 }

@@ -25,6 +25,8 @@
                 <h4 class="post-subtitle"><b>Town</b>: <th:block th:text="${doctor.getTown()}"></th:block></h4>
                 <p class="post-subtitle"><b>Bio</b>: <th:block th:text="${doctor.getBio()}"></th:block></p>
 
+            <a class="btn btn-primary" th:href="@{/appointments/book/{doctorId}(doctorId=${doctor.getId()})}">Book Appointment</a>
+
             <p class="post-meta" sec:authorize="hasRole('ADMIN')">
                 Added by
                 <th:block th:text="${doctor.getAddedBy()}"></th:block>

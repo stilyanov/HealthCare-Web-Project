@@ -10,7 +10,7 @@ public class DepartmentController {
 
     @GetMapping("/department")
     public String departments() {
-        return "department";
+        return "department-search";
     }
 
 }
