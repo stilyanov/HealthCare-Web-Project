@@ -15,6 +15,7 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-primary text-white" style="border-radius: 1rem;">
+
                     <div class="card-body p-5 text-center">
 
                         <div class="mb-md-5 mt-md-4 pb-5">
@@ -24,18 +25,34 @@
                             <h5 class="fw-bold mb-2">Department: <th:block th:text="${doctor.getDepartment().displayName}"></th:block></h5>
                             <p class="text-white-50 mb-5">Please fill in the appointment details!</p>
 
-                            <form th:action="@{/appointments/book/{doctorId}(doctorId=${appointment.doctorId})}" th:method="post" th:object="${appointment}">
+                            <form th:action="@{/appointments/book/{doctorId}(doctorId=${appointment.doctorId})}"
+                                  th:method="post"
+                                  th:object="${appointment}"
+                            >
 
                                 <input type="hidden" th:field="*{doctorId}" />
 
                                 <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="time">Appointment Time</label>
-                                    <input type="datetime-local" id="time" class="form-control form-control-lg" th:field="*{time}" />
+                                    <h6 class="fw-bold mb">Please note: Appointments can only be booked on weekdays (Monday to Friday) from 08:00 to 17:00.</h6>
+                                    <label class="form-label" th:for="time">Appointment Time</label>
+                                    <input type="datetime-local" id="time" class="form-control form-control-lg"
+                                           th:field="*{time}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('time')}"
+                                           th:text="${error}"></small>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="reason">Reason for Visit</label>
-                                    <textarea id="reason" class="form-control form-control-lg" th:field="*{reason}"></textarea>
+                                    <label class="form-label" th:for="reason">Reason for Visit</label>
+                                    <textarea id="reason" class="form-control form-control-lg"
+                                              th:field="*{reason}"
+                                              th:errorclass="'is-invalid alert-info'"
+                                    ></textarea>
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('reason')}"
+                                           th:text="${error}"></small>
                                 </div>
 
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Book</button>
