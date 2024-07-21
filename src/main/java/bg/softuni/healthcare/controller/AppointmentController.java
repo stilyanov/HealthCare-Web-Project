@@ -51,10 +51,10 @@ public class AppointmentController {
         return "redirect:/";
     }
 
-//    @GetMapping("/all")
-//    public String allAppointments(Model model) {
-//        model.addAttribute("appointments", this.appointmentService.getAllAppointments());
-//        return "all-appointments";
-//    }
+    @GetMapping("/all")
+    public String allAppointments(Model model) {
+        model.addAttribute("appointments", this.appointmentService.getAllAppointments());
+        return "all-appointments";
+    }
 
 }

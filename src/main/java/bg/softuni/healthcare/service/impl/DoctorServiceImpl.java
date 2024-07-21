@@ -92,7 +92,7 @@ public class DoctorServiceImpl implements DoctorService {
                 .stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
         if (!isAdmin) {
-            throw new IllegalArgumentException("You do not have permission to delete users");
+            throw new IllegalArgumentException("You do not have permission to delete doctors");
         }
         this.doctorRepository.deleteById(id);
     }

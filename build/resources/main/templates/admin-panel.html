@@ -26,6 +26,7 @@
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Roles</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody th:each="user : ${allUsers}"
@@ -58,6 +59,7 @@
                 <th scope="col">Department</th>
                 <th scope="col">Experience</th>
                 <th scope="col">Added By</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody th:each="doctor : ${allDoctors}"
@@ -79,9 +81,37 @@
             </tr>
             </tbody>
         </table>
-        <!-- Divider-->
-        <hr class="my-4"/>
 
+        <h2 class="text-center">Current Appointments</h2>
+        <table class="table">
+            <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User Full Name</th>
+                <th scope="col">Doctor Full Name</th>
+                <th scope="col">Reason</th>
+                <th scope="col">Date And Time</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody th:each="appointment : ${allAppointments}"
+            >
+            <tr>
+                <th scope="row" th:text="${appointment.getId()}">1</th>
+                <td th:text="${appointment.getPatientFullName()}"></td>
+                <td th:text="${appointment.getDoctorFullName()}"></td>
+                <td th:text="${appointment.getReason()}"></td>
+                <td th:text="${appointment.getTime()}"></td>
+                <td>
+                    <form th:action="@{/admin/delete/appointment/{id}(id=${appointment.id})}" method="post">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

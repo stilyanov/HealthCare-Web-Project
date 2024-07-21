@@ -1,8 +1,10 @@
 package bg.softuni.healthcare.controller;
 
 import bg.softuni.healthcare.model.dto.DoctorDTO;
+import bg.softuni.healthcare.model.dto.FullAppointmentsInfoDTO;
 import bg.softuni.healthcare.model.dto.UserProfileDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
+import bg.softuni.healthcare.service.AppointmentService;
 import bg.softuni.healthcare.service.DoctorService;
 import bg.softuni.healthcare.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,18 +25,20 @@ public class AdminController {
 
     private final UserService userService;
     private final DoctorService doctorService;
+    private final AppointmentService appointmentService;
 
     @GetMapping("/panel")
     public String getAdminPanel(Model model, UserEntity user) {
         List<UserProfileDTO> allUsers = this.userService.getAllUsers(user);
         List<DoctorDTO> allDoctors = this.doctorService.getAllDoctors();
+        List<FullAppointmentsInfoDTO> allAppointments = this.appointmentService.getAllFullAppointmentsInfo();
 
         model.addAttribute("allDoctors", allDoctors);
         model.addAttribute("allUsers", allUsers);
+        model.addAttribute("allAppointments", allAppointments);
 
         return "admin-panel";
     }
-
 
     @DeleteMapping("/delete/user/{id}")
     public String deleteUser(@PathVariable Long id, RedirectAttributes redirectAttributes) {
@@ -48,6 +52,14 @@ public class AdminController {
     public String deleteDoctor(@PathVariable Long id, RedirectAttributes redirectAttributes){
         this.doctorService.deleteDoctor(id);
         redirectAttributes.addFlashAttribute("success", "Doctor with ID " + id + " was deleted successfully!");
+
+        return "redirect:/admin/panel";
+    }
+
+    @DeleteMapping("/delete/appointment/{id}")
+    public String deleteAppointment(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        this.appointmentService.deleteAppointment(id);
+        redirectAttributes.addFlashAttribute("success", "Appointment with ID " + id + " was deleted successfully!");
 
         return "redirect:/admin/panel";
     }

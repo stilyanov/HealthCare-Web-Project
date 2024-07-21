@@ -45,4 +45,8 @@ public class DoctorEntity extends BaseEntity {
     public DoctorEntity() {
         this.appointments = new ArrayList<>();
     }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
 }

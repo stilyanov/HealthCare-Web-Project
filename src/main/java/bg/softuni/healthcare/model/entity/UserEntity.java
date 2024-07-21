@@ -42,4 +42,8 @@ public class UserEntity extends BaseEntity {
         this.roles = new ArrayList<>();
         this.doctors = new HashSet<>();
     }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
 }
