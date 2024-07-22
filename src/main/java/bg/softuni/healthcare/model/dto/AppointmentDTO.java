@@ -19,7 +19,7 @@ public class AppointmentDTO {
     private LocalDateTime time;
 
     @NotNull(message = "Reason cannot be empty!")
-    @Size(min = 10, max = 200, message = "Reason length must be between 10 and 200 characters!")
+    @Size(min = 10, max = 400, message = "Reason length must be between 10 and 200 characters!")
     private String reason;
 
     private Long doctorId;

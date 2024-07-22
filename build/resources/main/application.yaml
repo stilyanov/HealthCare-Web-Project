@@ -18,8 +18,8 @@ spring:
   sql:
     init:
       mode: never
-server:
-  error:
-    include-message: never
-    include-stacktrace: never
-    include-binding-errors: never
+#server:
+#  error:
+#    include-message: never
+#    include-stacktrace: never
+#    include-binding-errors: never

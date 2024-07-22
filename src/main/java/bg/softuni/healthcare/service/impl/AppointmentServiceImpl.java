@@ -2,6 +2,7 @@ package bg.softuni.healthcare.service.impl;
 
 import bg.softuni.healthcare.model.dto.AppointmentDTO;
 import bg.softuni.healthcare.model.dto.FullAppointmentsInfoDTO;
+import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
 import bg.softuni.healthcare.model.entity.AppointmentEntity;
 import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.model.entity.UserEntity;
@@ -88,6 +89,26 @@ public class AppointmentServiceImpl implements AppointmentService {
             throw new IllegalArgumentException("You do not have permission to delete appointments");
         }
         this.appointmentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<UserAppointmentDTO> getUsersAppointments() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        UserEntity patient = this.userRepository.findByEmail(currentPrincipalName)
+                .orElseThrow(() -> new IllegalArgumentException("User with email " + currentPrincipalName + " not found!"));
+
+        return  appointmentRepository.findAllByPatientId(patient.getId())
+                .stream()
+                .map(appointment -> {
+                    UserAppointmentDTO userAppointmentDTO = modelMapper.map(appointment, UserAppointmentDTO.class);
+                    userAppointmentDTO.setDoctorFullName(appointment.getDoctor().getFullName());
+                    userAppointmentDTO.setDepartment(appointment.getDoctor().getDepartment().getName());
+                    userAppointmentDTO.setTime(appointment.getTime().format(dateTimeFormatter));
+                    return userAppointmentDTO;
+                })
+                .toList();
+
     }
 
     private boolean isValidAppointmentTime(LocalDateTime appointmentDateTime) {

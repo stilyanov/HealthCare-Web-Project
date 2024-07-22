@@ -2,6 +2,7 @@ package bg.softuni.healthcare.controller;
 
 import bg.softuni.healthcare.model.dto.AppointmentDTO;
 import bg.softuni.healthcare.model.dto.DoctorDTO;
+import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
 import bg.softuni.healthcare.service.AppointmentService;
 import bg.softuni.healthcare.service.DoctorService;
 import jakarta.validation.Valid;
@@ -12,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/appointments")
@@ -53,8 +56,9 @@ public class AppointmentController {
 
     @GetMapping("/all")
     public String allAppointments(Model model) {
-        model.addAttribute("appointments", this.appointmentService.getAllAppointments());
-        return "all-appointments";
+        List<UserAppointmentDTO> getUsersAppointments = this.appointmentService.getUsersAppointments();
+        model.addAttribute("appointments", getUsersAppointments);
+        return "appointment";
     }
 
 }
