@@ -23,8 +23,8 @@ public class LoginController {
 
     @GetMapping("/login-error")
     public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        return "login";
+        model.addAttribute("errorMessage", "Invalid email or password!");
+        return "login-error";
 
     }
 }

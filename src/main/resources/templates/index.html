@@ -9,19 +9,19 @@
 <!-- Page Header-->
 <th:block th:replace="~{fragments/header.html}"></th:block>
 
-
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
     <div class="row row-cols-2 g-5 justify-content-center">
+        <div class="col text-center">
+            <h2>Log in to find doctors or make an appointment easily.</h2>
+            <br/>
+            <a th:href="@{/users/login}" class="btn btn-primary">Login</a>
+            <a th:href="@{/users/register}" class="btn btn-secondary">Register</a>
 
-        <!-- TODO -->
+            <!-- Divider -->
+            <hr class="my-5" />
 
-
-
-
-        <!-- Divider-->
-        <hr class="my-4"/>
-
+        </div>
     </div>
 </div>
 

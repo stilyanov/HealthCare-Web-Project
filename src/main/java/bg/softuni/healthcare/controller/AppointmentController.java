@@ -51,7 +51,7 @@ public class AppointmentController {
 
         this.appointmentService.bookAppointment(appointmentDTO);
 
-        return "redirect:/";
+        return "redirect:/appointments/all";
     }
 
     @GetMapping("/all")
