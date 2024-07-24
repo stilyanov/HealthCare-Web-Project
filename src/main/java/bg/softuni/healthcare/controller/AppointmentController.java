@@ -27,7 +27,10 @@ public class AppointmentController {
     private final DoctorService doctorService;
 
     @GetMapping("/book/{doctorId}")
-    public String appointment(@PathVariable("doctorId") Long doctorId, Model model, @RequestParam(value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+    public String appointment(@PathVariable("doctorId") Long doctorId,
+                              Model model,
+                              @RequestParam(value = "date", required = false)
+                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         DoctorDTO doctor = doctorService.getDoctorById(doctorId);
         List<LocalDateTime> availableSlots = appointmentService.getAvailableAppointmentTimes(doctorId, date != null ? date : LocalDate.now());
         model.addAttribute("doctor", doctor);

@@ -19,15 +19,20 @@ public class UserController {
 
     private final UserService userService;
 
+    @ModelAttribute("loginDTO")
+    public UserLoginDTO loginDTO() {
+        return new UserLoginDTO();
+    }
+
+    @ModelAttribute("registerDTO")
+    public UserRegisterDTO registerDTO() {
+        return new UserRegisterDTO();
+    }
+
     @GetMapping("/profile/{userId}")
     public String getProfile(@PathVariable Long userId, Model model) {
         model.addAttribute("userProfile", userService.getUserProfileById(userId));
         return "user-profile";
-    }
-
-    @ModelAttribute("loginDTO")
-    public UserLoginDTO loginDTO() {
-        return new UserLoginDTO();
     }
 
     @GetMapping("/login")
@@ -39,11 +44,6 @@ public class UserController {
     public String loginError(Model model) {
         model.addAttribute("errorMessage", "Invalid email or password!");
         return "login-error";
-    }
-
-    @ModelAttribute("registerDTO")
-    public UserRegisterDTO registerDTO() {
-        return new UserRegisterDTO();
     }
 
     @GetMapping("/register")
