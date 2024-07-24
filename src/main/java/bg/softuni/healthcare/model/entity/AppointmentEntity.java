@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 @Table(name = "appointments")
 public class AppointmentEntity extends BaseEntity {
 
-    @Column(name = "time", nullable = false)
-    private LocalDateTime time;
+    @Column(name = "date_time", nullable = false)
+    private LocalDateTime dateTime;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "doctor_id")

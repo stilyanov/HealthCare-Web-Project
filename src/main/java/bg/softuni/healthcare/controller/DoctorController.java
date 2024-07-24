@@ -71,10 +71,10 @@ public class DoctorController {
     }
 
     @GetMapping("/find")
-    public String findAppointment(@RequestParam(required = false) String department,
-                                  @RequestParam(required = false) String town,
-                                  @RequestParam(required = false) String name,
-                                  Model model) {
+    public String findDoctor(@RequestParam(required = false) String department,
+                             @RequestParam(required = false) String town,
+                             @RequestParam(required = false) String name,
+                             Model model) {
         model.addAttribute("departments", DepartmentEnum.values());
         model.addAttribute("towns", doctorService.getAllTowns());
 

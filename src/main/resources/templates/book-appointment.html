@@ -21,31 +21,49 @@
                         <div class="mb-md-5 mt-md-4 pb-5">
 
                             <h2 class="fw-bold mb-2 text-uppercase">Book Appointment</h2>
-                            <h4 class="fw-bold mb-2">for Dr. <th:block th:text="${doctor.getFullName()}"></th:block></h4>
-                            <h5 class="fw-bold mb-2">Department: <th:block th:text="${doctor.getDepartment().displayName}"></th:block></h5>
+                            <h4 class="fw-bold mb-2">for Dr.
+                                <th:block th:text="${doctor.getFullName()}"></th:block>
+                            </h4>
+                            <h5 class="fw-bold mb-2">Department:
+                                <th:block th:text="${doctor.getDepartment().displayName}"></th:block>
+                            </h5>
                             <p class="text-white-50 mb-5">Please fill in the appointment details!</p>
 
+                            <!-- Date Selection Form -->
+                            <form th:action="@{/appointments/book/{doctorId}(doctorId=${doctor.id})}" method="get">
+                                <div class="form-group">
+                                    <label for="date">Select Date:</label>
+                                    <input type="date" id="date" name="date" class="form-control"
+                                           th:value="${selectedDate}"
+                                           th:min="${#temporals.format(T(java.time.LocalDate).now(), 'yyyy-MM-dd')}" required>
+                                </div>
+                            </form>
+
+                            <!-- Appointment Booking Form -->
                             <form th:action="@{/appointments/book/{doctorId}(doctorId=${appointment.doctorId})}"
                                   th:method="post"
                                   th:object="${appointment}"
+                                  class="mt-4"
                             >
 
-                                <input type="hidden" th:field="*{doctorId}" />
+                                <input type="hidden" th:field="*{doctorId}"/>
 
                                 <div class="form-outline form-white mb-4">
-                                    <h6 class="fw-bold mb">Please note: Appointments can only be booked on weekdays (Monday to Friday) from 08:00 to 17:00.</h6>
-                                    <label class="form-label" th:for="time">Appointment Time</label>
-                                    <input type="datetime-local" id="time" class="form-control form-control-lg"
-                                           th:field="*{time}"
-                                           th:errorclass="'is-invalid alert-info'"
-                                    />
+                                    <label class="form-label" for="time">Appointment Time</label>
+                                    <select id="time" class="form-control" th:field="*{time}">
+                                        <option value="" disabled selected>Select a time</option>
+                                        <th:block th:each="slot : ${availableSlots}">
+                                            <option th:value="${#temporals.format(slot, 'yyyy-MM-dd''T''HH:mm')}"
+                                                    th:text="${#temporals.format(slot, 'HH:mm')}"></option>
+                                        </th:block>
+                                    </select>
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('time')}"
                                            th:text="${error}"></small>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="reason">Reason for Visit</label>
+                                    <label class="form-label" for="reason">Reason for Visit</label>
                                     <textarea id="reason" class="form-control form-control-lg"
                                               th:field="*{reason}"
                                               th:errorclass="'is-invalid alert-info'"
