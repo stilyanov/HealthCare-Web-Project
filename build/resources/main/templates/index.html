@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 
 <th:block th:replace="~{fragments/head.html}"></th:block>
 
@@ -12,12 +15,24 @@
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
     <div class="row row-cols-2 g-5 justify-content-center">
-        <div class="col text-center">
+        <div sec:authorize="!isAuthenticated()" class="col text-center">
             <h2>Log in to find doctors or make an appointment easily.</h2>
             <br/>
             <a th:href="@{/users/login}" class="btn btn-primary">Login</a>
             <a th:href="@{/users/register}" class="btn btn-secondary">Register</a>
+        </div>
 
+        <div sec:authorize="isAuthenticated()" class="col text-center">
+            <h2>Welcome back! What would you like to do today?</h2>
+            <br/>
+            <div class="btn-group" role="group">
+                <a th:href="@{/users/profile/{userId}(userId=${userId})}" class="btn btn-primary me-2">View Profile</a>
+                <a th:href="@{/appointments/all}" class="btn btn-secondary me-2">View Appointments</a>
+                <a th:href="@{/doctors/all}" class="btn btn-secondary me-2">Find Doctors</a>
+                <a th:href="@{/contact}" class="btn btn-primary me-2">Contact Us</a>
+            </div>
+        </div>
+    </div>
             <!-- Divider -->
             <hr class="my-5" />
 
