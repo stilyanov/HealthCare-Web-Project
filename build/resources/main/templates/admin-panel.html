@@ -16,14 +16,13 @@
         <p th:text="${success}"></p>
     </div>
     <div class="row row-cols-2 g-5 justify-content-center">
-        <h2 class="text-center">Current Users</h2>
+        <h2 class="text-center">Current Users/Patients</h2>
         <table class="table">
             <thead class="bg-dark text-white">
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Roles</th>
                 <th scope="col">Action</th>
@@ -35,7 +34,6 @@
                 <th scope="row" th:text="${user.getId()}">1</th>
                 <td th:text="${user.getFirstName()}"></td>
                 <td th:text="${user.getLastName()}"></td>
-                <td th:text="${user.getUsername()}"></td>
                 <td th:text="${user.getEmail()}"></td>
                 <td th:each="role : ${user.getRoles()}" th:text="${role}"></td>
                 <td>

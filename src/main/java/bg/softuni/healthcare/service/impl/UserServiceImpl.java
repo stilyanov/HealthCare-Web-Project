@@ -61,11 +61,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isUsernameUnique(String username) {
-        return this.userRepository.findByUsername(username).isEmpty();
-    }
-
-    @Override
     public UserProfileDTO getUserProfile(String email) {
         return this.userRepository.findByEmail(email)
                 .map(this::mapToUserProfileDTO)

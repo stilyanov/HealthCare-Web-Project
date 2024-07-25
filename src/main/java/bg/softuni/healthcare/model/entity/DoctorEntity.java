@@ -31,6 +31,15 @@ public class DoctorEntity extends BaseEntity {
     @Column(nullable = false)
     private String town;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(name = "password_changed", nullable = false)
+    private boolean passwordChanged;
+
     @OneToMany(mappedBy = "doctor")
     private List<AppointmentEntity> appointments;
 
@@ -44,6 +53,7 @@ public class DoctorEntity extends BaseEntity {
 
     public DoctorEntity() {
         this.appointments = new ArrayList<>();
+        this.passwordChanged = false;
     }
 
     public String getFullName() {

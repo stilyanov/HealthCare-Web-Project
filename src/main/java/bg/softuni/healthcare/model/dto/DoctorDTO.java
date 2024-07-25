@@ -22,8 +22,6 @@ public class DoctorDTO {
 
     private Integer experience;
 
-    private String addedBy;
-
     public String getFullName() {
         StringBuilder sb = new StringBuilder();
         if (firstName != null && !firstName.isEmpty()) {

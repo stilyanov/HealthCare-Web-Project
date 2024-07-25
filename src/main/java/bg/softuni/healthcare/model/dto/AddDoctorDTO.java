@@ -1,6 +1,7 @@
 package bg.softuni.healthcare.model.dto;
 
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
+import bg.softuni.healthcare.validation.annotation.UniqueEmail;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,15 @@ public class AddDoctorDTO {
     @Size(min = 3, max = 20, message = "Town length must be between 3 and 20 characters!")
     private String town;
 
+    @Email
+    @NotBlank(message = "Email cannot be empty!")
+    @UniqueEmail
+    private String email;
+
+    @NotNull(message = "Password cannot be empty!")
+    @Size(min = 8, max = 20, message = "Password length must be between 8 and 20 characters")
+    private String password;
+
     @NotNull(message = "Bio cannot be empty!")
     @Size(min = 50, max = 1000, message = "Bio length must be between 50 and 400 characters!")
     private String bio;
@@ -41,5 +51,4 @@ public class AddDoctorDTO {
     @Pattern(regexp = "https://.*", message = "Please enter valid image URL!")
     private String imageUrl;
 
-    private Long addedBy;
 }

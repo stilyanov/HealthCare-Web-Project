@@ -1,7 +1,6 @@
 package bg.softuni.healthcare.model.dto;
 
 import bg.softuni.healthcare.validation.annotation.UniqueEmail;
-import bg.softuni.healthcare.validation.annotation.UniqueUsername;
 import bg.softuni.healthcare.validation.annotation.ValidatePasswords;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -16,11 +15,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @ValidatePasswords
 public class UserRegisterDTO {
-
-    @NotNull(message = "Username cannot be empty!")
-    @Size(min = 3, max = 20, message = "Username length must be between 3 and 20 characters!")
-    @UniqueUsername
-    private String username;
 
     @NotNull(message = "First Name cannot be empty!")
     @Size(min = 3, max = 20, message = "First Name length must be between 3 and 20 characters!")

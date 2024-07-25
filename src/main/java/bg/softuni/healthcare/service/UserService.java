@@ -16,8 +16,6 @@ public interface UserService {
 
     boolean isEmailUnique(String email);
 
-    boolean isUsernameUnique(String username);
-
     UserProfileDTO getUserProfile(String email);
 
     UserProfileDTO getUserProfileById(Long id);

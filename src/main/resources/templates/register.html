@@ -28,19 +28,6 @@
                             >
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="username">Username</label>
-                                    <input type="text" id="username" class="form-control form-control-lg"
-                                           th:field="*{username}"
-                                           th:errorclass="'is-invalid alert-info'"
-                                    />
-<!--                                    <small class="invalid-feedback text-warning"-->
-<!--                                           th:each="error : ${#fields.errors('username')}"-->
-<!--                                           th:text="${error}"></small>-->
-                                    <small th:errors="*{username}" class="invalid-feedback text-warning"
-                                    ></small>
-                                </div>
-
-                                <div data-mdb-input-init class="form-outline form-white mb-4">
                                     <label class="form-label" th:for="firstName">First Name</label>
                                     <input type="text" id="firstName" class="form-control form-control-lg"
                                            th:field="*{firstName}"

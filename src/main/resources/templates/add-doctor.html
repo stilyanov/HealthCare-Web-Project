@@ -60,6 +60,27 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" th:for="email">Email</label>
+                                    <input type="email" id="email" class="form-control form-control-lg"
+                                           th:field="*{email}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small th:errors="*{email}" class="invalid-feedback text-warning"
+                                    ></small>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input type="password" id="password" class="form-control form-control-lg"
+                                           th:field="*{password}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                    />
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('password')}"
+                                           th:text="${error}"></small>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
                                     <label class="form-label" th:for="experience">Experience</label>
                                     <input type="number" id="experience" class="form-control form-control-lg"
                                            th:field="*{experience}"
