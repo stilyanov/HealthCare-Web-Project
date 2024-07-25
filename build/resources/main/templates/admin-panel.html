@@ -58,7 +58,6 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Department</th>
                 <th scope="col">Experience</th>
-                <th scope="col">Added By</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -70,7 +69,6 @@
                 <td th:text="${doctor.getLastName()}"></td>
                 <td th:text="${doctor.getDepartment().displayName}"></td>
                 <td><th:block th:text="${doctor.getExperience()}"></th:block> years</td>
-                <td th:text="${doctor.getAddedBy()}"></td>
                 <td>
                     <form th:action="@{/admin/delete/doctor/{id}(id=${doctor.id})}" method="post">
                         <input type="hidden" name="_method" value="DELETE" />
