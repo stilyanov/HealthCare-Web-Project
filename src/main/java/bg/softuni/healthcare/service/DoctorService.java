@@ -3,6 +3,7 @@ package bg.softuni.healthcare.service;
 import bg.softuni.healthcare.model.dto.AddDoctorDTO;
 import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
+import bg.softuni.healthcare.model.entity.DoctorEntity;
 
 import java.util.List;
 
@@ -20,4 +21,8 @@ public interface DoctorService {
     List<DoctorDTO> findByName(String name);
 
     DoctorDTO getDoctorById(Long doctorId);
+
+    DoctorEntity findByEmail(String email);
+
+    void changePassword(DoctorEntity doctor, String password);
 }

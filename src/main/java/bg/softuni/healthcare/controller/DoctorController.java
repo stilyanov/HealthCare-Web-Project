@@ -1,19 +1,23 @@
 package bg.softuni.healthcare.controller;
 
 import bg.softuni.healthcare.model.dto.AddDoctorDTO;
+import bg.softuni.healthcare.model.dto.ChangePasswordDTO;
 import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
+import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.service.DepartmentService;
-import bg.softuni.healthcare.service.impl.DoctorServiceImpl;
+import bg.softuni.healthcare.service.DoctorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -21,8 +25,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorController {
 
-    private final DoctorServiceImpl doctorService;
+    private final DoctorService doctorService;
     private final DepartmentService departmentService;
+    private final ModelMapper modelMapper;
 
     @ModelAttribute("addDoctor")
     public AddDoctorDTO addDoctorDTO() {
@@ -92,6 +97,29 @@ public class DoctorController {
             model.addAttribute("doctors", List.of());
         }
         return "find-doctor";
+    }
+
+    @GetMapping("/change-password")
+    public String showChangePasswordPage(Model model) {
+        model.addAttribute("changePasswordDTO", new ChangePasswordDTO());
+        return "change-password";
+    }
+
+    @PostMapping("/change-password")
+    public String changePassword(@Valid ChangePasswordDTO changePasswordDTO,
+                                 Principal principal,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("changePasswordDTO", changePasswordDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.changePasswordDTO", bindingResult);
+            return "redirect:/doctors/change-password";
+        }
+
+        DoctorEntity doctor = doctorService.findByEmail(principal.getName());
+        doctorService.changePassword(doctor, changePasswordDTO.getPassword());
+
+        return "redirect:/appointments/all";
     }
 
 }

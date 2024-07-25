@@ -1,5 +1,6 @@
 package bg.softuni.healthcare.validation.validator;
 
+import bg.softuni.healthcare.model.dto.ChangePasswordDTO;
 import bg.softuni.healthcare.model.dto.UserRegisterDTO;
 import bg.softuni.healthcare.validation.annotation.ValidatePasswords;
 import jakarta.validation.ConstraintValidator;
@@ -8,7 +9,7 @@ import org.hibernate.validator.constraintvalidation.HibernateConstraintValidator
 import org.springframework.stereotype.Component;
 
 @Component
-public class PasswordsValidator implements ConstraintValidator<ValidatePasswords, UserRegisterDTO> {
+public class PasswordsValidator implements ConstraintValidator<ValidatePasswords, Object> {
 
     private String message;
 
@@ -19,12 +20,23 @@ public class PasswordsValidator implements ConstraintValidator<ValidatePasswords
     }
 
     @Override
-    public boolean isValid(UserRegisterDTO registerDTO, ConstraintValidatorContext constraintValidatorContext) {
-        if (registerDTO.getPassword() == null || registerDTO.getConfirmPassword() == null) {
+    public boolean isValid(Object obj, ConstraintValidatorContext constraintValidatorContext) {
+        String password = null;
+        String confirmPassword = null;
+
+        if (obj instanceof UserRegisterDTO registerDTO) {
+            password = registerDTO.getPassword();
+            confirmPassword = registerDTO.getConfirmPassword();
+        } else if (obj instanceof ChangePasswordDTO changePasswordDTO) {
+            password = changePasswordDTO.getPassword();
+            confirmPassword = changePasswordDTO.getConfirmPassword();
+        }
+
+        if (password == null || confirmPassword == null) {
             return true;
         }
 
-        boolean isValid = registerDTO.getPassword().equals(registerDTO.getConfirmPassword());
+        boolean isValid = password.equals(confirmPassword);
 
         if (!isValid) {
             constraintValidatorContext.unwrap(HibernateConstraintValidatorContext.class)

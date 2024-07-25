@@ -136,4 +136,18 @@ public class DoctorServiceImpl implements DoctorService {
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
     }
+
+    @Override
+    public DoctorEntity findByEmail(String email) {
+        return this.doctorRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
+    }
+
+    @Override
+    public void changePassword(DoctorEntity doctor, String password) {
+        doctor.setPassword(this.passwordEncoder.encode(password));
+        this.doctorRepository.save(doctor);
+    }
+
+
 }
