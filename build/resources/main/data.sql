@@ -2,17 +2,38 @@ INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `password`)
 VALUES
     (1, 'admin@email.com', 'admin', 'admin', 'f292ad79a41b8c2240891d1adad3afdad1671fa55f463b1c20ad992d822fe031f1fd3b7f34419ac4b7f49f978279725e'),
     (2, 'gosho@email.com', 'Gosho', 'Dimitrov', 'eba54a5352e9fb178a2a464af2f60355da8e0c53e8ecf69500d133f61570b1004cdaa493d5191f4b4438c15f60caf1e5'),
-    (7, 'sashko@email.com', 'Aleksander', 'Aleksiev', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76'),
-    (8, 'petur@email.com', 'Petur', 'Yordanov', 'dd86672766be3db18aaa14ae352753bd62c72851bb52d78a6a1a84c580f476a4be7bb22399f23cfef63d65b65e5bcd1a'),
-    (12, 'nikola@email.com', 'Nikola', 'Andreev', 'b8d0031f95a548ff863145a5a33204f4372bd33a6ea78e8981b793c0db52ec0d6fe92f9df9c4dc9686d64fcd58de5b9e');
+    (3, 'sashko@email.com', 'Aleksander', 'Aleksiev', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76'),
+    (4, 'petur@email.com', 'Petur', 'Yordanov', 'dd86672766be3db18aaa14ae352753bd62c72851bb52d78a6a1a84c580f476a4be7bb22399f23cfef63d65b65e5bcd1a'),
+    (5, 'nikola@email.com', 'Nikola', 'Andreev', 'b8d0031f95a548ff863145a5a33204f4372bd33a6ea78e8981b793c0db52ec0d6fe92f9df9c4dc9686d64fcd58de5b9e'),
+    (6, 'emily.johnson@example.com', 'Emily', 'Johnson', 'f292ad79a41b8c2240891d1adad3afdad1671fa55f463b1c20ad992d822fe031f1fd3b7f34419ac4b7f49f978279725e'),
+    (7, 'michael.smith@example.com', 'Michael', 'Smith', 'eba54a5352e9fb178a2a464af2f60355da8e0c53e8ecf69500d133f61570b1004cdaa493d5191f4b4438c15f60caf1e5'),
+    (8, 'sarah.lee@example.com', 'Sarah', 'Lee', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76'),
+    (9, 'david.patel@example.com', 'David', 'Patel', 'dd86672766be3db18aaa14ae352753bd62c72851bb52d78a6a1a84c580f476a4be7bb22399f23cfef63d65b65e5bcd1a'),
+    (10, 'anna.rodriguez@example.com', 'Anna', 'Rodriguez', 'b8d0031f95a548ff863145a5a33204f4372bd33a6ea78e8981b793c0db52ec0d6fe92f9df9c4dc9686d64fcd58de5b9e'),
+    (11, 'john.kim@example.com', 'John', 'Kim', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76'),
+    (12, 'lisa.wang@example.com', 'Lisa', 'Wang', 'f292ad79a41b8c2240891d1adad3afdad1671fa55f463b1c20ad992d822fe031f1fd3b7f34419ac4b7f49f978279725e'),
+    (13, 'robert.garcia@example.com', 'Robert', 'Garcia', 'dd86672766be3db18aaa14ae352753bd62c72851bb52d78a6a1a84c580f476a4be7bb22399f23cfef63d65b65e5bcd1a'),
+    (14, 'greta.marinova@example.com', 'Greta', 'Marinova', 'eba54a5352e9fb178a2a464af2f60355da8e0c53e8ecf69500d133f61570b1004cdaa493d5191f4b4438c15f60caf1e5'),
+    (15, 'emily.harper@example.com', 'Emily', 'Harper', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76');
+
 
 INSERT INTO `users_roles` (`user_id`, `role_id`)
 VALUES
     (1, 1),
     (2, 3),
-    (7, 3),
-    (8, 3),
-    (12, 3);
+    (3, 3),
+    (4, 3),
+    (5, 3),
+    (6, 2),
+    (7, 2),
+    (8, 2),
+    (9, 2),
+    (10, 2),
+    (11, 2),
+    (12, 2),
+    (13, 2),
+    (14, 2),
+    (15, 2);
 
 INSERT INTO doctors (id, bio, experience, first_name, image_url, last_name, department_id, user_id, town, email, password, password_changed)
 VALUES
@@ -26,6 +47,10 @@ VALUES
     (10, 'Dr. Robert Garcia is an oncologist dedicated to the diagnosis and treatment of cancer. He has a wealth of experience in chemotherapy, radiation therapy, and immunotherapy. Dr. Garcia is known for his compassionate patient care and his commitment to staying at the forefront of cancer research and treatment.', 13, 'Robert', 'https://img.freepik.com/free-photo/handsome-elderly-doctor-uniform_144627-1195.jpg?size=626&ext=jpg', 'Garcia', 8, 1, 'Pleven', 'robert.garcia@example.com', 'randomPassword8', 0),
     (11, 'pekpoqkepqopekpoqkepqopekpoqkepqopekpoqkepqopekpoqkepqopekpoqkepqo', 15, 'Greta', 'https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg', 'Marinova', 1, 2, 'Veliko Turnovo', 'greta.marinova@example.com', 'randomPassword9', 0),
     (15, 'Dr. Emily Harper is a highly skilled cardiologist specializing in diagnosing and treating heart conditions. She is well-known for her compassionate care and her commitment to patient health. Dr. Johnson has extensive experience in managing complex cardiovascular diseases and is proficient in advanced diagnostic techniques. Dr. Emily Johnson is a highly skilled cardiologist specializing in diagnosing and treating heart conditions. She is well-known for her compassionate care and her commitment to patient health. Dr. Johnson has extensive experience in managing complex cardiovascular diseases and is proficient in advanced diagnostic techniques.', 30, 'Emily', 'https://img.freepik.com/premium-photo/smiling-doctor-with-strethoscope_258943-53.jpg?size=626&ext=jpg&ga=GA1.1.1502090658.1720869845&semt=sph', 'Harper', 10, 1, 'Instanbul', 'emily.harper@example.com', 'randomPassword10', 0);
+
+UPDATE doctors d
+    JOIN users u ON d.email = u.email
+SET d.password = u.password;
 
 INSERT INTO `appointments` (`id`, `reason`, `date_time`, `doctor_id`, `patient_id`)
 VALUES

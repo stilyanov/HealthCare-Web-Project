@@ -14,7 +14,7 @@ public class RolesInitializer implements CommandLineRunner {
     private final UserRoleRepository userRoleRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         if (userRoleRepository.count() == 0) {
             for (UserRoleEnum role : UserRoleEnum.values()) {
                 UserRoleEntity roleEntity = new UserRoleEntity().setRole(role);

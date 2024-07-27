@@ -1,6 +1,5 @@
 package bg.softuni.healthcare.model.dto;
 
-import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AppointmentDTO {
+public class AddAppointmentDTO {
     private Long id;
 
     @NotNull(message = "Time cannot be empty!")

@@ -18,6 +18,11 @@ spring:
   sql:
     init:
       mode: never
+
+appointments:
+  api:
+    baseUrl: "http://localhost:8081"
+
 #server:
 #  error:
 #    include-message: never

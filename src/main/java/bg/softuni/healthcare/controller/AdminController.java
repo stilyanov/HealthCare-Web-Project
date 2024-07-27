@@ -1,12 +1,12 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.dto.FullAppointmentsInfoDTO;
 import bg.softuni.healthcare.model.dto.UserProfileDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
-import bg.softuni.healthcare.service.AppointmentService;
+import bg.softuni.healthcare.service.AppointmentApiService;
 import bg.softuni.healthcare.service.DoctorService;
 import bg.softuni.healthcare.service.UserService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,15 +25,13 @@ public class AdminController {
 
     private final UserService userService;
     private final DoctorService doctorService;
-    private final AppointmentService appointmentService;
+    private final AppointmentApiService appointmentService;
 
     @GetMapping("/panel")
     public String getAdminPanel(Model model, UserEntity user) {
         List<UserProfileDTO> allUsers = this.userService.getAllUsers(user);
-        List<DoctorDTO> allDoctors = this.doctorService.getAllDoctors();
         List<FullAppointmentsInfoDTO> allAppointments = this.appointmentService.getAllFullAppointmentsInfo();
 
-        model.addAttribute("allDoctors", allDoctors);
         model.addAttribute("allUsers", allUsers);
         model.addAttribute("allAppointments", allAppointments);
 

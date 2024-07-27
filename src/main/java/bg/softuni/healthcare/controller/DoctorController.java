@@ -98,28 +98,4 @@ public class DoctorController {
         }
         return "find-doctor";
     }
-
-    @GetMapping("/change-password")
-    public String showChangePasswordPage(Model model) {
-        model.addAttribute("changePasswordDTO", new ChangePasswordDTO());
-        return "change-password";
-    }
-
-    @PostMapping("/change-password")
-    public String changePassword(@Valid ChangePasswordDTO changePasswordDTO,
-                                 Principal principal,
-                                 BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("changePasswordDTO", changePasswordDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.changePasswordDTO", bindingResult);
-            return "redirect:/doctors/change-password";
-        }
-
-        DoctorEntity doctor = doctorService.findByEmail(principal.getName());
-        doctorService.changePassword(doctor, changePasswordDTO.getPassword());
-
-        return "redirect:/appointments/all";
-    }
-
 }

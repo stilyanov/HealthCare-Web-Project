@@ -1,10 +1,10 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.AppointmentDTO;
+import bg.softuni.healthcare.model.dto.AddAppointmentDTO;
 import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
-import bg.softuni.healthcare.service.AppointmentService;
 import bg.softuni.healthcare.service.DoctorService;
+import bg.softuni.healthcare.service.impl.AppointmentApiServiceImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AppointmentController {
 
-    private final AppointmentService appointmentService;
+    private final AppointmentApiServiceImpl appointmentService;
     private final DoctorService doctorService;
 
     @GetMapping("/book/{doctorId}")
@@ -36,14 +36,14 @@ public class AppointmentController {
         model.addAttribute("doctor", doctor);
         model.addAttribute("availableSlots", availableSlots);
         model.addAttribute("selectedDate", date != null ? date : LocalDate.now());
-        AppointmentDTO appointmentDTO = new AppointmentDTO();
+        AddAppointmentDTO appointmentDTO = new AddAppointmentDTO();
         appointmentDTO.setDoctorId(doctorId);
         model.addAttribute("appointment", appointmentDTO);
         return "book-appointment";
     }
 
     @PostMapping("/book/{doctorId}")
-    public String bookAppointment(@Valid AppointmentDTO appointmentDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String bookAppointment(@Valid AddAppointmentDTO appointmentDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("appointment", appointmentDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.appointment", bindingResult);

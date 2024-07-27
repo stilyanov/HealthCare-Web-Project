@@ -14,7 +14,7 @@ public class DepartmentInitializer implements CommandLineRunner {
     private final DepartmentRepository departmentRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         if (this.departmentRepository.count() == 0) {
             for (DepartmentEnum department : DepartmentEnum.values()) {
                 DepartmentEntity departmentEntity = new DepartmentEntity();
