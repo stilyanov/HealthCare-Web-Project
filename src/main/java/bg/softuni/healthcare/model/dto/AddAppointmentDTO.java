@@ -15,7 +15,7 @@ public class AddAppointmentDTO {
     private Long id;
 
     @NotNull(message = "Time cannot be empty!")
-    private LocalDateTime time;
+    private LocalDateTime dateTime;
 
     @NotNull(message = "Reason cannot be empty!")
     @Size(min = 10, max = 500, message = "Reason length must be between 10 and 200 characters!")

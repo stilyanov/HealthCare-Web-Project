@@ -36,7 +36,7 @@
                     <tr>
                         <td th:text="${appointment.getDoctorFullName()}"></td>
                         <td th:text="${appointment.getDepartment().displayName}"></td>
-                        <td th:text="${appointment.getTime()}"></td>
+                        <td th:text="${appointment.getFormattedDateTime()}"></td>
                         <td th:text="${appointment.getReason()}" style="word-break: break-word; max-width: 100%"></td>
                     </tr>
                     </tbody>

@@ -15,6 +15,7 @@ public class UserAppointmentDTO {
 
     private String doctorFullName;
     private DepartmentEnum department;
-    private String time;
+    private LocalDateTime dateTime;
     private String reason;
+    private String formattedDateTime;
 }
