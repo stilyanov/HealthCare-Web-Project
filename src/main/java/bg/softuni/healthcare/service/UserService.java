@@ -5,6 +5,7 @@ import bg.softuni.healthcare.model.dto.UserRegisterDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -23,4 +24,6 @@ public interface UserService {
     List<UserProfileDTO> getAllUsers(UserEntity user);
 
     void deleteUser(Long id);
+
+    Long getUserIdByEmail(String email);
 }

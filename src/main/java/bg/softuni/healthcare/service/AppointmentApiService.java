@@ -14,7 +14,7 @@ public interface AppointmentApiService {
 
     void bookAppointment(AddAppointmentDTO appointmentDTO);
 
-    List<UserAppointmentDTO> getUsersAppointments();
+    List<UserAppointmentDTO> getUserAppointments(Long userId);
 
     List<FullAppointmentsInfoDTO> getAllFullAppointmentsInfo();
 

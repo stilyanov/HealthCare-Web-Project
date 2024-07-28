@@ -95,6 +95,13 @@ public class UserServiceImpl implements UserService {
         this.userRepository.deleteById(id);
     }
 
+    @Override
+    public Long getUserIdByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .map(UserEntity::getId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
+
     private UserProfileDTO mapToUserProfileDTO(UserEntity user) {
         UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
         List<String> roles = user.getRoles()

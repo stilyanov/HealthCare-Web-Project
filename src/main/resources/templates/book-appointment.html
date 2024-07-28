@@ -53,7 +53,7 @@
 
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="time">Appointment Time</label>
-                                    <select id="time" class="form-control" th:field="*{time}">
+                                    <select id="time" class="form-control" th:field="*{dateTime}">
                                         <option value="" disabled selected>Select a time</option>
                                         <th:block th:each="slot : ${availableSlots}">
                                             <option th:value="${#temporals.format(slot, 'yyyy-MM-dd''T''HH:mm')}"
@@ -61,7 +61,7 @@
                                         </th:block>
                                     </select>
                                     <small class="invalid-feedback text-warning"
-                                           th:each="error : ${#fields.errors('time')}"
+                                           th:each="error : ${#fields.errors('dateTime')}"
                                            th:text="${error}"></small>
                                 </div>
 

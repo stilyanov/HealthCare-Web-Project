@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 public class UserAppointmentDTO {
 
+    private Long doctorId;
     private String doctorFullName;
     private DepartmentEnum department;
     private LocalDateTime dateTime;

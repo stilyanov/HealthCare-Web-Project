@@ -1,5 +1,6 @@
 package bg.softuni.healthcare.model.dto;
 
+import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -20,6 +21,9 @@ public class AddAppointmentDTO {
     @NotNull(message = "Reason cannot be empty!")
     @Size(min = 10, max = 500, message = "Reason length must be between 10 and 200 characters!")
     private String reason;
+
+    @NotNull(message = "Department cannot be empty!")
+    private DepartmentEnum department;
 
     private Long doctorId;
     private Long patientId;
