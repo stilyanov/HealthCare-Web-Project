@@ -25,6 +25,7 @@ public class AppointmentEntity extends BaseEntity {
     @JoinColumn(name = "patient_id")
     private UserEntity patient;
 
+    @Column(name = "reason", nullable = false, columnDefinition = "TEXT")
     private String reason;
 
 }

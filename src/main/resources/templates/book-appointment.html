@@ -53,11 +53,17 @@
 
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label" th:for="time">Appointment Time</label>
-                                    <select id="time" class="form-control" th:field="*{dateTime}">
+                                    <select id="time" class="form-control" th:field="*{dateTime}"
+                                            required
+                                            oninvalid="this.setCustomValidity('You must select a time')"
+                                            oninput="setCustomValidity('')"
+                                    >
                                         <option value="" disabled selected>Select a time</option>
                                         <th:block th:each="slot : ${availableSlots}">
                                             <option th:value="${#temporals.format(slot, 'yyyy-MM-dd''T''HH:mm')}"
-                                                    th:text="${#temporals.format(slot, 'HH:mm')}"></option>
+                                                    th:text="${#temporals.format(slot, 'HH:mm')}"
+                                                    th:classappend="${#fields.hasErrors('dateTime')} ? 'is-invalid'"
+                                            ></option>
                                         </th:block>
                                     </select>
                                     <small class="invalid-feedback text-warning"
@@ -72,6 +78,10 @@
                                     <textarea id="reason" class="form-control form-control-lg"
                                               th:field="*{reason}"
                                               th:errorclass="'is-invalid alert-info'"
+                                              th:classappend="${#fields.hasErrors('reason')} ? 'is-invalid'"
+                                              required
+                                              oninvalid="this.setCustomValidity('Reason cannot be empty and must be between 10 and 500 characters!')"
+                                                oninput="setCustomValidity('')"
                                     ></textarea>
                                     <small class="invalid-feedback text-warning"
                                            th:if="${#fields.hasErrors('reason')}"
