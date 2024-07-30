@@ -39,8 +39,8 @@ public class AppointmentApiServiceImpl implements AppointmentApiService {
 
     @Override
     public void bookAppointment(AddAppointmentDTO appointmentDTO) {
-        //TODO Book appointment
-        appointmentsRestClient.post().uri("/book/" + appointmentDTO.getDoctorId())
+        ResponseEntity<Void> entity = appointmentsRestClient.post()
+                .uri("/appointments/book/" + appointmentDTO.getDoctorId())
                 .body(appointmentDTO)
                 .retrieve()
                 .toBodilessEntity();

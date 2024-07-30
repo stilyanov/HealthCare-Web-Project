@@ -2,8 +2,9 @@ package bg.softuni.healthcare.controller;
 
 import bg.softuni.healthcare.model.dto.AddAppointmentDTO;
 import bg.softuni.healthcare.model.dto.DoctorDTO;
-import bg.softuni.healthcare.model.dto.FullAppointmentsInfoDTO;
 import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
+import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
+import bg.softuni.healthcare.service.DepartmentService;
 import bg.softuni.healthcare.service.DoctorService;
 import bg.softuni.healthcare.service.UserService;
 import bg.softuni.healthcare.service.impl.AppointmentApiServiceImpl;
@@ -28,6 +29,7 @@ import java.util.List;
 public class AppointmentController {
 
     private final AppointmentApiServiceImpl appointmentService;
+    private final DepartmentService departmentService;
     private final DoctorService doctorService;
     private final UserService userService;
 
@@ -51,25 +53,42 @@ public class AppointmentController {
         return "book-appointment";
     }
 
-    @GetMapping("/user")
-    public String userAppointments (Model model) {
+    @GetMapping("/all")
+    public String userAppointments(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = authentication.getName();
-        Long userId = userService.getUserIdByEmail(userEmail);
+        Long patientId = userService.getUserIdByEmail(userEmail);
 
-        List<UserAppointmentDTO> userAppointments = appointmentService.getUserAppointments(userId);
+        List<UserAppointmentDTO> userAppointments = appointmentService.getUserAppointments(patientId);
         model.addAttribute("appointments", userAppointments);
         return "appointments";
     }
 
 
     @PostMapping("/book/{doctorId}")
-    public String bookAppointment(@Valid AddAppointmentDTO appointmentDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String bookAppointment(@Valid AddAppointmentDTO appointmentDTO,
+                                  @RequestParam(value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                                  BindingResult bindingResult,
+                                  RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("appointment", appointmentDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.appointment", bindingResult);
-            return "redirect:/appointments/book/" + appointmentDTO.getDoctorId();
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.appointmentDTO", bindingResult);
+            String redirectUrl = "redirect:/appointments/book/" + appointmentDTO.getDoctorId();
+            if (date != null) {
+                redirectUrl += "?date=" + date;
+            }
+            return redirectUrl;
         }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = authentication.getName();
+        Long patientId = userService.getUserIdByEmail(userEmail);
+
+        DoctorDTO doctor = doctorService.getDoctorById(appointmentDTO.getDoctorId());
+        DepartmentEnum department = doctor.getDepartment();
+        appointmentDTO.setDepartment(department);
+        appointmentDTO.setPatientId(patientId);
+
         appointmentService.bookAppointment(appointmentDTO);
         return "redirect:/appointments/all";
     }

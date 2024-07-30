@@ -52,7 +52,7 @@
                                 <input type="hidden" th:field="*{doctorId}"/>
 
                                 <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="time">Appointment Time</label>
+                                    <label class="form-label" th:for="time">Appointment Time</label>
                                     <select id="time" class="form-control" th:field="*{dateTime}">
                                         <option value="" disabled selected>Select a time</option>
                                         <th:block th:each="slot : ${availableSlots}">
@@ -61,19 +61,21 @@
                                         </th:block>
                                     </select>
                                     <small class="invalid-feedback text-warning"
-                                           th:each="error : ${#fields.errors('dateTime')}"
-                                           th:text="${error}"></small>
+                                           th:if="${#fields.hasErrors('dateTime')}"
+                                           th:errors="*{dateTime}"
+                                           th:text="*{dateTime}"
+                                    ></small>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="reason">Reason for Visit</label>
+                                    <label class="form-label" th:for="reason">Reason for Visit</label>
                                     <textarea id="reason" class="form-control form-control-lg"
                                               th:field="*{reason}"
                                               th:errorclass="'is-invalid alert-info'"
                                     ></textarea>
                                     <small class="invalid-feedback text-warning"
-                                           th:each="error : ${#fields.errors('reason')}"
-                                           th:text="${error}"></small>
+                                           th:if="${#fields.hasErrors('reason')}"
+                                           th:errors="*{reason}"></small>
                                 </div>
 
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Book</button>

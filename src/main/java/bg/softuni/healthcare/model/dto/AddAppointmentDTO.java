@@ -22,7 +22,6 @@ public class AddAppointmentDTO {
     @Size(min = 10, max = 500, message = "Reason length must be between 10 and 200 characters!")
     private String reason;
 
-    @NotNull(message = "Department cannot be empty!")
     private DepartmentEnum department;
 
     private Long doctorId;
