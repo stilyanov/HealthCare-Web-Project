@@ -28,4 +28,7 @@ public interface UserService {
     Long getUserIdByEmail(String email);
 
     String getUserRoleByEmail(String userEmail);
+
+    UserEntity findByEmail(String userEmail);
+
 }

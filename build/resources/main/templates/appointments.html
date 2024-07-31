@@ -13,6 +13,11 @@
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7 w-75">
+
+            <div th:if="${message}">
+                <div class="alert alert-info" th:text="${message}"></div>
+            </div>
+
             <h2 class="text-center">Your Appointments</h2>
             <br>
             <div th:if="${appointments.isEmpty()}">
@@ -54,6 +59,7 @@
                             <th scope="col">Patient Full Name</th>
                             <th scope="col">Date And Time</th>
                             <th scope="col">Reason</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody th:each="appointment : ${appointments}">
@@ -61,6 +67,13 @@
                             <td th:text="${appointment.patientFullName}"></td>
                             <td th:text="${appointment.formattedDateTime}"></td>
                             <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
+                            <td>
+                                <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

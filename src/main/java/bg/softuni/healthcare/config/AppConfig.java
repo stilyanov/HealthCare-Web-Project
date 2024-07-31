@@ -16,11 +16,6 @@ public class AppConfig {
     }
 
     @Bean
-    public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
-        return new HiddenHttpMethodFilter();
-    }
-
-    @Bean
     public DateTimeFormatter dateTimeFormatter() {
         return DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
     }

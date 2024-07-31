@@ -150,10 +150,7 @@ public class DoctorServiceImpl implements DoctorService {
         doctor.setPasswordChanged(true);
         doctorRepository.save(doctor);
 
-        UserEntity user = userRepository.findById(doctor.getUser().getId())
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-        user.setPassword(encodedPassword);
-        userRepository.save(user);
+        userRepository.updatePasswordByEmail(doctor.getEmail(), encodedPassword);
     }
 
     @Override

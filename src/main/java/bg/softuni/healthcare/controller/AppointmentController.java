@@ -55,7 +55,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/all")
-    public String userAppointments(Model model) {
+    public String userAppointments(Model model, @RequestParam(value = "message", required = false) String message) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = authentication.getName();
         Long userId = userService.getUserIdByEmail(userEmail);
@@ -72,7 +72,11 @@ public class AppointmentController {
             model.addAttribute("role", "doctor");
         }
 
-        return "appointments";
+        if (message != null) {
+            model.addAttribute("message", message);
+        }
+
+            return "appointments";
     }
 
     @PostMapping("/book/{doctorId}")
@@ -100,6 +104,14 @@ public class AppointmentController {
         appointmentDTO.setPatientId(patientId);
 
         appointmentService.bookAppointment(appointmentDTO);
+        return "redirect:/appointments/all";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteAppointment(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        //TODO: Implement delete appointment functionality
+        appointmentService.deleteAppointment(id);
+        redirectAttributes.addFlashAttribute("message", "Appointment deleted successfully");
         return "redirect:/appointments/all";
     }
 }

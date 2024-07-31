@@ -126,6 +126,12 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
+    @Override
+    public UserEntity findByEmail(String userEmail) {
+        return userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
+
     private UserProfileDTO mapToUserProfileDTO(UserEntity user) {
         UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
         List<String> roles = user.getRoles()

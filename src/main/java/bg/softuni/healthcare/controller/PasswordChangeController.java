@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,7 +29,7 @@ public class PasswordChangeController {
         return "change-password";
     }
 
-    @PostMapping("/change-password")
+    @PutMapping("/change-password")
     public String changePassword(@Valid ChangePasswordDTO changePasswordDTO,
                                  Principal principal,
                                  BindingResult bindingResult,
@@ -38,7 +39,6 @@ public class PasswordChangeController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.changePasswordDTO", bindingResult);
             return "redirect:/doctors/change-password";
         }
-        //TODO: Implement change password logic
         DoctorEntity doctor = doctorService.findByEmail(principal.getName());
         doctorService.changePassword(doctor, changePasswordDTO.getPassword());
 

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class DoctorAppointmentDTO {
 
+    private Long id;
     private Long patientId;
     private DepartmentEnum department;
     private LocalDateTime dateTime;
