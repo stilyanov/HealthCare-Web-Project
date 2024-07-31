@@ -63,8 +63,9 @@
                     <b>Choose Town</b>
                 </div>
                 <li class="list-group-item"
-                    th:each="town : ${towns}"
-                    th:text="${town}"></li>
+                    th:each="town : ${towns}">
+                    <a th:href="@{/doctors/find(department=${''}, town=${town}, name=${''})}"
+                       th:text="${town}"></a>
             </ul>
         </div>
 

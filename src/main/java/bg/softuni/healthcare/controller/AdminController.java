@@ -30,9 +30,18 @@ public class AdminController {
     @GetMapping("/panel")
     public String getAdminPanel(Model model, UserEntity user) {
         List<UserProfileDTO> allUsers = this.userService.getAllUsers(user);
+        List<UserProfileDTO> patientUsers = allUsers
+                .stream()
+                .filter(u -> u.getRoles().contains("PATIENT"))
+                .toList();
+        List<UserProfileDTO> doctorUsers = allUsers
+                .stream()
+                .filter(u -> u.getRoles().contains("DOCTOR"))
+                .toList();
         List<FullAppointmentsInfoDTO> allAppointments = this.appointmentService.getAllFullAppointmentsInfo();
 
-        model.addAttribute("allUsers", allUsers);
+        model.addAttribute("patientUsers", patientUsers);
+        model.addAttribute("doctorUsers", doctorUsers);
         model.addAttribute("allAppointments", allAppointments);
 
         return "admin-panel";

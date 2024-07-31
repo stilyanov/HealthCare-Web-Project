@@ -144,10 +144,16 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void changePassword(DoctorEntity doctor, String password) {
-        doctor.setPassword(this.passwordEncoder.encode(password));
-        this.doctorRepository.save(doctor);
-    }
+    public void changePassword(DoctorEntity doctor, String newPassword) {
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        doctor.setPassword(encodedPassword);
+        doctor.setPasswordChanged(true);
+        doctorRepository.save(doctor);
 
+        UserEntity user = userRepository.findById(doctor.getUser().getId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        user.setPassword(encodedPassword);
+        userRepository.save(user);
+    }
 
 }
