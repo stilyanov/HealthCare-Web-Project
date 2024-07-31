@@ -40,10 +40,11 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/login-error")
-    public String loginError(Model model) {
-        model.addAttribute("errorMessage", "Invalid email or password!");
-        return "login-error";
+    @PostMapping("/login-error")
+    public String loginError(RedirectAttributes redirectAttributes) {
+        boolean wrongCredentials = true;
+        redirectAttributes.addFlashAttribute("wrongCredentials", wrongCredentials);
+        return "redirect:/users/login";
     }
 
     @GetMapping("/register")
@@ -66,7 +67,6 @@ public class UserController {
         userService.registerUser(registerDTO);
         return "redirect:/users/login";
     }
-
 
 
 }

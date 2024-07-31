@@ -2,9 +2,11 @@ package bg.softuni.healthcare.service.impl;
 
 import bg.softuni.healthcare.model.dto.UserProfileDTO;
 import bg.softuni.healthcare.model.dto.UserRegisterDTO;
+import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.model.entity.UserRoleEntity;
 import bg.softuni.healthcare.model.entity.enums.UserRoleEnum;
+import bg.softuni.healthcare.repository.DoctorRepository;
 import bg.softuni.healthcare.repository.UserRepository;
 import bg.softuni.healthcare.repository.UserRoleRepository;
 import bg.softuni.healthcare.service.UserService;
@@ -22,6 +24,7 @@ import java.util.*;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final DoctorRepository doctorRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final UserRoleRepository userRoleRepository;
@@ -92,6 +95,20 @@ public class UserServiceImpl implements UserService {
         if (!isAdmin) {
             throw new IllegalArgumentException("You do not have permission to delete users");
         }
+
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        boolean isDoctor = user.getRoles()
+                .stream()
+                .anyMatch(role -> role.getRole().equals(UserRoleEnum.DOCTOR));
+
+        if (isDoctor) {
+            DoctorEntity doctor = doctorRepository.findByEmail(user.getEmail())
+                    .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
+            doctorRepository.deleteById(doctor.getId());
+        }
+
         this.userRepository.deleteById(id);
     }
 

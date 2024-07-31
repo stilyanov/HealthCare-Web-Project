@@ -26,7 +26,10 @@
                                   th:method="post"
                                   th:object="${loginDTO}">
 
-                                <small th:if="${loginError}" class="invalid-feedback text-warning">Invalid email or password</small>
+                                <small class="invalid-feedback text-warning"
+                                       th:if="${wrongCredentials}"
+                                       th:text="Invalid email or password!"
+                                ></small>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
                                     <label class="form-label" th:for="email">Email</label>
