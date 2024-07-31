@@ -1,6 +1,7 @@
 package bg.softuni.healthcare.controller;
 
 import bg.softuni.healthcare.model.dto.AddAppointmentDTO;
+import bg.softuni.healthcare.model.dto.DoctorAppointmentDTO;
 import bg.softuni.healthcare.model.dto.DoctorDTO;
 import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
@@ -57,13 +58,22 @@ public class AppointmentController {
     public String userAppointments(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = authentication.getName();
-        Long patientId = userService.getUserIdByEmail(userEmail);
+        Long userId = userService.getUserIdByEmail(userEmail);
 
-        List<UserAppointmentDTO> userAppointments = appointmentService.getUserAppointments(patientId);
-        model.addAttribute("appointments", userAppointments);
+        String userRole = userService.getUserRoleByEmail(userEmail);
+        if ("PATIENT".equals(userRole)) {
+            List<UserAppointmentDTO> userAppointments = appointmentService.getAppointmentsByPatientId(userId);
+            model.addAttribute("appointments", userAppointments);
+            model.addAttribute("role", "patient");
+        } else {
+            Long doctorId = doctorService.getDoctorIdByEmail(userEmail);
+            List<DoctorAppointmentDTO> doctorAppointments = appointmentService.getAppointmentsByDoctorId(doctorId);
+            model.addAttribute("appointments", doctorAppointments);
+            model.addAttribute("role", "doctor");
+        }
+
         return "appointments";
     }
-
 
     @PostMapping("/book/{doctorId}")
     public String bookAppointment(@Valid AddAppointmentDTO appointmentDTO,

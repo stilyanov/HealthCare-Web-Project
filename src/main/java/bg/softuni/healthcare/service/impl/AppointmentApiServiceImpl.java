@@ -1,6 +1,7 @@
 package bg.softuni.healthcare.service.impl;
 
 import bg.softuni.healthcare.model.dto.AddAppointmentDTO;
+import bg.softuni.healthcare.model.dto.DoctorAppointmentDTO;
 import bg.softuni.healthcare.model.dto.FullAppointmentsInfoDTO;
 import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
 import bg.softuni.healthcare.repository.DoctorRepository;
@@ -33,7 +34,8 @@ public class AppointmentApiServiceImpl implements AppointmentApiService {
                 .get()
                 .uri(url)
                 .retrieve()
-                .toEntity(new ParameterizedTypeReference<>() {});
+                .toEntity(new ParameterizedTypeReference<>() {
+                });
         return response.getBody();
     }
 
@@ -68,6 +70,8 @@ public class AppointmentApiServiceImpl implements AppointmentApiService {
         return appointments;
     }
 
+
+
     @Override
     public List<FullAppointmentsInfoDTO> getAllFullAppointmentsInfo() {
         String url = "/appointments/all";
@@ -99,6 +103,44 @@ public class AppointmentApiServiceImpl implements AppointmentApiService {
                 .retrieve()
                 .toBodilessEntity();
 
+    }
+
+    @Override
+    public List<UserAppointmentDTO> getAppointmentsByPatientId(Long patientId) {
+        String url = "/appointments/patient/" + patientId;
+        ResponseEntity<List<UserAppointmentDTO>> response = appointmentsRestClient.get().uri(url)
+                .retrieve()
+                .toEntity(new ParameterizedTypeReference<>() {});
+        List<UserAppointmentDTO> appointments = response.getBody();
+        if (appointments != null) {
+            appointments.forEach(appointment -> {
+                String doctorFullName = doctorRepository.findById(appointment.getDoctorId())
+                        .map(user -> user.getFirstName() + " " + user.getLastName())
+                        .orElse(null);
+                appointment.setDoctorFullName(doctorFullName);
+                appointment.setFormattedDateTime(appointment.getDateTime().format(dateTimeFormatter));
+            });
+        }
+        return appointments;
+    }
+
+    @Override
+    public List<DoctorAppointmentDTO> getAppointmentsByDoctorId(Long userId) {
+        String url = "/appointments/doctor/" + userId;
+        ResponseEntity<List<DoctorAppointmentDTO>> response = appointmentsRestClient.get().uri(url)
+                .retrieve()
+                .toEntity(new ParameterizedTypeReference<>() {});
+        List<DoctorAppointmentDTO> appointments = response.getBody();
+        if (appointments != null) {
+            appointments.forEach(appointment -> {
+                String patientFullName = userRepository.findById(appointment.getPatientId())
+                        .map(user -> user.getFirstName() + " " + user.getLastName())
+                        .orElse(null);
+                appointment.setPatientFullName(patientFullName);
+                appointment.setFormattedDateTime(appointment.getDateTime().format(dateTimeFormatter));
+            });
+        }
+        return appointments;
     }
 
 }

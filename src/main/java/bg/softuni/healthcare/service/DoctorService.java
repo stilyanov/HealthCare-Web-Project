@@ -25,4 +25,6 @@ public interface DoctorService {
     DoctorEntity findByEmail(String email);
 
     void changePassword(DoctorEntity doctor, String password);
+
+    Long getDoctorIdByEmail(String userEmail);
 }

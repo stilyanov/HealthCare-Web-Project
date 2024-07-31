@@ -23,24 +23,48 @@
                 <br>
             </div>
             <div th:unless="${appointments.isEmpty()}">
-                <table class="table">
-                    <thead class="bg-primary text-white">
-                    <tr>
-                        <th scope="col">Doctor Full Name</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Date And Time</th>
-                        <th scope="col">Reason</th>
-                    </tr>
-                    </thead>
-                    <tbody th:each="appointment : ${appointments}">
-                    <tr>
-                        <td th:text="${appointment.getDoctorFullName()}"></td>
-                        <td th:text="${appointment.getDepartment().displayName}"></td>
-                        <td th:text="${appointment.getFormattedDateTime()}"></td>
-                        <td th:text="${appointment.getReason()}" style="word-break: break-word; max-width: 100%"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div th:if="${role} == 'patient'">
+                    <h3 class="text-center">Appointments with Doctors</h3>
+                    <br>
+                    <table class="table">
+                        <thead class="bg-primary text-white">
+                        <tr>
+                            <th scope="col">Doctor Full Name</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Date And Time</th>
+                            <th scope="col">Reason</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="appointment : ${appointments}">
+                        <tr>
+                            <td th:text="${appointment.doctorFullName}"></td>
+                            <td th:text="${appointment.department.displayName}"></td>
+                            <td th:text="${appointment.formattedDateTime}"></td>
+                            <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${role} == 'doctor'">
+                    <h3 class="text-center">Appointments with Patients</h3>
+                    <br>
+                    <table class="table">
+                        <thead class="bg-primary text-white">
+                        <tr>
+                            <th scope="col">Patient Full Name</th>
+                            <th scope="col">Date And Time</th>
+                            <th scope="col">Reason</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="appointment : ${appointments}">
+                        <tr>
+                            <td th:text="${appointment.patientFullName}"></td>
+                            <td th:text="${appointment.formattedDateTime}"></td>
+                            <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

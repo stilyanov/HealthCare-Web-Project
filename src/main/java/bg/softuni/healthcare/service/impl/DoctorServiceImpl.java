@@ -156,4 +156,11 @@ public class DoctorServiceImpl implements DoctorService {
         userRepository.save(user);
     }
 
+    @Override
+    public Long getDoctorIdByEmail(String userEmail) {
+        return this.doctorRepository.findByEmail(userEmail)
+                .map(DoctorEntity::getId)
+                .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
+    }
+
 }

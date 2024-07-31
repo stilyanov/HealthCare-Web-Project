@@ -26,4 +26,6 @@ public interface UserService {
     void deleteUser(Long id);
 
     Long getUserIdByEmail(String email);
+
+    String getUserRoleByEmail(String userEmail);
 }
