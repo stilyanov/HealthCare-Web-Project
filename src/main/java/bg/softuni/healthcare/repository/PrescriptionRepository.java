@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PrescriptionRepository extends JpaRepository<PrescriptionEntity, Long> {
+
+    void deleteByPatientId(Long id);
 }

@@ -99,7 +99,8 @@ public class AppointmentApiServiceImpl implements AppointmentApiService {
 
     @Override
     public void deleteAppointment(Long id) {
-        appointmentsRestClient.delete().uri("/appointments/delete/" + id)
+        appointmentsRestClient.delete()
+                .uri("/appointments/delete/" + id)
                 .retrieve()
                 .toBodilessEntity();
 

@@ -39,6 +39,7 @@ public class PasswordChangeController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.changePasswordDTO", bindingResult);
             return "redirect:/doctors/change-password";
         }
+
         DoctorEntity doctor = doctorService.findByEmail(principal.getName());
         doctorService.changePassword(doctor, changePasswordDTO.getPassword());
 

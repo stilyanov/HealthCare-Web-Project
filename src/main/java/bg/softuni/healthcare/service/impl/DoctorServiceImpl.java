@@ -9,20 +9,17 @@ import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.model.entity.UserRoleEntity;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.model.entity.enums.UserRoleEnum;
-import bg.softuni.healthcare.repository.DepartmentRepository;
-import bg.softuni.healthcare.repository.DoctorRepository;
-import bg.softuni.healthcare.repository.UserRepository;
-import bg.softuni.healthcare.repository.UserRoleRepository;
+import bg.softuni.healthcare.repository.*;
 import bg.softuni.healthcare.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +33,7 @@ public class DoctorServiceImpl implements DoctorService {
     private final UserRoleRepository userRoleRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final PrescriptionRepository prescriptionRepository;
 
     @Override
     public void addDoctor(AddDoctorDTO addDoctorDTO) {
@@ -70,8 +68,8 @@ public class DoctorServiceImpl implements DoctorService {
 
         doctor.setPassword(this.passwordEncoder.encode(addDoctorDTO.getPassword()));
         doctor.setDepartment(department.get());
-        doctor.setUser(user);
-
+        doctor.setUser(doctorUser);
+        doctor.setAddedTime(LocalDate.now());
 
         this.doctorRepository.save(doctor);
     }

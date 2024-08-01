@@ -19,7 +19,7 @@ public class SecurityConfig {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/", "/users/login", "/users/register", "/about", "/contact").permitAll()
                                 .requestMatchers("/admin/panel", "/doctors/add", "/users/admin").hasRole("ADMIN")
-                                .requestMatchers("/doctors/change-password").hasRole("DOCTOR")
+                                .requestMatchers("/doctors/change-password","/appointments/delete/**").hasRole("DOCTOR")
                                 .anyRequest()
                                 .authenticated()
                 )

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +42,8 @@ public class DoctorEntity extends BaseEntity {
     @Column(name = "password_changed", nullable = false)
     private boolean passwordChanged;
 
-    @OneToMany(mappedBy = "doctor")
-    private List<AppointmentEntity> appointments;
+    @Column(name = "added_time", nullable = false)
+    private LocalDate addedTime;
 
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false)
@@ -52,8 +54,8 @@ public class DoctorEntity extends BaseEntity {
     private UserEntity user;
 
     public DoctorEntity() {
-        this.appointments = new ArrayList<>();
         this.passwordChanged = false;
+        this.addedTime = LocalDate.now();
     }
 
     public String getFullName() {
