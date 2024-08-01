@@ -6,8 +6,8 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h3>Welcome, <th:block th:text="${fullName}"></th:block>!</h3>
-                    <span class="subheading">Here is the place for you to be good taking care off.</span>
+                    <h3><span th:text="#{header_welcome}">Welcome,</span> <th:block th:text="${fullName}"></th:block>!</h3>
+                    <span class="subheading" th:text="#{header_subheading}">Here is the place for you to be good taking care off.</span>
                 </div>
             </div>
         </div>

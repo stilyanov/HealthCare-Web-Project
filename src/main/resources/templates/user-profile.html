@@ -27,10 +27,10 @@
                       th:each="role : ${userProfile.getRoles()}"
                       th:text="${#strings.listJoin(role, ', ')}"
                 >Role</span>
-                <h5 class="mt-2 mb-0">Full name:</h5> <span th:text="${userProfile.getFullName()}"></span>
-                <h5 class="mt-2 mb-0">First name:</h5> <span th:text="${userProfile.getFirstName()}"></span>
-                <h5 class="mt-2 mb-0">Last name:</h5> <span th:text="${userProfile.getLastName()}"></span>
-                <h5 class="mt-2 mb-0">Email:</h5> <span th:text="${userProfile.getEmail()}"></span>
+                <h5 class="mt-2 mb-0" th:text="#{user_profile_full_name}">Full name:</h5> <span th:text="${userProfile.getFullName()}"></span>
+                <h5 class="mt-2 mb-0" th:text="#{user_profile_first_name}">First name:</h5> <span th:text="${userProfile.getFirstName()}"></span>
+                <h5 class="mt-2 mb-0" th:text="#{user_profile_last_name}">Last name:</h5> <span th:text="${userProfile.getLastName()}"></span>
+                <h5 class="mt-2 mb-0" th:text="#{user_profile_email}">Email:</h5> <span th:text="${userProfile.getEmail()}"></span>
             </div>
         </div>
     </div>

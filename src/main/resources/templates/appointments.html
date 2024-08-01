@@ -18,26 +18,26 @@
                 <div class="alert alert-info" th:text="${message}"></div>
             </div>
 
-            <h2 class="text-center">Your Appointments</h2>
+            <h2 class="text-center" th:text="#{appointments_title}">Your Appointments</h2>
             <br>
             <div th:if="${appointments.isEmpty()}">
-                <p class="text-center">You do not have any appointments.</p>
+                <p class="text-center" th:text="#{appointments_no_appointments}">You do not have any appointments.</p>
                 <div class="text-center">
-                    <a th:href="@{/doctors/all}" class="btn btn-primary">Find Doctor</a>
+                    <a th:href="@{/doctors/all}" class="btn btn-primary" th:text="#{appointments_find_doctor_button}">Find Doctor</a>
                 </div>
                 <br>
             </div>
             <div th:unless="${appointments.isEmpty()}">
                 <div th:if="${role} == 'patient'">
-                    <h3 class="text-center">Appointments with Doctors</h3>
+                    <h3 class="text-center" th:text="#{appointments_with_doctors}">Appointments with Doctors</h3>
                     <br>
                     <table class="table">
                         <thead class="bg-primary text-white">
                         <tr>
-                            <th scope="col">Doctor Full Name</th>
-                            <th scope="col">Department</th>
-                            <th scope="col">Date And Time</th>
-                            <th scope="col">Reason</th>
+                            <th scope="col" th:text="#{appointments_doctor_full_name}">Doctor Full Name</th>
+                            <th scope="col" th:text="#{appointments_department}">Department</th>
+                            <th scope="col" th:text="#{appointments_date_time}">Date And Time</th>
+                            <th scope="col" th:text="#{appointments_reason}">Reason</th>
                         </tr>
                         </thead>
                         <tbody th:each="appointment : ${appointments}">
@@ -51,15 +51,15 @@
                     </table>
                 </div>
                 <div th:if="${role} == 'doctor'">
-                    <h3 class="text-center">Appointments with Patients</h3>
+                    <h3 class="text-center" th:text="#{appointments_with_patients}">Appointments with Patients</h3>
                     <br>
                     <table class="table">
                         <thead class="bg-primary text-white">
                         <tr>
-                            <th scope="col">Patient Full Name</th>
-                            <th scope="col">Date And Time</th>
-                            <th scope="col">Reason</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" th:text="#{appointments_patient_full_name}">Patient Full Name</th>
+                            <th scope="col" th:text="#{appointments_date_time}">Date And Time</th>
+                            <th scope="col" th:text="#{appointments_reason}">Reason</th>
+                            <th scope="col" th:text="#{appointments_action}">Action</th>
                         </tr>
                         </thead>
                         <tbody th:each="appointment : ${appointments}">
@@ -71,7 +71,7 @@
                                 <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}" method="post">
                                     <input type="hidden" name="_method" value="DELETE" />
                                     <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger" th:text="#{appointments_delete_button}">Delete</button>
                                 </form>
                             </td>
                         </tr>

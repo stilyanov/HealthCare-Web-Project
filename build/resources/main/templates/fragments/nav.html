@@ -17,17 +17,6 @@
             background-color: #0dcaf0;
             color: white;
         }
-        .logout-button {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            padding: 0;
-        }
-        .logout-button:hover {
-            color: #ccc;
-        }
-
     </style>
 </head>
 
@@ -70,7 +59,7 @@
                 </li>
                 <li class="nav-item">
                     <form th:method="get">
-                        <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                        <label class="nav-link px-sm-1 py-3 py-sm-1 text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
                         <select
                                 id="lang"
                                 name="lang"

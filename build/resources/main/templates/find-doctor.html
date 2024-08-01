@@ -9,14 +9,13 @@
 <!-- Page Header-->
 <th:block th:replace="~{fragments/header.html}"></th:block>
 
-
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
     <div class="row row-cols-2 g-5 justify-content-center">
         <div class="col-md-5">
             <form class="col-form-label col-md-10" th:action="@{/doctors/find}">
                 <div class="form-group p-sm-0">
-                    <div class="mx-auto"><b>Find Doctor</b></div>
+                    <div class="mx-auto"><b th:text="#{find_doctor_title}">Find Doctor</b></div>
                     <img th:src="@{/images/find-doctor.jpg}"
                          class="img-fluid" alt="Find Doctor">
                     <br>
@@ -24,7 +23,7 @@
                             onchange="this.form.submit();
                             document.getElementById('town').selectedIndex = 0;"
                     >
-                        <option value="">Choose Department</option>
+                        <option value="" th:text="#{find_doctor_choose_department}">Choose Department</option>
                         <option th:each="department : ${departments}"
                                 th:value="${department}"
                                 th:text="${department.getDisplayName()}">
@@ -37,7 +36,7 @@
                             onchange="this.form.submit();
                             document.getElementById('department').selectedIndex = 0;"
                     >
-                        <option value="">Choose a town</option>
+                        <option value="" th:text="#{find_doctor_choose_town}">Choose a town</option>
                         <option th:each="town : ${towns}"
                                 th:value="${town}"
                                 th:text="${town}"
@@ -46,12 +45,11 @@
                 </div>
                 <div class="form-group p-sm-0">
                     <label for="name"></label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Find doctor by name">
+                    <input type="text" class="form-control" id="name" name="name" th:placeholder="#{find_doctor_placeholder_name}">
                 </div>
                 <br>
                 <form class="col-form-label col-md-10" th:action="@{/doctors/find}" method="get">
-                    <!-- Department, Town, and Name inputs remain unchanged -->
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary" th:text="#{find_doctor_search_button}">Search</button>
                 </form>
             </form>
         </div>
@@ -60,12 +58,13 @@
                 <div class="mx-auto mb-4">
                     <img th:src="@{/images/city.jpeg}"
                          class="img-fluid" alt="Choose Town">
-                    <b>Choose Town</b>
+                    <b th:text="#{find_doctor_choose_town_section}">Choose Town</b>
                 </div>
                 <li class="list-group-item"
                     th:each="town : ${towns}">
                     <a th:href="@{/doctors/find(department=${''}, town=${town}, name=${''})}"
                        th:text="${town}"></a>
+                </li>
             </ul>
         </div>
 
