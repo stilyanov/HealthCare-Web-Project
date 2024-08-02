@@ -15,7 +15,7 @@
         <div class="col-md-5">
             <form class="col-form-label col-md-10" th:action="@{/doctors/find}">
                 <div class="form-group p-sm-0">
-                    <div class="mx-auto"><b th:text="#{find_doctor_title}">Find Doctor</b></div>
+                    <div class="mx-auto"><b th:text="#{find_doctor}">Find Doctor</b></div>
                     <img th:src="@{/images/find-doctor.jpg}"
                          class="img-fluid" alt="Find Doctor">
                     <br>
@@ -23,7 +23,7 @@
                             onchange="this.form.submit();
                             document.getElementById('town').selectedIndex = 0;"
                     >
-                        <option value="" th:text="#{find_doctor_choose_department}">Choose Department</option>
+                        <option value="" th:text="#{choose_department}">Choose Department</option>
                         <option th:each="department : ${departments}"
                                 th:value="${department}"
                                 th:text="${department.getDisplayName()}">
@@ -36,7 +36,7 @@
                             onchange="this.form.submit();
                             document.getElementById('department').selectedIndex = 0;"
                     >
-                        <option value="" th:text="#{find_doctor_choose_town}">Choose a town</option>
+                        <option value="" th:text="#{choose_town}">Choose a town</option>
                         <option th:each="town : ${towns}"
                                 th:value="${town}"
                                 th:text="${town}"
@@ -45,11 +45,11 @@
                 </div>
                 <div class="form-group p-sm-0">
                     <label for="name"></label>
-                    <input type="text" class="form-control" id="name" name="name" th:placeholder="#{find_doctor_placeholder_name}">
+                    <input type="text" class="form-control" id="name" name="name" th:placeholder="#{placeholder_name}">
                 </div>
                 <br>
                 <form class="col-form-label col-md-10" th:action="@{/doctors/find}" method="get">
-                    <button type="submit" class="btn btn-primary" th:text="#{find_doctor_search_button}">Search</button>
+                    <button type="submit" class="btn btn-primary" th:text="#{search}">Search</button>
                 </form>
             </form>
         </div>
@@ -58,7 +58,7 @@
                 <div class="mx-auto mb-4">
                     <img th:src="@{/images/city.jpeg}"
                          class="img-fluid" alt="Choose Town">
-                    <b th:text="#{find_doctor_choose_town_section}">Choose Town</b>
+                    <b th:text="#{choose_town}">Choose Town</b>
                 </div>
                 <li class="list-group-item"
                     th:each="town : ${towns}">

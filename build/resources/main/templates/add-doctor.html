@@ -19,15 +19,15 @@
 
                         <div class="mb-md-5 mt-md-4 pb-5">
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Add Doctor</h2>
-                            <p class="text-white-50 mb-5">Please enter all fields!</p>
+                            <h2 class="fw-bold mb-2 text-uppercase" th:text="#{add_doctor}">Add Doctor</h2>
+                            <p class="text-white-50 mb-5" th:text="#{enter_all_fields}">Please enter all fields!</p>
 
                             <form th:action="@{/doctors/add}"
                                   th:method="post"
                                   th:object="${addDoctor}">
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="firstName">First Name</label>
+                                    <label class="form-label" th:for="firstName" th:text="#{first_name}">First Name</label>
                                     <input type="text" id="firstName" class="form-control form-control-lg"
                                            th:field="*{firstName}"
                                            th:errorclass="'is-invalid alert-info'"
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="lastName">Last Name</label>
+                                    <label class="form-label" th:for="lastName" th:text="#{last_name}">Last Name</label>
                                     <input type="text" id="lastName" class="form-control form-control-lg"
                                            th:field="*{lastName}"
                                            th:errorclass="'is-invalid alert-info'"
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="town">Town</label>
+                                    <label class="form-label" th:for="town" th:text="#{town}">Town</label>
                                     <input type="text" id="town" class="form-control form-control-lg"
                                            th:field="*{town}"
                                            th:errorclass="'is-invalid alert-info'"
@@ -72,7 +72,7 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="email">Email</label>
+                                    <label class="form-label" th:for="email" th:text="#{email}">Email</label>
                                     <input type="email" id="email" class="form-control form-control-lg"
                                            th:field="*{email}"
                                            th:errorclass="'is-invalid alert-info'"
@@ -85,7 +85,7 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" for="password">Password</label>
+                                    <label class="form-label" for="password" th:text="#{password}">Password</label>
                                     <input type="password" id="password" class="form-control form-control-lg"
                                            th:field="*{password}"
                                            th:errorclass="'is-invalid alert-info'"
@@ -100,7 +100,7 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="experience">Experience</label>
+                                    <label class="form-label" th:for="experience" th:text="#{experience}">Experience</label>
                                     <input type="number" id="experience" class="form-control form-control-lg"
                                            th:field="*{experience}"
                                            th:errorclass="'is-invalid alert-info'"
@@ -115,7 +115,7 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="department">Department</label>
+                                    <label class="form-label" th:for="department" th:text="#{department}">Department</label>
                                     <select class="form-control"
                                             th:field="*{department}"
                                             th:errorclass="'is-invalid alert-info'"
@@ -135,7 +135,7 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label th:for="bio" class="form-label">Biography</label>
+                                    <label th:for="bio" class="form-label" th:text="#{biography}">Biography</label>
 
                                     <textarea type="text"
                                               class="form-control form-control-lg"
@@ -156,7 +156,7 @@
 
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label th:for="image" class="form-label">Image URL</label>
+                                    <label th:for="image" class="form-label" th:text="#{image_url}">Image URL</label>
 
                                     <textarea type="text"
                                               class="form-control form-control-lg"
@@ -176,7 +176,7 @@
                                 </div>
 
                                 <button data-mdb-button-init data-mdb-ripple-init
-                                        class="btn btn-outline-light btn-lg px-5" type="submit">Add
+                                        class="btn btn-outline-light btn-lg px-5" type="submit" th:text="#{add_doctor}">Add
                                 </button>
                             </form>
                         </div>

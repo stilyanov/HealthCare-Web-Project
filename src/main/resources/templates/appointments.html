@@ -23,7 +23,7 @@
             <div th:if="${appointments.isEmpty()}">
                 <p class="text-center" th:text="#{appointments_no_appointments}">You do not have any appointments.</p>
                 <div class="text-center">
-                    <a th:href="@{/doctors/all}" class="btn btn-primary" th:text="#{appointments_find_doctor_button}">Find Doctor</a>
+                    <a th:href="@{/doctors/all}" class="btn btn-primary" th:text="#{find_doctor}">Find Doctor</a>
                 </div>
                 <br>
             </div>
@@ -34,10 +34,10 @@
                     <table class="table">
                         <thead class="bg-primary text-white">
                         <tr>
-                            <th scope="col" th:text="#{appointments_doctor_full_name}">Doctor Full Name</th>
-                            <th scope="col" th:text="#{appointments_department}">Department</th>
-                            <th scope="col" th:text="#{appointments_date_time}">Date And Time</th>
-                            <th scope="col" th:text="#{appointments_reason}">Reason</th>
+                            <th scope="col" th:text="#{doctor_full_name}">Doctor Full Name</th>
+                            <th scope="col" th:text="#{department}">Department</th>
+                            <th scope="col" th:text="#{date_time}">Date And Time</th>
+                            <th scope="col" th:text="#{reason}">Reason</th>
                         </tr>
                         </thead>
                         <tbody th:each="appointment : ${appointments}">
@@ -56,10 +56,10 @@
                     <table class="table">
                         <thead class="bg-primary text-white">
                         <tr>
-                            <th scope="col" th:text="#{appointments_patient_full_name}">Patient Full Name</th>
-                            <th scope="col" th:text="#{appointments_date_time}">Date And Time</th>
-                            <th scope="col" th:text="#{appointments_reason}">Reason</th>
-                            <th scope="col" th:text="#{appointments_action}">Action</th>
+                            <th scope="col" th:text="#{patient_full_name}">Patient Full Name</th>
+                            <th scope="col" th:text="#{date_time}">Date And Time</th>
+                            <th scope="col" th:text="#{reason}">Reason</th>
+                            <th scope="col" th:text="#{action}">Action</th>
                         </tr>
                         </thead>
                         <tbody th:each="appointment : ${appointments}">
@@ -71,7 +71,7 @@
                                 <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}" method="post">
                                     <input type="hidden" name="_method" value="DELETE" />
                                     <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-                                    <button type="submit" class="btn btn-danger" th:text="#{appointments_delete_button}">Delete</button>
+                                    <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>
                                 </form>
                             </td>
                         </tr>

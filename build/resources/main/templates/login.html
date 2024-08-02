@@ -19,8 +19,9 @@
 
                         <div class="mb-md-5 mt-md-4 pb-5">
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                            <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                            <h2 class="fw-bold mb-2 text-uppercase" th:text="#{login}">Login</h2>
+                            <p class="text-white-50 mb-5" th:text="#{login_and_password}">Please enter your login and
+                                password!</p>
 
                             <form th:action="@{/users/login}"
                                   th:method="post"
@@ -32,7 +33,7 @@
                                 ></small>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="email">Email</label>
+                                    <label class="form-label" th:for="email" th:text="#{email}">Email</label>
                                     <input type="email" id="email" class="form-control form-control-lg"
                                            th:field="*{email}"
                                            th:errorclass="'is-invalid alert-info'"
@@ -43,10 +44,10 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" for="password">Password</label>
+                                    <label class="form-label" for="password" th:text="#{password}">Password</label>
                                     <input type="password" id="password" class="form-control form-control-lg"
-                                             th:field="*{password}"
-                                             th:errorclass="'is-invalid alert-info'"
+                                           th:field="*{password}"
+                                           th:errorclass="'is-invalid alert-info'"
                                     />
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('password')}"
@@ -54,16 +55,20 @@
                                 </div>
 
                                 <button data-mdb-button-init data-mdb-ripple-init
-                                        class="btn btn-outline-light btn-lg px-5" type="submit">Login
+                                        class="btn btn-outline-light btn-lg px-5" type="submit" th:text="#{login}">Login
                                 </button>
                             </form>
+
+                            <div>
+                                <p class="mb-0" th:text="#{dont_have_account}">Don't have an account?</p>
+                                <a th:href="@{/users/register}"
+                                   class="text-white-50 fw-bold"
+                                   th:text="#{sign_up}"
+                                >Sign Up</a>
+                            </div>
                         </div>
 
-                        <div>
-                            <p class="mb-0">Don't have an account? <a th:href="@{/users/register}"
-                                                                      class="text-white-50 fw-bold">Sign Up</a>
-                            </p>
-                        </div>
+
 
                     </div>
                 </div>

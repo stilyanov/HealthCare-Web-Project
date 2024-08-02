@@ -31,35 +31,35 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/}" th:text="#{nav_bar_home}">Home</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/}" th:text="#{home}">Home</a></li>
                 <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
-                    <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4 text-white" id="adminDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav_bar_admin_panel}">Admin Panel</a>
+                    <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4 text-white" id="adminDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{admin_panel}">Admin Panel</a>
                     <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                        <li><a class="dropdown-item" th:href="@{/admin/panel}" th:text="#{nav_bar_admin_panel}">Panel</a></li>
-                        <li><a class="dropdown-item" th:href="@{/doctors/add}" th:text="#{nav_bar_add_doctor}">Add Doctor</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/panel}" th:text="#{admin_panel}">Panel</a></li>
+                        <li><a class="dropdown-item" th:href="@{/doctors/add}" th:text="#{add_doctor}">Add Doctor</a></li>
                     </ul>
                 </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/users/profile/{userId} (userId = ${userId})}" th:text="#{nav_bar_profile}">Profile</a></li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/users/register}" th:text="#{nav_bar_register}">Register</a></li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/users/login}" th:text="#{nav_bar_login}">Login</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/users/profile/{userId} (userId = ${userId})}" th:text="#{profile}">Profile</a></li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/users/register}" th:text="#{register}">Register</a></li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/users/login}" th:text="#{login}">Login</a></li>
                 <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
-                    <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4 text-white" id="servicesDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{nav_bar_medical_services}">Medical Services</a>
+                    <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4 text-white" id="servicesDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{medical_services}">Medical Services</a>
                     <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                        <li><a class="dropdown-item" th:href="@{/doctors/find}" th:text="#{nav_bar_find_doctor}">Find Doctor</a></li>
-                        <li><a class="dropdown-item" th:href="@{/appointments/all}" th:text="#{nav_bar_appointments}">Appointments</a></li>
-                        <li><a class="dropdown-item" th:href="@{/doctors/all}" th:text="#{nav_bar_doctors}">Doctors</a></li>
+                        <li><a class="dropdown-item" th:href="@{/doctors/find}" th:text="#{find_doctor}">Find Doctor</a></li>
+                        <li><a class="dropdown-item" th:href="@{/appointments/all}" th:text="#{appointments}">Appointments</a></li>
+                        <li><a class="dropdown-item" th:href="@{/doctors/all}" th:text="#{doctors}">Doctors</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/contact}" th:text="#{nav_bar_contact}">Contact</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/about}" th:text="#{nav_bar_about}">About</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/contact}" th:text="#{contact}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 text-white" th:href="@{/about}" th:text="#{about}">About</a></li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <form th:action="@{/users/logout}" th:method="post" class="logout-form" style="margin: 0;">
-                        <button type="submit" class="nav-link px-lg-3 py-3 py-lg-4 text-white logout-button" th:text="#{nav_bar_logout}">Logout</button>
+                        <button type="submit" class="nav-link px-lg-3 py-3 py-lg-4 text-white logout-button" th:text="#{logout}">Logout</button>
                     </form>
                 </li>
                 <li class="nav-item">
                     <form th:method="get">
-                        <label class="nav-link px-sm-1 py-3 py-sm-1 text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                        <label class="nav-link px-sm-1 py-3 py-sm-1 text-white" for="lang" th:text="#{language}">Language</label>
                         <select
                                 id="lang"
                                 name="lang"
