@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto;
+package bg.softuni.healthcare.model.dto.user;
 
 import bg.softuni.healthcare.validation.annotation.UniqueEmail;
 import bg.softuni.healthcare.validation.annotation.ValidatePasswords;

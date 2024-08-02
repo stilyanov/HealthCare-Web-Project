@@ -1,23 +1,19 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.AddDoctorDTO;
-import bg.softuni.healthcare.model.dto.ChangePasswordDTO;
-import bg.softuni.healthcare.model.dto.DoctorDTO;
-import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
-import bg.softuni.healthcare.model.entity.DoctorEntity;
+import bg.softuni.healthcare.model.dto.doctor.AddDoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.DoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.service.DepartmentService;
 import bg.softuni.healthcare.service.DoctorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -27,7 +23,6 @@ public class DoctorController {
 
     private final DoctorService doctorService;
     private final DepartmentService departmentService;
-    private final ModelMapper modelMapper;
 
     @ModelAttribute("addDoctor")
     public AddDoctorDTO addDoctorDTO() {

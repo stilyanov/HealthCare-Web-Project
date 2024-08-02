@@ -1,9 +1,9 @@
 package bg.softuni.healthcare.service;
 
-import bg.softuni.healthcare.model.dto.AddAppointmentDTO;
-import bg.softuni.healthcare.model.dto.DoctorAppointmentDTO;
-import bg.softuni.healthcare.model.dto.FullAppointmentsInfoDTO;
-import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
+import bg.softuni.healthcare.model.dto.appointment.AddAppointmentDTO;
+import bg.softuni.healthcare.model.dto.appointment.DoctorAppointmentDTO;
+import bg.softuni.healthcare.model.dto.appointment.FullAppointmentsInfoDTO;
+import bg.softuni.healthcare.model.dto.user.UserAppointmentDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

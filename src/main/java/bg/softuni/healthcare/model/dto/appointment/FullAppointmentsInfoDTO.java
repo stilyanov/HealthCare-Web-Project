@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto;
+package bg.softuni.healthcare.model.dto.appointment;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

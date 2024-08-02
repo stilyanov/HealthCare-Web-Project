@@ -1,9 +1,9 @@
 package bg.softuni.healthcare.repository;
 
-import bg.softuni.healthcare.model.entity.MedicalRecordEntity;
+import bg.softuni.healthcare.model.entity.PatientResultEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MedicalRecordRepository extends JpaRepository<MedicalRecordEntity, Long> {
+public interface PatientResultRepository extends JpaRepository<PatientResultEntity, Long> {
 }

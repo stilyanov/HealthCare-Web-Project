@@ -1,8 +1,8 @@
 package bg.softuni.healthcare.service;
 
-import bg.softuni.healthcare.model.dto.AddDoctorDTO;
-import bg.softuni.healthcare.model.dto.DoctorDTO;
-import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.AddDoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.DoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.DoctorEntity;
 
 import java.util.List;

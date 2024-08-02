@@ -1,9 +1,9 @@
 package bg.softuni.healthcare.service.impl;
 
-import bg.softuni.healthcare.model.dto.AddAppointmentDTO;
-import bg.softuni.healthcare.model.dto.DoctorAppointmentDTO;
-import bg.softuni.healthcare.model.dto.FullAppointmentsInfoDTO;
-import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
+import bg.softuni.healthcare.model.dto.appointment.AddAppointmentDTO;
+import bg.softuni.healthcare.model.dto.appointment.DoctorAppointmentDTO;
+import bg.softuni.healthcare.model.dto.appointment.FullAppointmentsInfoDTO;
+import bg.softuni.healthcare.model.dto.user.UserAppointmentDTO;
 import bg.softuni.healthcare.repository.DoctorRepository;
 import bg.softuni.healthcare.repository.UserRepository;
 import bg.softuni.healthcare.service.AppointmentApiService;

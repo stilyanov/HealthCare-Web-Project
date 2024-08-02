@@ -1,6 +1,6 @@
 package bg.softuni.healthcare.service.impl;
 
-import bg.softuni.healthcare.model.dto.DoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.DoctorDTO;
 import bg.softuni.healthcare.model.entity.DepartmentEntity;
 import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;

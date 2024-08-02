@@ -1,8 +1,7 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.UserLoginDTO;
-import bg.softuni.healthcare.model.dto.UserProfileDTO;
-import bg.softuni.healthcare.model.dto.UserRegisterDTO;
+import bg.softuni.healthcare.model.dto.user.UserLoginDTO;
+import bg.softuni.healthcare.model.dto.user.UserRegisterDTO;
 import bg.softuni.healthcare.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto;
+package bg.softuni.healthcare.model.dto.doctor;
 
 import bg.softuni.healthcare.validation.annotation.ValidatePasswords;
 import jakarta.validation.constraints.NotNull;

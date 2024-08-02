@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto;
+package bg.softuni.healthcare.model.dto.appointment;
 
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import jakarta.validation.constraints.NotNull;

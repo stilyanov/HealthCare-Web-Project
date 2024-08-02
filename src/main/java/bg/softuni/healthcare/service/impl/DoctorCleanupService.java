@@ -2,7 +2,6 @@ package bg.softuni.healthcare.service.impl;
 
 import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.repository.DoctorRepository;
-import bg.softuni.healthcare.repository.PrescriptionRepository;
 import bg.softuni.healthcare.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ import java.util.List;
 public class DoctorCleanupService {
 
     private final DoctorRepository doctorRepository;
-    private final PrescriptionRepository prescriptionRepository;
     private final UserRepository userRepository;
     private static final Logger LOGGER = LoggerFactory.getLogger(DoctorCleanupService.class);
 
@@ -39,9 +37,6 @@ public class DoctorCleanupService {
             LOGGER.info("Processing doctor with ID: {}", doctor.getId());
 
             if (doctor.getUser() != null) {
-                LOGGER.info("Deleting prescriptions for user with ID: {}", doctor.getId());
-                prescriptionRepository.deleteByPatientId(doctor.getUser().getId());
-
                 Long userId = doctor.getUser().getId();
 
                 LOGGER.info("Deleting user with ID: {}", doctor.getUser().getId());

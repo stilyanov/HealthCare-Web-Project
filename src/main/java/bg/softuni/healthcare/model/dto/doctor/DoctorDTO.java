@@ -1,14 +1,15 @@
-package bg.softuni.healthcare.model.dto;
+package bg.softuni.healthcare.model.dto.doctor;
 
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
-public class InfoDoctorDTO {
+public class DoctorDTO {
+
     private Long id;
 
     private String imageUrl;
@@ -16,10 +17,6 @@ public class InfoDoctorDTO {
     private String firstName;
 
     private String lastName;
-
-    private String bio;
-
-    private String town;
 
     private DepartmentEnum department;
 

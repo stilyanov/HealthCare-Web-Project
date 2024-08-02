@@ -1,8 +1,8 @@
 package bg.softuni.healthcare.service.impl;
 
-import bg.softuni.healthcare.model.dto.AddDoctorDTO;
-import bg.softuni.healthcare.model.dto.DoctorDTO;
-import bg.softuni.healthcare.model.dto.InfoDoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.AddDoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.DoctorDTO;
+import bg.softuni.healthcare.model.dto.doctor.InfoDoctorDTO;
 import bg.softuni.healthcare.model.entity.DepartmentEntity;
 import bg.softuni.healthcare.model.entity.DoctorEntity;
 import bg.softuni.healthcare.model.entity.UserEntity;
@@ -33,7 +33,6 @@ public class DoctorServiceImpl implements DoctorService {
     private final UserRoleRepository userRoleRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    private final PrescriptionRepository prescriptionRepository;
 
     @Override
     public void addDoctor(AddDoctorDTO addDoctorDTO) {

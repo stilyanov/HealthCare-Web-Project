@@ -1,4 +1,4 @@
-package bg.softuni.healthcare.model.dto;
+package bg.softuni.healthcare.model.dto.user;
 
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import lombok.Getter;
@@ -10,14 +10,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class DoctorAppointmentDTO {
+public class UserAppointmentDTO {
 
     private Long id;
-    private Long patientId;
+    private Long doctorId;
     private DepartmentEnum department;
     private LocalDateTime dateTime;
     private String reason;
-    private String patientFullName;
+    private String doctorFullName;
     private String formattedDateTime;
-
 }

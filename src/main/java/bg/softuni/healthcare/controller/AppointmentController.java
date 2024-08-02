@@ -1,9 +1,9 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.AddAppointmentDTO;
-import bg.softuni.healthcare.model.dto.DoctorAppointmentDTO;
-import bg.softuni.healthcare.model.dto.DoctorDTO;
-import bg.softuni.healthcare.model.dto.UserAppointmentDTO;
+import bg.softuni.healthcare.model.dto.appointment.AddAppointmentDTO;
+import bg.softuni.healthcare.model.dto.appointment.DoctorAppointmentDTO;
+import bg.softuni.healthcare.model.dto.doctor.DoctorDTO;
+import bg.softuni.healthcare.model.dto.user.UserAppointmentDTO;
 import bg.softuni.healthcare.model.entity.enums.DepartmentEnum;
 import bg.softuni.healthcare.service.DepartmentService;
 import bg.softuni.healthcare.service.DoctorService;

@@ -52,18 +52,24 @@ UPDATE doctors d
     JOIN users u ON d.email = u.email
 SET d.password = u.password;
 
-INSERT INTO `medical_records` (`id`, `description`, `diagnosis`, `patient_id`)
+INSERT INTO `patient_results` (`id`, `prescription`, `result`, `date_time`, `appointment_id`)
 VALUES
-    (1, 'Patient shows signs of improvement.', 'Flu', 12),
-    (2, 'Regular checkup shows stable vitals.', 'Hypertension', 8),
-    (3, 'Patient complains of chest pain.', 'Angina', 2),
-    (4, 'Routine blood tests normal.', 'Diabetes', 7),
-    (5, 'Patient experiences severe headaches.', 'Migraine', 12);
-
-INSERT INTO `prescriptions` (`id`, `medication`, `dosage`, `patient_id`)
-VALUES
-    (1, 'Paracetamol', '500mg', 12),
-    (2, 'Atenolol', '50mg', 8),
-    (3, 'Nitroglycerin', '0.4mg', 2),
-    (4, 'Metformin', '500mg', 7),
-    (5, 'Sumatriptan', '100mg', 12);
+    (1, 'Take one tablet of aspirin daily', 'Normal blood pressure', '2023-10-01 10:00:00', 1),
+    (2, 'Apply ointment twice daily', 'Skin condition improved', '2023-10-02 11:00:00', 2),
+    (3, 'Follow a low-sodium diet', 'Cholesterol levels reduced', '2023-10-03 12:00:00', 3),
+    (4, 'Use inhaler as needed', 'Breathing improved', '2023-10-04 13:00:00', 4),
+    (5, 'Take vitamin D supplements', 'Bone density increased', '2023-10-05 14:00:00', 5),
+    (6, 'Perform physical therapy exercises', 'Mobility improved', '2023-10-06 15:00:00', 6),
+    (7, 'Take antibiotics for 7 days', 'Infection cleared', '2023-10-07 16:00:00', 7),
+    (8, 'Monitor blood sugar levels', 'Diabetes under control', '2023-10-08 17:00:00', 8),
+    (9, 'Use eye drops twice daily', 'Vision improved', '2023-10-09 18:00:00', 9),
+    (10, 'Take antihistamines as needed', 'Allergy symptoms reduced', '2023-10-10 19:00:00', 10),
+    (11, 'Follow a gluten-free diet', 'Digestive issues resolved', '2023-10-11 20:00:00', 11),
+    (12, 'Take pain relievers as needed', 'Pain managed', '2023-10-12 21:00:00', 12),
+    (13, 'Use nasal spray daily', 'Sinus congestion relieved', '2023-10-13 22:00:00', 13),
+    (14, 'Take iron supplements', 'Anemia improved', '2023-10-14 23:00:00', 14),
+    (15, 'Perform breathing exercises', 'Lung capacity increased', '2023-10-15 08:00:00', 15),
+    (16, 'Take probiotics daily', 'Gut health improved', '2023-10-16 09:00:00', 16),
+    (17, 'Use topical cream for rash', 'Rash cleared', '2023-10-17 10:00:00', 17),
+    (18, 'Take anti-inflammatory medication', 'Swelling reduced', '2023-10-18 11:00:00', 18),
+    (19, 'Follow a high-fiber diet', 'Bowel movements regular', '2023-10-19 12:00:00', 19);

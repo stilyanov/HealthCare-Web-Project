@@ -1,12 +1,11 @@
 package bg.softuni.healthcare.controller;
 
-import bg.softuni.healthcare.model.dto.FullAppointmentsInfoDTO;
-import bg.softuni.healthcare.model.dto.UserProfileDTO;
+import bg.softuni.healthcare.model.dto.appointment.FullAppointmentsInfoDTO;
+import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.service.AppointmentApiService;
 import bg.softuni.healthcare.service.DoctorService;
 import bg.softuni.healthcare.service.UserService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
