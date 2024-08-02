@@ -1,12 +1,11 @@
 package bg.softuni.healthcare.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -23,9 +22,13 @@ public class PatientResultEntity extends BaseEntity {
     private String result;
 
     @Column(nullable = false)
-    private LocalDateTime dateTime;
+    private LocalDate date;
 
-    @Column(nullable = false)
+    @Column
     private Long appointmentId;
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id", nullable = false)
+    private UserEntity patient;
 
 }

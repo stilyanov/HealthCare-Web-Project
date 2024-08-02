@@ -10,5 +10,4 @@ public interface PatientResultService {
 
     void addPatientResult(AddPatientResultDTO patientResultDTO);
 
-    List<DoctorAppointmentDTO> getAppointmentsForCurrentDoctor();
 }

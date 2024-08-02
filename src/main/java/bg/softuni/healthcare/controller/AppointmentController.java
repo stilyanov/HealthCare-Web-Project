@@ -67,8 +67,10 @@ public class AppointmentController {
             model.addAttribute("role", "patient");
         } else {
             Long doctorId = doctorService.getDoctorIdByEmail(userEmail);
-            List<DoctorAppointmentDTO> doctorAppointments = appointmentService.getAppointmentsByDoctorId(doctorId);
+            List<DoctorAppointmentDTO> doctorAppointments = appointmentService.getFutureAppointmentsByDoctorId(doctorId);
+            List<DoctorAppointmentDTO> pastAppointments = appointmentService.getPastAppointmentsByDoctorId(doctorId);
             model.addAttribute("appointments", doctorAppointments);
+            model.addAttribute("pastAppointments", pastAppointments);
             model.addAttribute("role", "doctor");
         }
 

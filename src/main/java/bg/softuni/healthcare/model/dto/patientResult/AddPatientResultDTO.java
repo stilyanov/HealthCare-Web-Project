@@ -1,14 +1,13 @@
 package bg.softuni.healthcare.model.dto.patientResult;
 
-import bg.softuni.healthcare.model.dto.appointment.DoctorAppointmentDTO;
+import bg.softuni.healthcare.model.entity.UserEntity;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -24,11 +23,10 @@ public class AddPatientResultDTO {
     private String result;
 
     @NotNull(message = "Date and Time cannot be null")
-    private LocalDateTime dateTime;
+    private LocalDate date;
 
-    @NotNull(message = "Appointment ID cannot be null")
+    @NotNull(message = "Patient ID cannot be null")
+    private UserEntity patient;
+
     private Long appointmentId;
-
-    private List<DoctorAppointmentDTO> appointments;
-
 }

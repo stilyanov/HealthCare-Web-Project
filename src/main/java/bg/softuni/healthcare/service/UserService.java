@@ -30,4 +30,7 @@ public interface UserService {
 
     UserEntity findByEmail(String userEmail);
 
+    String getUserFullNameById(Long patientId);
+
+    UserEntity getUserById(Long id);
 }

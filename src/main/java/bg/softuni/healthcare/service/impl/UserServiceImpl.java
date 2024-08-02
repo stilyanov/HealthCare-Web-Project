@@ -132,6 +132,19 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
+    @Override
+    public String getUserFullNameById(Long patientId) {
+        return userRepository.findById(patientId)
+                .map(user -> user.getFirstName() + " " + user.getLastName())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
+
+    @Override
+    public UserEntity getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
+
     private UserProfileDTO mapToUserProfileDTO(UserEntity user) {
         UserProfileDTO userProfileDTO = this.modelMapper.map(user, UserProfileDTO.class);
         List<String> roles = user.getRoles()

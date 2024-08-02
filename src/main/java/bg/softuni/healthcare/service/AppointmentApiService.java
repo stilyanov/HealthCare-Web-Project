@@ -24,4 +24,8 @@ public interface AppointmentApiService {
     List<UserAppointmentDTO> getAppointmentsByPatientId(Long userId);
 
     List<DoctorAppointmentDTO> getAppointmentsByDoctorId(Long userId);
+
+    List<DoctorAppointmentDTO> getFutureAppointmentsByDoctorId(Long userId);
+
+    List<DoctorAppointmentDTO> getPastAppointmentsByDoctorId(Long doctorId);
 }

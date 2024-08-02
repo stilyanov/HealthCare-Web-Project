@@ -144,4 +144,20 @@ public class AppointmentApiServiceImpl implements AppointmentApiService {
         return appointments;
     }
 
+    @Override
+    public List<DoctorAppointmentDTO> getFutureAppointmentsByDoctorId(Long userId) {
+        return getAppointmentsByDoctorId(userId)
+                .stream()
+                .filter(appointment -> appointment.getDateTime().isAfter(LocalDateTime.now()))
+                .toList();
+    }
+
+    @Override
+    public List<DoctorAppointmentDTO> getPastAppointmentsByDoctorId(Long doctorId) {
+        return getAppointmentsByDoctorId(doctorId)
+                .stream()
+                .filter(appointment -> appointment.getDateTime().isBefore(LocalDateTime.now()))
+                .toList();
+    }
+
 }

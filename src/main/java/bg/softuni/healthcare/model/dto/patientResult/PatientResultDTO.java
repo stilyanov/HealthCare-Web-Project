@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,6 +13,6 @@ public class PatientResultDTO {
     private Long id;
     private String prescription;
     private String result;
-    private LocalDateTime dateTime;
+    private LocalDate date;
     private Long appointmentId;
 }

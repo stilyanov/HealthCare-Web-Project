@@ -77,6 +77,36 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <br>
+                    <h3 class="text-center" th:text="#{past_appointments}">Past Appointments</h3>
+                    <br>
+                    <div th:if="${pastAppointments.isEmpty()}">
+                        <p class="text-center" th:text="#{no_past_appointments}">No past appointments</p>
+                    </div>
+                    <div th:unless="${pastAppointments.isEmpty()}">
+                        <table class="table">
+                            <thead class="bg-primary text-white">
+                            <tr>
+                                <th scope="col" th:text="#{patient_full_name}">Patient Full Name</th>
+                                <th scope="col" th:text="#{date_time}">Date And Time</th>
+                                <th scope="col" th:text="#{reason}">Reason</th>
+                                <th scope="col" th:text="#{action}">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody th:each="appointment : ${pastAppointments}">
+                            <tr>
+                                <td th:text="${appointment.patientFullName}"></td>
+                                <td th:text="${appointment.formattedDateTime}"></td>
+                                <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
+                                <td>
+                                    <a th:href="@{/patient-result/add/{patientId}(patientId=${appointment.patientId})}" class="btn btn-primary" th:text="#{add_patient_result}">Add Patient Result</a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
                 </div>
             </div>
         </div>

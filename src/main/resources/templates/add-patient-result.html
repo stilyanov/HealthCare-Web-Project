@@ -9,7 +9,7 @@
 <!-- Page Header-->
 <th:block th:replace="~{fragments/header.html}"></th:block>
 
-<!-- Patient Result Form -->
+<!-- Form Section-->
 <section class="vh-100% gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -19,29 +19,29 @@
 
                         <div class="mb-md-5 mt-md-4 pb-5">
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Add Patient Result</h2>
-                            <p class="text-white-50 mb-5">Please enter all fields!</p>
+                            <h2 class="fw-bold mb-2 text-uppercase" th:text="#{add_patient_result}">Add Patient Result</h2>
+                            <h4 class="fw-bold mb-2"><span th:text="#{for}"> for</span> <span th:text="${patientFullName}"></span></h4>
+                            <p class="text-white-50 mb-5" th:text="#{enter_all_fields}">Please enter all fields!</p>
 
-                            <form th:action="@{/patient-result/add}" th:method="post" th:object="${addPatientResult}">
+                            <form th:action="@{/patient-result/add/{patientId}(patientId=${patientId})}" th:method="post" th:object="${addPatientResult}">
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" th:for="prescription">Prescription</label>
-                                    <input type="text" id="prescription" class="form-control form-control-lg"
-                                           th:field="*{prescription}"
-                                           th:errorclass="'is-invalid alert-info'"
-                                           required
-                                           minlength="10" maxlength="500"
-                                           oninvalid="this.setCustomValidity('Prescription length must be between 10 and 500 characters!')"
-                                           oninput="setCustomValidity('')"
-                                    />
+                                    <label class="form-label" th:for="prescription" th:text="#{prescription}">Prescription</label>
+                                    <textarea id="prescription" class="form-control form-control-lg"
+                                              th:field="*{prescription}"
+                                              th:errorclass="'is-invalid alert-info'"
+                                              required
+                                              minlength="10" maxlength="500"
+                                              oninvalid="this.setCustomValidity('Prescription length must be between 10 and 500 characters!')"
+                                              oninput="setCustomValidity('')"
+                                    ></textarea>
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('prescription')}"
-                                           th:text="${error}">
-                                    </small>
+                                           th:text="${error}"></small>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" for="result">Result</label>
+                                    <label class="form-label" th:for="result" th:text="#{result}">Result</label>
                                     <textarea id="result" class="form-control form-control-lg"
                                               th:field="*{result}"
                                               th:errorclass="'is-invalid alert-info'"
@@ -56,38 +56,24 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" for="dateTime">Date and Time</label>
-                                    <input type="datetime-local" id="dateTime" class="form-control form-control-lg"
-                                           th:field="*{dateTime}"
+                                    <label class="form-label" th:for="date" th:text="#{date}">Date</label>
+                                    <input type="date" id="date" class="form-control form-control-lg"
+                                           th:field="*{date}"
                                            th:errorclass="'is-invalid alert-info'"
                                            required
-                                           oninvalid="this.setCustomValidity('Please enter a valid date and time!')"
+                                           oninvalid="this.setCustomValidity('Please enter a valid date!')"
                                            oninput="setCustomValidity('')"
                                     />
                                     <small class="invalid-feedback text-warning"
-                                           th:each="error : ${#fields.errors('dateTime')}"
+                                           th:each="error : ${#fields.errors('date')}"
                                            th:text="${error}"></small>
                                 </div>
 
-                                <div data-mdb-input-init class="form-outline form-white mb-4">
-                                    <label class="form-label" for="appointmentId">Appointments</label>
-                                    <select id="appointmentId" class="form-control form-control-lg"
-                                            th:field="*{appointmentId}"
-                                            th:errorclass="'is-invalid alert-info'"
-                                            required
-                                            oninvalid="this.setCustomValidity('Please select an appointment!')"
-                                            oninput="setCustomValidity('')">
-                                        <option th:each="appointment : ${appointments}"
-                                                th:value="${appointment.id}"
-                                                th:text="${appointment.getPatientFullName()}"></option>
-                                    </select>
-                                    <small class="invalid-feedback text-warning"
-                                           th:each="error : ${#fields.errors('appointmentId')}"
-                                           th:text="${error}"></small>
-                                </div>
+                                <input type="hidden" name="patient" th:field="*{patient.id}" />
+                                <input type="hidden" name="appointmentId" th:field="*{appointmentId}" />
 
                                 <button data-mdb-button-init data-mdb-ripple-init
-                                        class="btn btn-outline-light btn-lg px-5" type="submit">Add Result
+                                        class="btn btn-outline-light btn-lg px-5" type="submit" th:text="#{save}">Save
                                 </button>
                             </form>
                         </div>
