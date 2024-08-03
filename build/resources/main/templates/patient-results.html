@@ -9,17 +9,37 @@
 <!-- Page Header-->
 <th:block th:replace="~{fragments/header.html}"></th:block>
 
-<!-- Examinations List -->
+<!-- Patient Results List -->
 <section class="container">
-    <h2>Your Examinations</h2>
-    <div th:each="examination : ${examinations}">
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Examination on <span th:text="${examination.dateTime}"></span></h5>
-                <p class="card-text"><strong>Prescription:</strong> <span th:text="${examination.prescription}"></span></p>
-                <p class="card-text"><strong>Result:</strong> <span th:text="${examination.result}"></span></p>
-            </div>
-        </div>
+    <h2 class="text-center">Your Results</h2>
+    <div th:if="${patientResults.isEmpty()}">
+        <p class="text-center">No results yet</p>
+    </div>
+    <div th:unless="${patientResults.isEmpty()}">
+        <div th:if="${message}" class="alert alert-success text-center" th:text="${message}"></div>
+        <table class="table">
+            <thead class="bg-primary text-white">
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Prescription</th>
+                <th scope="col">Result</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody th:each="result : ${patientResults}">
+            <tr>
+                <td th:text="${result.date}"></td>
+                <td th:text="${result.prescription}"></td>
+                <td th:text="${result.result}"></td>
+                <td>
+                    <form th:action="@{/patient-result/delete/{id}(id=${result.id})}" method="post">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </section>
 

@@ -47,6 +47,7 @@
                     <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                         <li><a class="dropdown-item" th:href="@{/doctors/find}" th:text="#{find_doctor}">Find Doctor</a></li>
                         <li><a class="dropdown-item" th:href="@{/appointments/all}" th:text="#{appointments}">Appointments</a></li>
+                        <li sec:authorize="hasRole('PATIENT')"><a class="dropdown-item" th:href="@{/patient-result/my-results}" th:text="#{my_results}">My Results</a></li>
                         <li><a class="dropdown-item" th:href="@{/doctors/all}" th:text="#{doctors}">Doctors</a></li>
                     </ul>
                 </li>
