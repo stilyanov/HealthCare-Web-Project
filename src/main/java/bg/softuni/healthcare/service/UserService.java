@@ -33,4 +33,5 @@ public interface UserService {
     String getUserFullNameById(Long patientId);
 
     UserEntity getUserById(Long id);
+
 }

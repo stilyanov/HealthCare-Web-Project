@@ -30,9 +30,13 @@ import java.util.List;
 public class AppointmentController {
 
     private final AppointmentApiServiceImpl appointmentService;
-    private final DepartmentService departmentService;
     private final DoctorService doctorService;
     private final UserService userService;
+
+    @ModelAttribute("appointment")
+    public AddAppointmentDTO appointmentDTO() {
+        return new AddAppointmentDTO();
+    }
 
     @GetMapping("/book/{doctorId}")
     public String appointment(@PathVariable("doctorId") Long doctorId,
@@ -88,7 +92,7 @@ public class AppointmentController {
                                   RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("appointment", appointmentDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.appointmentDTO", bindingResult);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.appointment", bindingResult);
             String redirectUrl = "redirect:/appointments/book/" + appointmentDTO.getDoctorId();
             if (date != null) {
                 redirectUrl += "?date=" + date;
@@ -111,9 +115,8 @@ public class AppointmentController {
 
     @DeleteMapping("/delete/{id}")
     public String deleteAppointment(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        //TODO: Implement delete appointment functionality
         appointmentService.deleteAppointment(id);
-        redirectAttributes.addFlashAttribute("message", "Appointment deleted successfully");
+        redirectAttributes.addFlashAttribute("message", "Appointment with " + id + " was deleted successfully!");
         return "redirect:/appointments/all";
     }
 }

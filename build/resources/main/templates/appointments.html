@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<!-- Head Block -->
 <th:block th:replace="~{fragments/head.html}"></th:block>
 
 <body>
-<!-- Navigation-->
+<!-- Navigation -->
 <th:block th:replace="~{fragments/nav.html}"></th:block>
-<!-- Page Header-->
+<!-- Page Header -->
 <th:block th:replace="~{fragments/header.html}"></th:block>
 
-<!-- Post Content-->
+<!-- Post Content -->
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7 w-75">
 
+            <!-- Message Display -->
             <div th:if="${message}">
                 <div class="alert alert-info" th:text="${message}"></div>
             </div>
 
+            <div th:if="${successMessage}" class="alert alert-success" role="alert">
+                <span th:text="${successMessage}"></span>
+            </div>
+
+            <!-- Appointments Title -->
             <h2 class="text-center" th:text="#{appointments_title}">Your Appointments</h2>
             <br>
+
+            <!-- No Appointments Message -->
             <div th:if="${appointments.isEmpty()}">
                 <p class="text-center" th:text="#{appointments_no_appointments}">You do not have any appointments.</p>
-                <div class="text-center">
+                <div class="text-center" th:if="${role} == 'patient'">
                     <a th:href="@{/doctors/all}" class="btn btn-primary" th:text="#{find_doctor}">Find Doctor</a>
                 </div>
                 <br>
             </div>
+
+            <!-- Appointments List -->
             <div th:unless="${appointments.isEmpty()}">
+
+                <!-- Appointments for Patients -->
                 <div th:if="${role} == 'patient'">
                     <h3 class="text-center" th:text="#{appointments_with_doctors}">Appointments with Doctors</h3>
                     <br>
@@ -50,6 +63,8 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Appointments for Doctors -->
                 <div th:if="${role} == 'doctor'">
                     <h3 class="text-center" th:text="#{appointments_with_patients}">Appointments with Patients</h3>
                     <br>
@@ -68,9 +83,10 @@
                             <td th:text="${appointment.formattedDateTime}"></td>
                             <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
                             <td>
+                                <!-- Delete Form -->
                                 <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}" method="post">
-                                    <input type="hidden" name="_method" value="DELETE" />
-                                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                                    <input type="hidden" name="_method" value="DELETE"/>
+                                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                                     <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>
                                 </form>
                             </td>
@@ -81,9 +97,13 @@
                     <br>
                     <h3 class="text-center" th:text="#{past_appointments}">Past Appointments</h3>
                     <br>
+
+                    <!-- No Past Appointments Message -->
                     <div th:if="${pastAppointments.isEmpty()}">
                         <p class="text-center" th:text="#{no_past_appointments}">No past appointments</p>
                     </div>
+
+                    <!-- Past Appointments List -->
                     <div th:unless="${pastAppointments.isEmpty()}">
                         <table class="table">
                             <thead class="bg-primary text-white">
@@ -98,25 +118,38 @@
                             <tr>
                                 <td th:text="${appointment.patientFullName}"></td>
                                 <td th:text="${appointment.formattedDateTime}"></td>
-                                <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
+                                <td th:text="${appointment.reason}"
+                                    style="word-break: break-word; max-width: 100%"></td>
                                 <td>
-                                    <a th:href="@{/patient-result/add/{patientId}(patientId=${appointment.patientId})}" class="btn btn-primary" th:text="#{add_patient_result}">Add Patient Result</a>
+                                    <!-- Add Patient Result Link -->
+                                    <div class="btn-group" role="group">
+                                        <a th:href="@{/patient-result/add/{patientId}/{appointmentId}(patientId=${appointment.patientId}, appointmentId=${appointment.id})}"
+                                           class="btn btn-primary" th:text="#{add_patient_result}">Add Patient
+                                            Result</a>
+
+                                        <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}"
+                                              method="post" style="display:inline;">
+                                            <input type="hidden" name="_method" value="DELETE"/>
+                                            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                                            <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
-
                             </tbody>
                         </table>
-
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Footer-->
+<!-- Footer -->
 <th:block th:replace="~{fragments/footer.html}"></th:block>
-<!-- Bootstrap core JS-->
+<!-- Bootstrap core JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
+<!-- Core theme JS -->
 <script src="/js/scripts.js"></script>
 </body>
 </html>

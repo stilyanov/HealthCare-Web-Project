@@ -11,6 +11,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
+    public SecurityConfig(CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler) {
+        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -28,7 +34,7 @@ public class SecurityConfig {
                                 .loginPage("/users/login")
                                 .usernameParameter("email")
                                 .passwordParameter("password")
-                                .defaultSuccessUrl("/doctors/find", true)
+                                .successHandler(customAuthenticationSuccessHandler)
                                 .failureForwardUrl("/users/login-error")
                 )
                 .logout(logout ->

@@ -19,6 +19,8 @@ public interface AppointmentApiService {
 
     List<FullAppointmentsInfoDTO> getAllFullAppointmentsInfo();
 
+    DoctorAppointmentDTO getAppointmentById(Long appointmentId);
+
     void deleteAppointment(Long id);
 
     List<UserAppointmentDTO> getAppointmentsByPatientId(Long userId);

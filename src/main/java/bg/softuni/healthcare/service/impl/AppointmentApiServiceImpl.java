@@ -98,6 +98,16 @@ public class AppointmentApiServiceImpl implements AppointmentApiService {
     }
 
     @Override
+    public DoctorAppointmentDTO getAppointmentById(Long appointmentId) {
+        String url = "/appointments/" + appointmentId;
+        ResponseEntity<DoctorAppointmentDTO> response = appointmentsRestClient.get()
+                .uri(url)
+                .retrieve()
+                .toEntity(new ParameterizedTypeReference<>() {});
+        return response.getBody();
+    }
+
+    @Override
     public void deleteAppointment(Long id) {
         appointmentsRestClient.delete()
                 .uri("/appointments/delete/" + id)

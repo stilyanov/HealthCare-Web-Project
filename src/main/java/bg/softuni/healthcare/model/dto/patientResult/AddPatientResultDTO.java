@@ -26,7 +26,7 @@ public class AddPatientResultDTO {
     private LocalDate date;
 
     @NotNull(message = "Patient ID cannot be null")
-    private UserEntity patient;
+    private Long patientId;
 
     private Long appointmentId;
 }

@@ -23,7 +23,7 @@
                             <h4 class="fw-bold mb-2"><span th:text="#{for}"> for</span> <span th:text="${patientFullName}"></span></h4>
                             <p class="text-white-50 mb-5" th:text="#{enter_all_fields}">Please enter all fields!</p>
 
-                            <form th:action="@{/patient-result/add/{patientId}(patientId=${patientId})}" th:method="post" th:object="${addPatientResult}">
+                            <form th:action="@{/patient-result/add/{patientId}/{appointmentId}(patientId=${patientId}, appointmentId=${appointmentId})}" th:method="post" th:object="${addPatientResult}">
 
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
                                     <label class="form-label" th:for="prescription" th:text="#{prescription}">Prescription</label>
@@ -68,9 +68,6 @@
                                            th:each="error : ${#fields.errors('date')}"
                                            th:text="${error}"></small>
                                 </div>
-
-                                <input type="hidden" name="patient" th:field="*{patient.id}" />
-                                <input type="hidden" name="appointmentId" th:field="*{appointmentId}" />
 
                                 <button data-mdb-button-init data-mdb-ripple-init
                                         class="btn btn-outline-light btn-lg px-5" type="submit" th:text="#{save}">Save
