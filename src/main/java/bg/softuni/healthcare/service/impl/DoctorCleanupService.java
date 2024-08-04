@@ -22,7 +22,7 @@ public class DoctorCleanupService {
     private final UserRepository userRepository;
     private static final Logger LOGGER = LoggerFactory.getLogger(DoctorCleanupService.class);
 
-    @Scheduled(cron = "0 0 0 * * ?") // Runs daily at midnight
+    @Scheduled(cron = "0 0 0 1 * ?") // Runs monthly
     @Transactional
     public void cleanUpDoctors() {
         LOGGER.info("Starting doctor cleanup task...");
