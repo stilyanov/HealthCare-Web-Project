@@ -1,9 +1,11 @@
 package bg.softuni.healthcare.controller;
 
+import bg.softuni.healthcare.model.dto.ContactDTO;
 import bg.softuni.healthcare.model.dto.appointment.FullAppointmentsInfoDTO;
 import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.service.AppointmentApiService;
+import bg.softuni.healthcare.service.ContactService;
 import bg.softuni.healthcare.service.DoctorService;
 import bg.softuni.healthcare.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class AdminController {
     private final UserService userService;
     private final DoctorService doctorService;
     private final AppointmentApiService appointmentService;
+    private final ContactService contactService;
 
     @GetMapping("/panel")
     public String getAdminPanel(Model model, UserEntity user) {
@@ -38,10 +41,12 @@ public class AdminController {
                 .filter(u -> u.getRoles().contains("DOCTOR"))
                 .toList();
         List<FullAppointmentsInfoDTO> allAppointments = this.appointmentService.getAllFullAppointmentsInfo();
+        List<ContactDTO> allContacts = this.contactService.getAllContacts();
 
         model.addAttribute("patientUsers", patientUsers);
         model.addAttribute("doctorUsers", doctorUsers);
         model.addAttribute("allAppointments", allAppointments);
+        model.addAttribute("allContacts", allContacts);
 
         return "admin-panel";
     }
@@ -66,6 +71,14 @@ public class AdminController {
     public String deleteAppointment(@PathVariable Long id, RedirectAttributes redirectAttributes){
         this.appointmentService.deleteAppointment(id);
         redirectAttributes.addFlashAttribute("success", "Appointment with ID " + id + " was deleted successfully!");
+
+        return "redirect:/admin/panel";
+    }
+
+    @DeleteMapping("/delete/contact/{id}")
+    public String deleteContact(@PathVariable Long id, RedirectAttributes redirectAttributes){
+        this.contactService.deleteContact(id);
+        redirectAttributes.addFlashAttribute("success", "Contact with ID " + id + " was deleted successfully!");
 
         return "redirect:/admin/panel";
     }

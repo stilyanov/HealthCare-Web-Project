@@ -9,7 +9,7 @@
 <!-- Page Header-->
 <th:block th:replace="~{fragments/header.html}"></th:block>
 
-<!--Login Form-->
+<!--Contact Form-->
 <section class="vh-100% gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,32 +22,81 @@
                             <h2 class="fw-bold mb-2 text-uppercase" th:text="#{contact_us_title}">Contact us</h2>
                             <p class="text-white-50 mb-5" th:text="#{contact_us_subtitle}">Please enter your reason and information</p>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" id="firstName" class="form-control form-control-lg" />
-                                <label class="form-label" for="firstName" th:text="#{first_name}">First Name</label>
-                            </div>
+                            <form th:action="@{/contact}" th:object="${contactDTO}" method="post">
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="firstName" th:text="#{first_name}">First Name</label>
+                                    <input type="text" id="firstName" class="form-control form-control-lg"
+                                           th:field="*{firstName}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                           required
+                                           minlength="3" maxlength="20"
+                                           oninvalid="this.setCustomValidity('First Name length must be between 3 and 20 characters!')"
+                                           oninput="setCustomValidity('')"
+                                    />
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('firstName')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" id="lastName" class="form-control form-control-lg" />
-                                <label class="form-label" for="lastName" th:text="#{last_name}">Last Name</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="lastName" th:text="#{last_name}">Last Name</label>
+                                    <input type="text" id="lastName" class="form-control form-control-lg"
+                                           th:field="*{lastName}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                           required
+                                           minlength="3" maxlength="20"
+                                           oninvalid="this.setCustomValidity('Last Name length must be between 3 and 20 characters!')"
+                                           oninput="setCustomValidity('')"
+                                    />
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('lastName')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="email" id="email" class="form-control form-control-lg" />
-                                <label class="form-label" for="email" th:text="#{email}">Email</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="email" th:text="#{email}">Email</label>
+                                    <input type="email" id="email" class="form-control form-control-lg"
+                                           th:field="*{email}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                           required
+                                           oninvalid="this.setCustomValidity('Please enter a valid email address!')"
+                                           oninput="setCustomValidity('')"
+                                    />
+                                    <small th:errors="*{email}" class="invalid-feedback text-warning"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" id="subject" class="form-control form-control-lg" />
-                                <label class="form-label" for="subject" th:text="#{subject}">Subject</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" for="subject" th:text="#{subject}">Subject</label>
+                                    <input type="text" id="subject" class="form-control form-control-lg"
+                                           th:field="*{subject}"
+                                           th:errorclass="'is-invalid alert-info'"
+                                           required
+                                           minlength="5" maxlength="50"
+                                           oninvalid="this.setCustomValidity('Subject length must be between 5 and 50 characters!')"
+                                           oninput="setCustomValidity('')"
+                                    />
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('subject')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <textarea class="form-control form-control-lg"></textarea>
-                                <label class="form-label" th:text="#{message}">Message</label>
-                            </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <label class="form-label" th:text="#{message}">Message</label>
+                                    <textarea class="form-control form-control-lg"
+                                              th:field="*{message}"
+                                              th:errorclass="'is-invalid alert-info'"
+                                              required
+                                              minlength="20" maxlength="1000"
+                                              oninvalid="this.setCustomValidity('Message length must be between 20 and 1000 characters!')"
+                                              oninput="setCustomValidity('')"
+                                    ></textarea>
+                                    <small class="invalid-feedback text-warning"
+                                           th:each="error : ${#fields.errors('message')}"
+                                           th:text="${error}"></small>
+                                </div>
 
-                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit" th:text="#{send}">Send</button>
+                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit" th:text="#{send}">Send</button>
+                            </form>
                         </div>
 
                     </div>
