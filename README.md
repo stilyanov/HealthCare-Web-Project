@@ -31,8 +31,8 @@ This project aims to create a comprehensive healthcare management system, provid
 1. [DOWNLOAD](https://github.com/stilyanov/HealthCare-Web-Project/archive/refs/heads/main.zip) the repo.
 2. [DOWNLOAD](https://github.com/stilyanov/Healthcare-Appointments/archive/refs/heads/main.zip) the API for appointments.
 3. Set up environment variables in both of the projects for mysql
-    username: ${db_username}
-    password: ${db_password}
+    - username: ${db_username}
+    - password: ${db_password}
 4.Enjoy!
 
 ## Usage
