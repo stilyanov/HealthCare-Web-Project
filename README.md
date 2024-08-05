@@ -38,12 +38,14 @@ This project aims to create a comprehensive healthcare management system, provid
 ## Usage
 Here you can find information about the roles and what they do! There are 3 roles ADMIN, PATIENT and DOCTOR
 <h3>Admin</h3>
-Only users with role ADMIN can access the admin-panel to view patients,doctors,appointments and contacts... and to add doctors!
+Only users with role ADMIN can access the admin-panel to view patients,doctors,appointments and contacts
 </br>
 <img src="https://github.com/stilyanov/HealthCare-Web-Project/blob/main/src/main/resources/static/images/project/admin.png" max-width=100% />
+Also to add doctor
+<img src="https://github.com/stilyanov/HealthCare-Web-Project/blob/main/src/main/resources/static/images/project/admin-add-doctor.png" max-width=100% />
 <h3>Doctor</h3>
 Doctors can view their appointments and delete them!
-<img src="https://github.com/stilyanov/HealthCare-Web-Project/blob/main/src/main/resources/static/images/project/doctor" max-width=100% />
+<img src="https://github.com/stilyanov/HealthCare-Web-Project/blob/main/src/main/resources/static/images/project/doctor.png" max-width=100% />
 Doctors also can add results from appointments to users, so users can view their results
-<img src="https://github.com/stilyanov/HealthCare-Web-Project/blob/main/src/main/resources/static/images/project/doctor-result" max-width=100% />
+<img src="https://github.com/stilyanov/HealthCare-Web-Project/blob/main/src/main/resources/static/images/project/doctor-result.png" max-width=100% />
 <h3>Users</h3>
