@@ -13,7 +13,7 @@ VALUES
     (11, 'john.kim@email.com', 'John', 'Kim', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76'),
     (12, 'lisa.wang@email.com', 'Lisa', 'Wang', 'f292ad79a41b8c2240891d1adad3afdad1671fa55f463b1c20ad992d822fe031f1fd3b7f34419ac4b7f49f978279725e'),
     (13, 'robert.garcia@email.com', 'Robert', 'Garcia', 'dd86672766be3db18aaa14ae352753bd62c72851bb52d78a6a1a84c580f476a4be7bb22399f23cfef63d65b65e5bcd1a'),
-    (14, 'greta.marinova@email.com', 'Greta', 'Marinova', 'eba54a5352e9fb178a2a464af2f60355da8e0c53e8ecf69500d133f61570b1004cdaa493d5191f4b4438c15f60caf1e5'),
+    (14, 'anastasia.mironova@email.com', 'Anastasia', 'Mironova', 'eba54a5352e9fb178a2a464af2f60355da8e0c53e8ecf69500d133f61570b1004cdaa493d5191f4b4438c15f60caf1e5'),
     (15, 'emily.harper@email.com', 'Emily', 'Harper', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76');
 
 

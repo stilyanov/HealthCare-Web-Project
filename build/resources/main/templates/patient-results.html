@@ -11,19 +11,19 @@
 
 <!-- Patient Results List -->
 <section class="container">
-    <h2 class="text-center">Your Results</h2>
+    <h2 class="text-center" th:text="#{your_results}">Your Results</h2>
     <div th:if="${patientResults.isEmpty()}">
-        <p class="text-center">No results yet</p>
+        <p class="text-center" th:text="#{no_results}">No results yet</p>
     </div>
     <div th:unless="${patientResults.isEmpty()}">
         <div th:if="${message}" class="alert alert-success text-center" th:text="${message}"></div>
         <table class="table">
             <thead class="bg-primary text-white">
             <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Prescription</th>
-                <th scope="col">Result</th>
-                <th scope="col">Actions</th>
+                <th scope="col" th:text="#{date}">Date</th>
+                <th scope="col" th:text="#{prescription}">Prescription</th>
+                <th scope="col" th:text="#{result}">Result</th>
+                <th scope="col" th:text="#{action}">Actions</th>
             </tr>
             </thead>
             <tbody th:each="result : ${patientResults}">
@@ -34,7 +34,7 @@
                 <td>
                     <form th:action="@{/patient-result/delete/{id}(id=${result.id})}" method="post">
                         <input type="hidden" name="_method" value="delete" />
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>
                     </form>
                 </td>
             </tr>

@@ -12,4 +12,5 @@ public interface PatientResultRepository extends JpaRepository<PatientResultEnti
 
     List<PatientResultEntity> findAllByPatientId(Long patientId);
 
+    void deleteByPatientId(Long id);
 }

@@ -4,10 +4,7 @@ import bg.softuni.healthcare.model.dto.ContactDTO;
 import bg.softuni.healthcare.model.dto.appointment.FullAppointmentsInfoDTO;
 import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
 import bg.softuni.healthcare.model.entity.UserEntity;
-import bg.softuni.healthcare.service.AppointmentApiService;
-import bg.softuni.healthcare.service.ContactService;
-import bg.softuni.healthcare.service.DoctorService;
-import bg.softuni.healthcare.service.UserService;
+import bg.softuni.healthcare.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +25,7 @@ public class AdminController {
     private final DoctorService doctorService;
     private final AppointmentApiService appointmentService;
     private final ContactService contactService;
+    private final PatientResultService patientResult;
 
     @GetMapping("/panel")
     public String getAdminPanel(Model model, UserEntity user) {
@@ -61,7 +59,7 @@ public class AdminController {
 
     @DeleteMapping("/delete/doctor/{id}")
     public String deleteDoctor(@PathVariable Long id, RedirectAttributes redirectAttributes){
-        this.doctorService.deleteDoctor(id);
+        this.userService.deleteUser(id);
         redirectAttributes.addFlashAttribute("success", "Doctor with ID " + id + " was deleted successfully!");
 
         return "redirect:/admin/panel";

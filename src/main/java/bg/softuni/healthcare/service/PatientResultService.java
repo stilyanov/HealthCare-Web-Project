@@ -14,4 +14,5 @@ public interface PatientResultService {
     List<PatientResultDTO> getPatientResultsByPatientId(Long patientId);
 
     void deletePatientResultById(Long id);
+
 }

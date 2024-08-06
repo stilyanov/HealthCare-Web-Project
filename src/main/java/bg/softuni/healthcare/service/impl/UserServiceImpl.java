@@ -7,6 +7,7 @@ import bg.softuni.healthcare.model.entity.UserEntity;
 import bg.softuni.healthcare.model.entity.UserRoleEntity;
 import bg.softuni.healthcare.model.entity.enums.UserRoleEnum;
 import bg.softuni.healthcare.repository.DoctorRepository;
+import bg.softuni.healthcare.repository.PatientResultRepository;
 import bg.softuni.healthcare.repository.UserRepository;
 import bg.softuni.healthcare.repository.UserRoleRepository;
 import bg.softuni.healthcare.service.UserService;
@@ -16,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -28,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final UserRoleRepository userRoleRepository;
+    private final PatientResultRepository patientResultRepository;
 
 
     public void registerUser(UserRegisterDTO registerDTO) {
@@ -87,6 +90,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(Long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isAdmin = authentication.getAuthorities()
@@ -109,6 +113,7 @@ public class UserServiceImpl implements UserService {
             doctorRepository.deleteById(doctor.getId());
         }
 
+        this.patientResultRepository.deleteByPatientId(id);
         this.userRepository.deleteById(id);
     }
 

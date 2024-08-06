@@ -3,6 +3,7 @@ package bg.softuni.healthcare.service;
 import bg.softuni.healthcare.model.dto.doctor.AddDoctorDTO;
 import bg.softuni.healthcare.model.dto.doctor.DoctorDTO;
 import bg.softuni.healthcare.model.dto.doctor.InfoDoctorDTO;
+import bg.softuni.healthcare.model.dto.user.UserProfileDTO;
 import bg.softuni.healthcare.model.entity.DoctorEntity;
 
 import java.util.List;
