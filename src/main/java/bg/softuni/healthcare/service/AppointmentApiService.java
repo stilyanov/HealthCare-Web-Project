@@ -23,6 +23,10 @@ public interface AppointmentApiService {
 
     void deleteAppointment(Long id);
 
+    void deleteAppointmentsByDoctorId(Long doctorId);
+
+    void deleteAppointmentsByPatientId(Long patientId);
+
     List<UserAppointmentDTO> getAppointmentsByPatientId(Long userId);
 
     List<DoctorAppointmentDTO> getAppointmentsByDoctorId(Long userId);

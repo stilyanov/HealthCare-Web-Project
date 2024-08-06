@@ -113,7 +113,25 @@ public class AppointmentApiServiceImpl implements AppointmentApiService {
                 .uri("/appointments/delete/" + id)
                 .retrieve()
                 .toBodilessEntity();
+    }
 
+
+    @Override
+    public void deleteAppointmentsByDoctorId(Long doctorId) {
+        String url = String.format("/appointments/doctor/%d", doctorId);
+        appointmentsRestClient.delete()
+                .uri(url)
+                .retrieve()
+                .toBodilessEntity();
+    }
+
+    @Override
+    public void deleteAppointmentsByPatientId(Long patientId) {
+        String url = String.format("/appointments/patient/%d", patientId);
+        appointmentsRestClient.delete()
+                .uri(url)
+                .retrieve()
+                .toBodilessEntity();
     }
 
     @Override

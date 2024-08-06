@@ -10,6 +10,7 @@ import bg.softuni.healthcare.repository.DoctorRepository;
 import bg.softuni.healthcare.repository.PatientResultRepository;
 import bg.softuni.healthcare.repository.UserRepository;
 import bg.softuni.healthcare.repository.UserRoleRepository;
+import bg.softuni.healthcare.service.AppointmentApiService;
 import bg.softuni.healthcare.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRoleRepository userRoleRepository;
     private final PatientResultRepository patientResultRepository;
+    private final AppointmentApiService appointmentApiService;
 
 
     public void registerUser(UserRegisterDTO registerDTO) {
@@ -110,9 +112,11 @@ public class UserServiceImpl implements UserService {
         if (isDoctor) {
             DoctorEntity doctor = doctorRepository.findByEmail(user.getEmail())
                     .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
+            this.appointmentApiService.deleteAppointmentsByDoctorId(doctor.getId());
             doctorRepository.deleteById(doctor.getId());
+        } else {
+            this.appointmentApiService.deleteAppointmentsByPatientId(id);
         }
-
         this.patientResultRepository.deleteByPatientId(id);
         this.userRepository.deleteById(id);
     }
