@@ -22,10 +22,8 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
-    private final DoctorService doctorService;
     private final AppointmentApiService appointmentService;
     private final ContactService contactService;
-    private final PatientResultService patientResult;
 
     @GetMapping("/panel")
     public String getAdminPanel(Model model, UserEntity user) {

@@ -64,6 +64,10 @@ public class AppointmentController {
         String userEmail = authentication.getName();
         Long userId = userService.getUserIdByEmail(userEmail);
 
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            return "redirect:/admin/panel";
+        }
+
         String userRole = userService.getUserRoleByEmail(userEmail);
         if ("PATIENT".equals(userRole)) {
             List<UserAppointmentDTO> userAppointments = appointmentService.getAppointmentsByPatientId(userId);
