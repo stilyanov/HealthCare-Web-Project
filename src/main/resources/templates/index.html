@@ -28,6 +28,7 @@
             <div class="btn-group" role="group">
                 <a th:href="@{/users/profile/{userId}(userId=${userId})}" class="btn btn-primary me-2" th:text="#{index_view_profile_button}">View Profile</a>
                 <a th:href="@{/appointments/all}" class="btn btn-secondary me-2" th:text="#{index_view_appointments_button}">View Appointments</a>
+                <a th:href="@{/patient-result/my-results}" class="btn btn-primary me-2" th:text="#{my_results}">My Results</a>
                 <a th:href="@{/doctors/all}" class="btn btn-secondary me-2" th:text="#{all_doctors}">Find Doctors</a>
                 <a th:href="@{/contact}" class="btn btn-primary me-2" th:text="#{contact_us}">Contact Us</a>
             </div>

@@ -28,45 +28,48 @@
             <h2 class="text-center" th:text="#{appointments_title}">Your Appointments</h2>
             <br>
 
-            <!-- No Appointments Message -->
-            <div th:if="${appointments.isEmpty()}">
-                <p class="text-center" th:text="#{appointments_no_appointments}">You do not have any appointments.</p>
-                <div class="text-center" th:if="${role} == 'patient'">
-                    <a th:href="@{/doctors/all}" class="btn btn-primary" th:text="#{find_doctor}">Find Doctor</a>
+            <!-- No Appointments Message for Patient -->
+            <div th:if="${role == 'patient'}">
+                <div th:if="${appointments.isEmpty()}">
+                    <p class="text-center" th:text="#{appointments_no_appointments}">You do not have any appointments.</p>
+                    <div class="text-center">
+                        <a th:href="@{/doctors/all}" class="btn btn-primary" th:text="#{find_doctor}">Find Doctor</a>
+                    </div>
+                    <br>
                 </div>
-                <br>
-            </div>
-
-            <!-- Appointments List -->
-            <div th:unless="${appointments.isEmpty()}">
-
-                <!-- Appointments for Patients -->
-                <div th:if="${role} == 'patient'">
-                    <h3 class="text-center" th:text="#{appointments_with_doctors}">Appointments with Doctors</h3>
+                <!-- Appointments List for Patient -->
+                <div th:unless="${appointments.isEmpty()}">
+                    <h3 class="text-center" th:text="#{appointments_with_doctors}">Upcoming Appointments</h3>
                     <br>
                     <table class="table">
                         <thead class="bg-primary text-white">
                         <tr>
                             <th scope="col" th:text="#{doctor_full_name}">Doctor Full Name</th>
-                            <th scope="col" th:text="#{department}">Department</th>
                             <th scope="col" th:text="#{date_time}">Date And Time</th>
                             <th scope="col" th:text="#{reason}">Reason</th>
+                            <!-- No action column for patients -->
                         </tr>
                         </thead>
                         <tbody th:each="appointment : ${appointments}">
                         <tr>
                             <td th:text="${appointment.doctorFullName}"></td>
-                            <td th:text="${appointment.department.displayName}"></td>
                             <td th:text="${appointment.formattedDateTime}"></td>
                             <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
+                            <!-- No action column for patients -->
                         </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
 
-                <!-- Appointments for Doctors -->
-                <div th:if="${role} == 'doctor'">
-                    <h3 class="text-center" th:text="#{appointments_with_patients}">Appointments with Patients</h3>
+            <!-- Past Appointments List for Doctor -->
+            <div th:if="${role == 'doctor'}">
+                <div th:if="${pastAppointments.isEmpty()}">
+                    <p class="text-center" th:text="#{no_past_appointments}">No past appointments</p>
+                </div>
+                <!-- Past Appointments List -->
+                <div th:unless="${pastAppointments.isEmpty()}">
+                    <h3 class="text-center" th:text="#{past_appointments}">Past Appointments</h3>
                     <br>
                     <table class="table">
                         <thead class="bg-primary text-white">
@@ -77,74 +80,34 @@
                             <th scope="col" th:text="#{action}">Action</th>
                         </tr>
                         </thead>
-                        <tbody th:each="appointment : ${appointments}">
+                        <tbody th:each="appointment : ${pastAppointments}">
                         <tr>
                             <td th:text="${appointment.patientFullName}"></td>
                             <td th:text="${appointment.formattedDateTime}"></td>
                             <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
                             <td>
-                                <!-- Delete Form -->
-                                <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}" method="post">
-                                    <input type="hidden" name="_method" value="DELETE"/>
-                                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                                    <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>
-                                </form>
+                                <!-- Add Patient Result Link -->
+                                <div class="btn-group" role="group">
+                                    <a th:href="@{/patient-result/add/{patientId}/{appointmentId}(patientId=${appointment.patientId}, appointmentId=${appointment.id})}"
+                                       class="btn btn-primary" th:text="#{add_patient_result}">Add Patient Result</a>
+                                    <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}"
+                                          method="post" style="display:inline;">
+                                        <input type="hidden" name="_method" value="DELETE"/>
+                                        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                                        <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-
-                    <br>
-                    <h3 class="text-center" th:text="#{past_appointments}">Past Appointments</h3>
-                    <br>
-
-                    <!-- No Past Appointments Message -->
-                    <div th:if="${pastAppointments.isEmpty()}">
-                        <p class="text-center" th:text="#{no_past_appointments}">No past appointments</p>
-                    </div>
-
-                    <!-- Past Appointments List -->
-                    <div th:unless="${pastAppointments.isEmpty()}">
-                        <table class="table">
-                            <thead class="bg-primary text-white">
-                            <tr>
-                                <th scope="col" th:text="#{patient_full_name}">Patient Full Name</th>
-                                <th scope="col" th:text="#{date_time}">Date And Time</th>
-                                <th scope="col" th:text="#{reason}">Reason</th>
-                                <th scope="col" th:text="#{action}">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody th:each="appointment : ${pastAppointments}">
-                            <tr>
-                                <td th:text="${appointment.patientFullName}"></td>
-                                <td th:text="${appointment.formattedDateTime}"></td>
-                                <td th:text="${appointment.reason}"
-                                    style="word-break: break-word; max-width: 100%"></td>
-                                <td>
-                                    <!-- Add Patient Result Link -->
-                                    <div class="btn-group" role="group">
-                                        <a th:href="@{/patient-result/add/{patientId}/{appointmentId}(patientId=${appointment.patientId}, appointmentId=${appointment.id})}"
-                                           class="btn btn-primary" th:text="#{add_patient_result}">Add Patient
-                                            Result</a>
-
-                                        <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}"
-                                              method="post" style="display:inline;">
-                                            <input type="hidden" name="_method" value="DELETE"/>
-                                            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-                                            <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+
 <!-- Footer -->
 <th:block th:replace="~{fragments/footer.html}"></th:block>
 <!-- Bootstrap core JS -->
