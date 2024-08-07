@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bg.softuni.healthcare.service.impl.UserServiceImplTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-08-07T20:54:52" hostname="Stilyanov--MacBook-Air.local" time="0.031">
+  <properties/>
+  <testcase name="testValidateCredentials()" classname="bg.softuni.healthcare.service.impl.UserServiceImplTest" time="0.011"/>
+  <testcase name="testGetUserIdByEmail()" classname="bg.softuni.healthcare.service.impl.UserServiceImplTest" time="0.002"/>
+  <testcase name="testRegisterUser()" classname="bg.softuni.healthcare.service.impl.UserServiceImplTest" time="0.013"/>
+  <testcase name="testGetUserProfile()" classname="bg.softuni.healthcare.service.impl.UserServiceImplTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
