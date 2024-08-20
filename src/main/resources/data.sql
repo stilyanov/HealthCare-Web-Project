@@ -48,24 +48,25 @@ VALUES
     (11, 'Dr. Anastasia Mironova is a highly skilled physician renowned for her dedication to patient care and excellence in medical practice. With extensive experience in various medical procedures, Dr. Mironova is committed to ensuring the best outcomes for her patients. She specializes in both preventive care and complex medical treatments, leveraging the latest advancements in medicine. Dr. Mironova’s approach is patient-centered, focusing on individualized care plans to meet each patient’s unique needs. Her expertise and compassionate care make her a trusted and respected member of the medical community.', 15, 'Anastasia', 'https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg', 'Mironova', 1, 14, 'Veliko Turnovo', 'anastasia.mironova@email.com', 'eba54a5352e9fb178a2a464af2f60355da8e0c53e8ecf69500d133f61570b1004cdaa493d5191f4b4438c15f60caf1e5', 0, '2024-07-01'),
     (15, 'Dr. Emily Harper is a highly skilled cardiologist specializing in diagnosing and treating heart conditions. She is well-known for her compassionate care and her commitment to patient health. Dr. Johnson has extensive experience in managing complex cardiovascular diseases and is proficient in advanced diagnostic techniques. Dr. Emily Johnson is a highly skilled cardiologist specializing in diagnosing and treating heart conditions. She is well-known for her compassionate care and her commitment to patient health. Dr. Johnson has extensive experience in managing complex cardiovascular diseases and is proficient in advanced diagnostic techniques.', 30, 'Emily', 'https://img.freepik.com/premium-photo/smiling-doctor-with-strethoscope_258943-53.jpg?size=626&ext=jpg&ga=GA1.1.1502090658.1720869845&semt=sph', 'Harper', 10, 15, 'Instanbul', 'emily.harper@email.com', '9322cff1b5252a14b81ccf972ab6f038ddbdf36a67defaab63d6b817beb701191c05b858429fda603eaee7b6d5079a76', 0, CURDATE());
 
-INSERT INTO `patient_results` (`id`, `prescription`, `result`, `date`, `appointment_id`, `patient_id`)
+INSERT INTO `patient_results` (`id`, `appointment_id`, `date`, `prescription`, `result`, `patient_id`)
 VALUES
-    (1, 'Take one tablet of aspirin daily', 'Normal blood pressure', '2023-10-01', 1, 6),
-    (2, 'Apply ointment twice daily', 'Skin condition improved', '2023-10-02', 2, 7),
-    (3, 'Follow a low-sodium diet', 'Cholesterol levels reduced', '2023-10-03', 3, 8),
-    (4, 'Use inhaler as needed', 'Breathing improved', '2023-10-04', 4, 9),
-    (5, 'Take vitamin D supplements', 'Bone density increased', '2023-10-05', 5, 10),
-    (6, 'Perform physical therapy exercises', 'Mobility improved', '2023-10-06', 6, 11),
-    (7, 'Take antibiotics for 7 days', 'Infection cleared', '2023-10-07', 7, 12),
-    (8, 'Monitor blood sugar levels', 'Diabetes under control', '2023-10-08', 8, 13),
-    (9, 'Use eye drops twice daily', 'Vision improved', '2023-10-09', 9, 14),
-    (10, 'Take antihistamines as needed', 'Allergy symptoms reduced', '2023-10-10', 10, 15),
-    (11, 'Follow a gluten-free diet', 'Digestive issues resolved', '2023-10-11', 11, 6),
-    (12, 'Take pain relievers as needed', 'Pain managed', '2023-10-12', 12, 7),
-    (13, 'Use nasal spray daily', 'Sinus congestion relieved', '2023-10-13', 13, 8),
-    (14, 'Take iron supplements', 'Anemia improved', '2023-10-14', 14, 9),
-    (15, 'Perform breathing exercises', 'Lung capacity increased', '2023-10-15', 15, 10),
-    (16, 'Take probiotics daily', 'Gut health improved', '2023-10-16', 16, 11),
-    (17, 'Use topical cream for rash', 'Rash cleared', '2023-10-17', 17, 12),
-    (18, 'Take anti-inflammatory medication', 'Swelling reduced', '2023-10-18', 18, 13),
-    (19, 'Follow a high-fiber diet', 'Bowel movements regular', '2023-10-19', 19, 14);
+    (1, 6, '2024-08-09', 'Perform physical therapy exercises', 'Mobility improved', 4),
+    (2, 15, '2024-08-02', 'Take antihypertensive medication', 'Blood pressure under control', 2),
+    (3, 16, '2024-08-06', 'Follow a balanced diet', 'Growth normal', 2),
+    (4, 24, '2024-08-02', 'Administer vaccination', 'Immunity boosted', 2),
+    (5, 1, '2024-08-25', 'Continue current medication', 'Cardiac health stable', 2),
+    (6, 2, '2024-08-26', 'Apply prescribed topical treatment', 'Skin condition improved', 4),
+    (7, 5, '2024-08-24', 'Take prenatal vitamins', 'Healthy pregnancy progress', 5),
+    (8, 7, '2024-08-25', 'Start new seizure medication', 'Seizures reduced', 5),
+    (9, 8, '2024-08-25', 'Begin chemotherapy cycle', 'Tumor size decreased', 4),
+    (10, 11, '2024-08-31', 'Continue antibiotic course', 'Infection subsided', 2),
+    (11, 13, '2024-09-01', 'Adjust chemotherapy dosage', 'Cancer markers improved', 3),
+    (12, 14, '2024-09-01', 'Increase beta-blocker dosage', 'Heart function improved', 3);
+
+
+INSERT INTO `contacts` (`id`, `email`, `first_name`, `last_name`, `message`, `subject`)
+VALUES
+    (1, 'john.doe@email.com', 'John', 'Doe', 'Hello, I would like to inquire about your services. Please get back to me as soon as possible.', 'Service Inquiry'),
+    (2, 'alice.smith@email.com', 'Alice', 'Smith', 'I have a question regarding my recent appointment. Can you assist?', 'Order Query'),
+    (3, 'michael.jones@email.com', 'Michael', 'Jones', 'Your website is very informative. I have a few suggestions for improvement.', 'Website Feedback'),
+    (5, 'daniel.brown@email.com', 'Daniel', 'Brown', 'I am interested in collaborating on a project. Let me know how we can proceed.', 'Collaboration Proposal');

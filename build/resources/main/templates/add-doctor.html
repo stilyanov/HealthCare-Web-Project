@@ -31,10 +31,6 @@
                                     <input type="text" id="firstName" class="form-control form-control-lg"
                                            th:field="*{firstName}"
                                            th:errorclass="'is-invalid alert-info'"
-                                           required
-                                           minlength="3" maxlength="20"
-                                           oninvalid="this.setCustomValidity('First Name length must be between 3 and 20 characters!')"
-                                           oninput="setCustomValidity('')"
                                     />
                                     <small class="invalid-feedback text-warning"
                                            th:each="error : ${#fields.errors('firstName')}"

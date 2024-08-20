@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2024-08-07T20:54:52" hostname="Stilyanov--MacBook-Air.local" time="0.179">
+<testsuite name="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2024-08-09T11:46:51" hostname="Stilyanov--MacBook-Air.local" time="0.173">
   <properties/>
-  <testcase name="testFindByName()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.15"/>
-  <testcase name="testGetAllTowns()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.002"/>
+  <testcase name="testFindByName()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.132"/>
+  <testcase name="testGetAllTowns()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.005"/>
   <testcase name="testGetDoctorIdByEmail()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.002"/>
-  <testcase name="testChangePassword()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.003"/>
+  <testcase name="testChangePassword()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.007"/>
   <testcase name="testGetDoctorById()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.003"/>
-  <testcase name="testGetDoctorInfo()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.002"/>
-  <testcase name="testAddDoctor()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.003"/>
+  <testcase name="testGetDoctorInfo()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.003"/>
+  <testcase name="testAddDoctor()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.004"/>
   <testcase name="testFindByEmail()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.002"/>
-  <testcase name="testGetAllDoctors()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.002"/>
-  <testcase name="testDeleteDoctor_notAdmin()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.002"/>
+  <testcase name="testGetAllDoctors()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.004"/>
+  <testcase name="testDeleteDoctor_notAdmin()" classname="bg.softuni.healthcare.service.impl.DoctorServiceImplTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

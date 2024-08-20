@@ -62,7 +62,47 @@
                 </div>
             </div>
 
-            <!-- Past Appointments List for Doctor -->
+            <div th:if="${role == 'doctor'}">
+            <div th:if="${appointments.isEmpty()}">
+                <p class="text-center" th:text="#{no_future_appointments}">No future appointments</p>
+            </div>
+            <!-- Future Appointments List -->
+            <div th:unless="${appointments.isEmpty()}">
+                <h3 class="text-center" th:text="#{future_appointments}">Future Appointments</h3>
+                <br>
+                <table class="table">
+                    <thead class="bg-primary text-white">
+                    <tr>
+                        <th scope="col" th:text="#{patient_full_name}">Patient Full Name</th>
+                        <th scope="col" th:text="#{date_time}">Date And Time</th>
+                        <th scope="col" th:text="#{reason}">Reason</th>
+                        <th scope="col" th:text="#{action}">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="appointment : ${appointments}">
+                    <tr>
+                        <td th:text="${appointment.patientFullName}"></td>
+                        <td th:text="${appointment.formattedDateTime}"></td>
+                        <td th:text="${appointment.reason}" style="word-break: break-word; max-width: 100%"></td>
+                        <td>
+                            <!-- Add Patient Result Link -->
+                            <div class="btn-group" role="group">
+                                <form th:action="@{/appointments/delete/{id}(id=${appointment.id})}"
+                                      method="post" style="display:inline;">
+                                    <input type="hidden" name="_method" value="DELETE"/>
+                                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                                    <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
+        <!-- Past Appointments List for Doctor -->
             <div th:if="${role == 'doctor'}">
                 <div th:if="${pastAppointments.isEmpty()}">
                     <p class="text-center" th:text="#{no_past_appointments}">No past appointments</p>

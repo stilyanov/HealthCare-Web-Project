@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-08-07T20:54:52" hostname="Stilyanov--MacBook-Air.local" time="0.052">
+<testsuite name="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-08-09T11:46:52" hostname="Stilyanov--MacBook-Air.local" time="0.081">
   <properties/>
-  <testcase name="testAddPatientResult_AppointmentNotFound()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.038"/>
+  <testcase name="testAddPatientResult_AppointmentNotFound()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.054"/>
   <testcase name="testDeletePatientResultById()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.002"/>
   <testcase name="testGetPatientResultsByPatientId()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.002"/>
   <testcase name="testAddPatientResult_UserNotFound()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.002"/>
-  <testcase name="testGetPatientResultsByPatientId_NoResults()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.002"/>
-  <testcase name="testAddPatientResult()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.004"/>
+  <testcase name="testGetPatientResultsByPatientId_NoResults()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.001"/>
+  <testcase name="testAddPatientResult()" classname="bg.softuni.healthcare.service.impl.PatientResultServiceImplTest" time="0.014"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
